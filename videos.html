@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🎥 Videos | Richard Ocasio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0a0a;color:#f0f0f0;margin:0;padding:0}
+nav{background:#111;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #ff6b35;position:relative;z-index:100}
+nav .logo{font-size:1.5rem;font-weight:bold;color:#ff6b35}
+nav a{color:#ccc;text-decoration:none;font-size:.95rem}
+nav a:hover{color:#ff6b35}
+
+/* Video container */
+.video-wrapper{max-width:1200px;margin:0 auto;padding:20px}
+.video-wrapper h1{font-size:2.5rem;color:#ff6b35;margin:1.5rem 0 .5rem;text-align:center}
+.video-wrapper p{color:#aaa;text-align:center;margin-bottom:2rem}
+
+.video-card{background:#111;border:1px solid #222;border-radius:16px;padding:20px;margin-bottom:24px}
+.video-card h3{color:#ff6b35;margin-bottom:8px}
+.video-card .date{color:#666;font-size:.8rem;margin-bottom:12px}
+.video-player{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden}
+.video-player iframe{width:100%;height:100%;border:none}
+
+footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;color:#666;margin-top:3rem}
+footer a{color:#ff6b35;text-decoration:none}
+
+@media(max-width:768px){
+  .video-wrapper h1{font-size:1.8rem}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="logo">🎥</div><a href="index.html">← Inicio</a></nav>
+
+<div class="video-wrapper">
+  <h1>🎥 Mis Videos</h1>
+  <p>Colección personal de videos</p>
+
+  <div class="video-card">
+    <h3>🎬 Video · Marzo 2026</h3>
+    <div class="date">8 de marzo, 2026 · 33 MB</div>
+    <div class="video-player">
+      <iframe src="https://drive.google.com/file/d/1E-O5l3-Tn4avXNNz2sSzL0madyWM2N9l/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="video-card" style="text-align:center;padding:40px;color:#555">
+    <p style="font-size:3rem">📹</p>
+    <p>Más videos pronto...</p>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html">rocasio.com</a> 🇵🇷 — Videos personales
+</footer>
+</body>
+</html>
