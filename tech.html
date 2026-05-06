@@ -1,14 +1,144 @@
 <!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>💻 Tech | Richard Ocasio</title>
-<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui,sans-serif;background:#0a0a0a;color:#f0f0f0;line-height:1.6}nav{background:#111;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #ff6b35}nav .logo{font-size:1.5rem;font-weight:bold;color:#ff6b35}nav a{color:#ccc;text-decoration:none}.section{padding:3rem 2rem;max-width:900px;margin:0 auto}.section h1{font-size:2.5rem;color:#ff6b35;margin-bottom:1rem}.section h2{color:#ff6b35;margin:2rem 0 .5rem}.section p{color:#aaa}.card{background:#151515;padding:1.5rem;border-radius:12px;border:1px solid #222;margin:1rem 0}.card h3{color:#ff6b35}footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;color:#666;margin-top:3rem}</style></head><body>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0a0a0a;color:#f0f0f0;line-height:1.6}
+nav{background:#111;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #ff6b35}
+nav .logo{font-size:1.5rem;font-weight:bold;color:#ff6b35}
+nav a{color:#ccc;text-decoration:none}
+.section{padding:3rem 2rem;max-width:1000px;margin:0 auto}
+.section h1{font-size:2.5rem;color:#ff6b35;margin-bottom:1rem}
+.section h2{color:#ff6b35;margin:2.5rem 0 1rem;border-bottom:1px solid #222;padding-bottom:.5rem}
+.section p{color:#aaa}
+.card{background:#151515;padding:1.5rem;border-radius:12px;border:1px solid #222;margin:1rem 0}
+.card h3{color:#ff6b35}
+footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;color:#666;margin-top:3rem}
+
+/* Solar Dashboard */
+.solar-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:1.5rem 0}
+.solar-card{background:#131820;border:1px solid #1e2a3a;border-radius:14px;padding:20px;text-align:center}
+.solar-card .label{color:#7a8ba0;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+.solar-card .value{font-size:2.2rem;font-weight:800;margin:6px 0}
+.solar-card .sub{color:#7a8ba0;font-size:.8rem}
+.c-solar{color:#f0c040}
+.c-usage{color:#3498db}
+.c-battery{color:#2ecc71}
+.c-ratio{color:#f39c12}
+
+.solar-bar{height:10px;background:#1e2a3a;border-radius:10px;overflow:hidden;margin-top:10px}
+.solar-bar-fill{height:100%;border-radius:10px;transition:width .6s}
+
+.solar-chart{background:#131820;border:1px solid #1e2a3a;border-radius:14px;padding:24px;margin:1rem 0}
+.solar-chart h3{color:#f0c040;margin-bottom:1rem;font-size:1.1rem}
+.bars{display:flex;align-items:flex-end;gap:8px;height:160px;padding:0 4px}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.bar-wrap .bar{width:100%;border-radius:4px 4px 0 0;transition:height .5s;min-width:20px}
+.bar-wrap .m{color:#7a8ba0;font-size:.65rem}
+.bar-prod{background:linear-gradient(180deg,#f0c040,#b8860b)}
+.bar-use{background:linear-gradient(180deg,#3498db,#1a5276)}
+
+.status-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:16px;font-size:.8rem;font-weight:600;background:rgba(46,204,113,.12);color:#2ecc71}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#2ecc71;box-shadow:0 0 8px rgba(46,204,113,.6)}
+
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:1.5rem 0}
+.stat-item{background:#131820;border:1px solid #1e2a3a;border-radius:10px;padding:14px;text-align:center}
+.stat-item .val{font-size:1.4rem;font-weight:700}
+.stat-item .lbl{color:#7a8ba0;font-size:.75rem;margin-top:2px}
+
+@media(max-width:600px){.solar-metrics{grid-template-columns:1fr 1fr}}
+</style></head><body>
 <script>if(document.cookie.indexOf('auth=1')===-1){window.location.href='acceso.html?page=tech';}</script>
 <nav><div class="logo">💻</div><a href="index.html">← Inicio</a></nav>
 <div class="section">
 <h1>💻 Tecnología</h1>
 <p>Mi setup, herramientas y proyectos tech.</p>
+
 <h2>🖥️ Setup</h2>
 <div class="card"><h3>MacBook Pro Intel</h3><p>macOS Ventura 13 · 4 plataformas de inversión · Automatización con AI · Google Workspace</p></div>
+
 <h2>🤖 Asistente AI</h2>
 <div class="card"><h3>Paloma (Hermes Agent)</h3><p>Asistente personal 24/7 · Trading · Dashboards · Monitoreo solar · WhatsApp + Telegram</p></div>
-<h2>📱 Apps diarias</h2><p>Coinbase · Webull · Fidelity · Stash · Google Drive · Ninox · Shopify</p>
+
+<h2>📱 Apps diarias</h2>
+<p>Coinbase · Webull · Fidelity · Stash · Google Drive · Ninox · Shopify</p>
+
+<!-- ===== DASHBOARD SOLAR ===== -->
+<h2>☀️ Dashboard Solar <span class="status-badge"><span class="status-dot"></span> Normal</span></h2>
+<p style="color:#7a8ba0;margin-bottom:1rem">Datos: Tesla Powerwall · Mayo 2026</p>
+
+<div class="solar-metrics">
+  <div class="solar-card">
+    <div class="label">Producción Anual</div>
+    <div class="value c-solar">2,723</div>
+    <div class="sub">kWh generados</div>
+    <div class="solar-bar"><div class="solar-bar-fill" style="width:100%;background:#f0c040"></div></div>
+    <div class="sub">+18% vs 2025</div>
+  </div>
+  <div class="solar-card">
+    <div class="label">Consumo Anual</div>
+    <div class="value c-usage">2,107</div>
+    <div class="sub">kWh consumidos</div>
+    <div class="solar-bar"><div class="solar-bar-fill" style="width:77%;background:#3498db"></div></div>
+    <div class="sub">77% de lo generado</div>
+  </div>
+  <div class="solar-card">
+    <div class="label">Balance</div>
+    <div class="value c-ratio">129%</div>
+    <div class="sub">Excedente +616 kWh</div>
+    <div class="solar-bar"><div class="solar-bar-fill" style="width:100%;background:#f39c12"></div></div>
+    <div class="sub">Produce más de lo que usa</div>
+  </div>
+  <div class="solar-card">
+    <div class="label">Batería</div>
+    <div class="value c-battery">100%</div>
+    <div class="sub">13.5 kWh · Carga completa</div>
+    <div class="solar-bar"><div class="solar-bar-fill" style="width:100%;background:#2ecc71"></div></div>
+    <div class="sub">Powerwall</div>
+  </div>
 </div>
-<footer>rocasio.com 🇵🇷</footer></body></html>
+
+<div class="solar-chart">
+  <h3>📊 Producción Mensual 2026 vs 2025</h3>
+  <div class="bars" id="prodBars"></div>
+</div>
+
+<div class="solar-chart">
+  <h3>📈 Producción vs Consumo Mensual 2026</h3>
+  <div class="bars" id="vsBars"></div>
+</div>
+
+<h3 style="color:#f0c040;margin-top:1.5rem">⚡ Hoy (Mayo 1, 2026)</h3>
+<div class="stats-grid">
+  <div class="stat-item"><div class="val c-solar">25.7 kWh</div><div class="lbl">Producción Hoy</div></div>
+  <div class="stat-item"><div class="val c-usage">28.0 kWh</div><div class="lbl">Consumo Hoy</div></div>
+  <div class="stat-item"><div class="val c-ratio">91%</div><div class="lbl">Balance Hoy</div></div>
+  <div class="stat-item"><div class="val c-battery">$0.00</div><div class="lbl">Factura LUMA Mayo</div></div>
+  <div class="stat-item"><div class="val c-solar">$1,847</div><div class="lbl">Ahorro Est. 2026</div></div>
+</div>
+<!-- ===== FIN DASHBOARD SOLAR ===== -->
+
+</div>
+<footer>rocasio.com 🇵🇷</footer>
+<script>
+// Monthly data
+const months = ['E','F','M','A','M','J','J','A','S','O','N','D'];
+const prod2026 = [380,420,510,580,470,380,350,340,310,280,250,220];
+const prod2025 = [310,350,430,490,450,360,330,320,290,260,230,200];
+const usage2026 = [290,310,380,430,400,320,290,280,270,260,240,230];
+const maxVal = 620;
+
+function makeBars(container, data1, data2, cl1, cl2, lbl1, lbl2) {
+  let h = '';
+  data1.forEach((v,i) => {
+    h += `<div class="bar-wrap">
+      <div style="display:flex;gap:2px;align-items:flex-end;height:140px">
+        <div class="bar ${cl1}" style="height:${(v/maxVal*140)|0}px" title="${lbl1}: ${v}"></div>`
+    if(data2) h += `<div class="bar ${cl2}" style="height:${(data2[i]/maxVal*140)|0}px" title="${lbl2}: ${data2[i]}"></div>`;
+    h += `</div><div class="m">${months[i]}</div></div>`;
+  });
+  document.getElementById(container).innerHTML = h;
+}
+
+makeBars('prodBars', prod2026, prod2025, 'bar-prod', 'bar-prod', '2026', '2025');
+makeBars('vsBars', prod2026, usage2026, 'bar-prod', 'bar-use', 'Prod', 'Uso');
+</script>
+</body></html>
