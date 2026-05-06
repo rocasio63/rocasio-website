@@ -18,6 +18,9 @@ td{padding:.6rem;border-bottom:1px solid #1a1a1a;font-size:1rem}
 td:last-child{text-align:right;font-weight:600;color:#f0c040}
 .tip{background:#1a1208;border-left:3px solid #e67e22;padding:1rem 1.2rem;margin:1.5rem 0;border-radius:0 8px 8px 0;color:#ccc;font-size:.95rem}
 .tip::before{content:'💡 ';font-size:1.1rem}
+ol.steps{counter-reset:step;list-style:none;padding:0;margin:1.2rem 0}
+ol.steps li{counter-increment:step;padding:.7rem 0 .7rem 2.8rem;position:relative;color:#ccc;line-height:1.6}
+ol.steps li::before{content:counter(step);position:absolute;left:0;top:.7rem;width:1.8rem;height:1.8rem;background:#e67e22;color:#000;border-radius:50%;text-align:center;line-height:1.8rem;font-weight:700;font-size:.85rem}
 .tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
 .tag{background:#1a1208;color:#e67e22;padding:.3rem .8rem;border-radius:12px;font-size:.8rem;border:1px solid #2a1a0a}
 footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;color:#666;margin-top:3rem}
@@ -51,6 +54,38 @@ footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;c
 
 <div class="tags">
 <span class="tag">🍞 Pan</span><span class="tag">🇵🇷 Puerto Rico</span><span class="tag">🌡️ Clima Cálido</span><span class="tag">🕐 1.5 lb</span>
+</div>
+</div>
+<!-- RECETA: Coditos -->
+<div class="recipe-card">
+<h3>🥗 Coditos (Ensalada de Pasta)</h3>
+<p class="subtitle">Clásico puertorriqueño — fácil, rápido y delicioso frío</p>
+
+<table>
+<tr><th>Ingrediente</th><th>Cantidad</th></tr>
+<tr><td>Coditos (pasta de codo)</td><td>170 g</td></tr>
+<tr><td>Cebolla</td><td>1 mediana</td></tr>
+<tr><td>Jamón</td><td>100 g</td></tr>
+<tr><td>Queso</td><td>100 g</td></tr>
+<tr><td>Mayonesa</td><td>115 g</td></tr>
+<tr><td>Zanahoria rallada</td><td>30 g</td></tr>
+<tr><td>Mostaza (opcional)</td><td>10 g</td></tr>
+<tr><td>Sal y pimienta</td><td>Al gusto</td></tr>
+</table>
+
+<h4 style="color:#e67e22;margin:1.2rem 0 .5rem">👨‍🍳 Preparación</h4>
+<ol class="steps">
+<li><strong>Cocción de la pasta</strong> — Cocina los coditos en agua con sal hasta que estén al dente. Escurre y deja enfriar.</li>
+<li><strong>Preparación de la base</strong> — Mezcla la mayonesa con la mostaza hasta integrar bien.</li>
+<li><strong>Integración</strong> — Añade la cebolla picada, zanahoria rallada, jamón en cubos y queso en cubos a la base de mayonesa.</li>
+<li><strong>Mezcla final</strong> — Incorpora la pasta fría con la mezcla. Ajusta sal y pimienta al gusto.</li>
+<li><strong>Reposo</strong> — Refrigera por 30 minutos antes de servir. ¡Mejor frío!</li>
+</ol>
+
+<div class="tip">Para mejor sabor, prepara la noche anterior. Los coditos fríos son ideales para el calor de Lajas.</div>
+
+<div class="tags">
+<span class="tag">🥗 Ensalada</span><span class="tag">🇵🇷 Puerto Rico</span><span class="tag">⏱️ 30 min</span><span class="tag">❄️ Frío</span>
 </div>
 </div>
 <!-- FIN RECETA -->
