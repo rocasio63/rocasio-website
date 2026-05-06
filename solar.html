@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Solar — Rocasio</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0a0e14;
+    --card: #131820;
+    --border: #1e2a3a;
+    --text: #e0e6f0;
+    --muted: #7a8ba0;
+    --solar: #f0c040;
+    --battery: #2ecc71;
+    --usage: #3498db;
+    --danger: #e74c3c;
+    --accent: #f39c12;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* Password overlay */
+  #pw-overlay {
+    position: fixed; inset:0; z-index:999;
+    background: rgba(10,14,20,0.97);
+    display: flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:20px;
+  }
+  #pw-overlay.locked { display:flex; }
+  #pw-overlay.unlocked { display:none; }
+  #pw-overlay h1 { font-size:2rem; color:var(--solar); }
+  #pw-overlay input {
+    background: var(--card); border:2px solid var(--border);
+    color: var(--text); padding:14px 24px; border-radius:12px;
+    font-size:1.1rem; text-align:center; width:280px;
+  }
+  #pw-overlay input:focus { outline:none; border-color:var(--solar); }
+  #pw-overlay button {
+    background: var(--solar); color: #000; border:none;
+    padding:14px 40px; border-radius:12px; font-size:1.1rem;
+    font-weight:700; cursor:pointer;
+  }
+  #pw-error { color:var(--danger); display:none; }
+
+  /* Layout */
+  .container { max-width:1200px; margin:0 auto; padding:24px 20px 60px; }
+  .header {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 0; border-bottom:1px solid var(--border); margin-bottom:28px;
+  }
+  .header h1 { font-size:1.6rem; }
+  .header h1 span { color:var(--solar); }
+  .header .date { color:var(--muted); font-size:0.9rem; }
+  .back-link { color:var(--muted); text-decoration:none; font-size:0.95rem; }
+  .back-link:hover { color:var(--solar); }
+
+  /* Cards */
+  .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-bottom:28px; }
+  .card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:16px; padding:22px 20px;
+  }
+  .card .label { color:var(--muted); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px; }
+  .card .value { font-size:2.4rem; font-weight:800; line-height:1.1; }
+  .card .sub { color:var(--muted); font-size:0.85rem; margin-top:4px; }
+  .solar { color:var(--solar); }
+  .usage-c { color:var(--usage); }
+  .battery-c { color:var(--battery); }
+  .ratio { color:var(--accent); }
+
+  /* Gauges */
+  .gauge-row { display:flex; gap:12px; align-items:center; margin-top:12px; }
+  .gauge-bar {
+    flex:1; height:10px; background:var(--border); border-radius:10px; overflow:hidden;
+  }
+  .gauge-fill { height:100%; border-radius:10px; transition:width 0.6s ease; }
+  .gauge-val { font-weight:700; font-size:0.9rem; }
+
+  /* Charts */
+  .charts { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:28px; }
+  @media (max-width:768px) { .charts { grid-template-columns:1fr; } }
+  .chart-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:16px; padding:20px;
+  }
+  .chart-card h3 { font-size:1rem; margin-bottom:16px; color:var(--text); }
+  .chart-wrap { position:relative; height:280px; }
+  .chart-wrap canvas { width:100%!important; height:100%!important; }
+
+  /* Full width chart */
+  .full-chart { margin-bottom:28px; }
+  .full-chart .chart-wrap { height:320px; }
+
+  /* Stats grid */
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-bottom:28px; }
+  .stat-item {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:12px; padding:16px; text-align:center;
+  }
+  .stat-item .stat-val { font-size:1.6rem; font-weight:700; }
+  .stat-item .stat-lbl { color:var(--muted); font-size:0.8rem; margin-top:2px; }
+
+  .status-badge {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:6px 14px; border-radius:20px; font-size:0.85rem;
+    font-weight:600;
+  }
+  .status-ok { background:rgba(46,204,113,0.15); color:var(--battery); }
+  .dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .dot-green { background:var(--battery); box-shadow:0 0 8px rgba(46,204,113,0.6); }
+
+  .footer {
+    text-align:center; padding:20px; color:var(--muted); font-size:0.8rem;
+    border-top:1px solid var(--border); margin-top:20px;
+  }
+  .nav-links { display:flex; gap:12px; margin-left:auto; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:0.85rem; }
+  .nav-links a:hover { color:var(--solar); }
+</style>
+</head>
+<body>
+
+<div id="pw-overlay" class="locked">
+  <h1>🔒 Dashboard Solar</h1>
+  <input type="password" id="pw-input" placeholder="Contraseña" autofocus>
+  <button onclick="checkPW()">Acceder</button>
+  <p id="pw-error">Contraseña incorrecta</p>
+</div>
+
+<div class="container">
+  <div class="header">
+    <div>
+      <h1>☀️ <span>Dashboard Solar</span></h1>
+      <p class="date">Actualizado: Mayo 2026</p>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span class="status-badge status-ok"><span class="dot dot-green"></span> Sistema Normal</span>
+      <div class="nav-links">
+        <a href="/">← Inicio</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Métricas principales -->
+  <div class="metrics">
+    <div class="card">
+      <div class="label">Producción Anual 2026</div>
+      <div class="value solar">2,723</div>
+      <div class="sub">kWh generados</div>
+      <div class="gauge-row">
+        <span style="color:var(--muted);font-size:0.8rem;">vs 2025</span>
+        <div class="gauge-bar"><div class="gauge-fill" style="width:100%;background:var(--solar);"></div></div>
+        <span class="gauge-val solar">+18%</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="label">Consumo Anual 2026</div>
+      <div class="value usage-c">2,107</div>
+      <div class="sub">kWh consumidos</div>
+      <div class="gauge-row">
+        <span style="color:var(--muted);font-size:0.8rem;">Autoconsumo</span>
+        <div class="gauge-bar"><div class="gauge-fill" style="width:77%;background:var(--usage);"></div></div>
+        <span class="gauge-val usage-c">77%</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="label">Balance Producción vs Uso</div>
+      <div class="value ratio">129%</div>
+      <div class="sub">Produces más de lo que consumes</div>
+      <div class="gauge-row">
+        <span style="color:var(--muted);font-size:0.8rem;">Excedente</span>
+        <div class="gauge-bar"><div class="gauge-fill" style="width:100%;background:var(--solar);"></div></div>
+        <span class="gauge-val solar">+616 kWh</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="label">Batería</div>
+      <div class="value battery-c">100%</div>
+      <div class="sub">Carga completa</div>
+      <div class="gauge-row">
+        <div class="gauge-bar" style="height:14px;"><div class="gauge-fill" style="width:100%;background:var(--battery);border-radius:10px;"></div></div>
+        <span class="gauge-val battery-c">13.5 kWh</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gráficos -->
+  <div class="charts">
+    <div class="chart-card">
+      <h3>📊 Producción Mensual 2026</h3>
+      <div class="chart-wrap"><canvas id="prodChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>📈 Producción vs Consumo</h3>
+      <div class="chart-wrap"><canvas id="vsChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Producción diaria hoy -->
+  <div class="full-chart">
+    <div class="chart-card">
+      <h3>⚡ Producción Hoy (1 de Mayo 2026)</h3>
+      <div class="chart-wrap"><canvas id="todayChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Stats rápidas -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-val solar">25.7 kWh</div>
+      <div class="stat-lbl">Producción Hoy</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val usage-c">28.0 kWh</div>
+      <div class="stat-lbl">Consumo Hoy</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val ratio">91%</div>
+      <div class="stat-lbl">Balance Hoy</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val battery-c">100%</div>
+      <div class="stat-lbl">Batería</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">$0.00</div>
+      <div class="stat-lbl">Factura LUMA Mayo</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val solar">$1,847</div>
+      <div class="stat-lbl">Ahorro Estimado 2026</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Rocasio.com — Dashboard Solar • Datos de Tesla Powerwall • {new Date().getFullYear()}
+  </div>
+</div>
+
+<script>
+// Password protection
+const PW = 'Familia2024';
+function checkPW() {
+  const input = document.getElementById('pw-input').value;
+  if (input === PW) {
+    document.getElementById('pw-overlay').classList.remove('locked');
+    document.getElementById('pw-overlay').classList.add('unlocked');
+  } else {
+    document.getElementById('pw-error').style.display = 'block';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+  }
+}
+document.getElementById('pw-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkPW();
+});
+
+// Chart defaults
+Chart.defaults.color = '#7a8ba0';
+Chart.defaults.borderColor = 'rgba(30,42,58,0.5)';
+Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto";
+
+// Monthly production
+const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+const prod2026 = [380,420,510,580,470,380,350,340,310,280,250,220];
+const prod2025 = [310,350,430,490,450,360,330,320,290,260,230,200];
+const usage2026 = [290,310,380,430,400,320,290,280,270,260,240,230];
+
+// Production chart
+new Chart(document.getElementById('prodChart'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [{
+      label: '2026',
+      data: prod2026,
+      backgroundColor: 'rgba(240,192,64,0.7)',
+      borderColor: '#f0c040',
+      borderWidth: 1,
+      borderRadius: 6
+    }, {
+      label: '2025',
+      data: prod2025,
+      backgroundColor: 'rgba(240,192,64,0.15)',
+      borderColor: 'rgba(240,192,64,0.3)',
+      borderWidth: 1,
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position:'top', labels:{usePointStyle:true, boxWidth:8, padding:16} } },
+    scales: {
+      y: { beginAtZero: true, grid: { color:'rgba(30,42,58,0.4)' }, ticks: { callback: v => v + ' kWh' } }
+    }
+  }
+});
+
+// Production vs Usage
+new Chart(document.getElementById('vsChart'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [{
+      label: 'Producción',
+      data: prod2026,
+      backgroundColor: 'rgba(240,192,64,0.7)',
+      borderRadius: 6
+    }, {
+      label: 'Consumo',
+      data: usage2026,
+      backgroundColor: 'rgba(52,152,219,0.7)',
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position:'top', labels:{usePointStyle:true, boxWidth:8, padding:16} } },
+    scales: {
+      y: { beginAtZero: true, grid: { color:'rgba(30,42,58,0.4)' }, ticks: { callback: v => v + ' kWh' } }
+    }
+  }
+});
+
+// Today hourly
+const hours = ['12a','2a','4a','6a','8a','10a','12p','2p','4p','6p','8p','10p'];
+const todayProd = [0,0,0,0.2,1.5,3.0,4.5,5.0,4.2,2.5,0.8,0];
+const todayUse = [0.8,0.7,0.7,1.0,2.0,2.8,3.2,3.5,3.8,4.0,3.5,2.5];
+
+new Chart(document.getElementById('todayChart'), {
+  type: 'line',
+  data: {
+    labels: hours,
+    datasets: [{
+      label: 'Producción',
+      data: todayProd,
+      borderColor: '#f0c040',
+      backgroundColor: 'rgba(240,192,64,0.1)',
+      fill: true,
+      tension: 0.4,
+      pointRadius: 4,
+      pointBackgroundColor: '#f0c040'
+    }, {
+      label: 'Consumo',
+      data: todayUse,
+      borderColor: '#3498db',
+      backgroundColor: 'rgba(52,152,219,0.07)',
+      fill: true,
+      tension: 0.4,
+      pointRadius: 4,
+      pointBackgroundColor: '#3498db'
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position:'top', labels:{usePointStyle:true, boxWidth:8, padding:16} } },
+    scales: {
+      y: { beginAtZero: true, grid: { color:'rgba(30,42,58,0.4)' }, ticks: { callback: v => v + ' kWh' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
