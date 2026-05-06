@@ -1,19 +1,225 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>📸 Fotografía | Richard Ocasio</title>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📸 Fotografía | Richard Ocasio</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5066900006813744" crossorigin="anonymous"></script>
-<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui,sans-serif;background:#0a0a0a;color:#f0f0f0;line-height:1.6}nav{background:#111;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #ff6b35}nav .logo{font-size:1.5rem;font-weight:bold;color:#ff6b35}nav a{color:#ccc;text-decoration:none}.section{padding:3rem 2rem;max-width:900px;margin:0 auto}.section h1{font-size:2.5rem;color:#ff6b35;margin-bottom:1rem}.section p{color:#aaa;margin-bottom:2rem}.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}.gallery .item{background:#151515;border-radius:12px;padding:2rem;text-align:center;border:1px solid #222;min-height:200px;display:flex;align-items:center;justify-content:center;color:#555;font-size:3rem}footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;color:#666;margin-top:3rem}</style></head><body>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#000;color:#f0f0f0;overflow-x:hidden}
+
+/* Nav */
+nav{background:#111;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #ff6b35;position:relative;z-index:100}
+nav .logo{font-size:1.5rem;font-weight:bold;color:#ff6b35}
+nav a{color:#ccc;text-decoration:none;font-size:.95rem}
+nav a:hover{color:#ff6b35}
+
+/* Music control */
+.music-ctrl{position:fixed;bottom:24px;right:24px;z-index:200;display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);padding:10px 16px;border-radius:24px;border:1px solid rgba(255,255,255,.1)}
+.music-ctrl button{background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.3s}
+.music-ctrl button:hover{background:rgba(255,255,255,.1)}
+.music-ctrl input[type=range]{width:60px;accent-color:#ff6b35}
+.music-ctrl .playing{animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+/* Carousel */
+.carousel{position:relative;width:100%;height:100vh;overflow:hidden;background:#000}
+.carousel .slides{position:relative;width:100%;height:100%}
+.carousel .slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;justify-content:center}
+.carousel .slide.active{opacity:1;z-index:1}
+.carousel .slide img{width:100%;height:100%;object-fit:contain;background:#000;user-select:none;-webkit-user-drag:none}
+.carousel .slide .caption{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.65);backdrop-filter:blur(8px);color:#fff;padding:10px 24px;border-radius:20px;font-size:.95rem;text-align:center;max-width:90%;border:1px solid rgba(255,255,255,.1)}
+
+/* Arrows */
+.carousel .arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:50;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s}
+.carousel .arrow:hover{background:rgba(255,107,53,.6);border-color:#ff6b35}
+.carousel .prev{left:20px}
+.carousel .next{right:20px}
+
+/* Dots */
+.dots{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:10px}
+.dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:.3s;border:1px solid rgba(255,255,255,.2)}
+.dot.active{background:#ff6b35;border-color:#ff6b35;box-shadow:0 0 10px rgba(255,107,53,.5);transform:scale(1.3)}
+
+/* Title overlay */
+.title-overlay{position:absolute;top:80px;left:50%;transform:translateX(-50%);z-index:50;text-align:center}
+.title-overlay h1{font-size:2.2rem;color:#ff6b35;text-shadow:0 2px 12px rgba(0,0,0,.8)}
+.title-overlay p{color:#ccc;font-size:.9rem;text-shadow:0 1px 8px rgba(0,0,0,.8);margin-top:4px}
+
+/* Footer */
+footer{text-align:center;padding:1.5rem;background:#111;color:#666;font-size:.8rem;border-top:1px solid #222}
+footer a{color:#ff6b35;text-decoration:none}
+
+/* AdSense */
+.ad-space{text-align:center;padding:1.5rem 1rem;max-width:900px;margin:0 auto}
+
+@media(max-width:768px){
+  .title-overlay h1{font-size:1.6rem}
+  .carousel .arrow{width:40px;height:40px;font-size:1.2rem}
+  .music-ctrl{bottom:70px;right:12px}
+  .carousel .slide .caption{bottom:100px;font-size:.8rem;padding:8px 16px}
+}
+</style>
+</head>
+<body>
+
 <nav><div class="logo">📸</div><a href="index.html">← Inicio</a></nav>
-<div class="section"><h1>📸 Fotografía</h1><p>Mi galería personal. Pronto subiré mis mejores capturas.</p>
-<div class="gallery"><div class="item">🌅</div><div class="item">🏝️</div><div class="item">🌺</div><div class="item">📷</div></div>
 
-<div style="text-align:center;padding:1rem 2rem 2rem;max-width:900px;margin:0 auto">
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-5066900006813744"
-     data-ad-slot="auto"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<div class="carousel">
+  <div class="title-overlay">
+    <h1>📸 Mi Galería</h1>
+    <p>Fotografía — Richard Ocasio</p>
+  </div>
+
+  <div class="slides">
+    <div class="slide active">
+      <img src="img/01-yauco-banda.jpg" alt="Banda en vivo en Yauco — Noche de música íntima">
+      <div class="caption">🎸 Banda en vivo · Yauco, PR</div>
+    </div>
+    <div class="slide">
+      <img src="img/02-gato-victoriano.jpg" alt="Retrato de gato estilo victoriano con sombrero de copa">
+      <div class="caption">🐱 Gato Victoriano</div>
+    </div>
+    <div class="slide">
+      <img src="img/03-evento-venue.jpg" alt="Evento social en venue moderno industrial">
+      <div class="caption">🎉 Evento · Venue Moderno</div>
+    </div>
+    <div class="slide">
+      <img src="img/04-evento-gente.jpg" alt="Socializando en evento nocturno">
+      <div class="caption">👥 Noche Social</div>
+    </div>
+    <div class="slide">
+      <img src="img/05-celebracion-globos.jpg" alt="Celebración con globos decorativos">
+      <div class="caption">🎈 Celebración</div>
+    </div>
+    <div class="slide">
+      <img src="img/06-comida-dimsum.jpg" alt="Dim sum y aperitivos">
+      <div class="caption">🥟 Sabores</div>
+    </div>
+    <div class="slide">
+      <img src="img/07-escenario-dj.jpg" alt="Escenario profesional con equipo de DJ y sintetizadores">
+      <div class="caption">🎛️ Setup · Escenario</div>
+    </div>
+  </div>
+
+  <button class="arrow prev" onclick="changeSlide(-1)" aria-label="Anterior">‹</button>
+  <button class="arrow next" onclick="changeSlide(1)" aria-label="Siguiente">›</button>
+
+  <div class="dots" id="dots"></div>
 </div>
 
+<div class="music-ctrl" id="musicCtrl">
+  <button id="playBtn" onclick="toggleMusic()" title="Música Jazz">🎵</button>
+  <input type="range" id="volSlider" min="0" max="100" value="40" oninput="setVolume(this.value)" title="Volumen">
+  <span style="color:#aaa;font-size:.75rem;white-space:nowrap">Jazz</span>
 </div>
-<footer>rocasio.com 🇵🇷</footer></body></html>
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="img/jazz-coral.mp3" type="audio/mpeg">
+</audio>
+
+<div class="ad-space">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5066900006813744"
+       data-ad-slot="auto"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<footer>
+  <a href="index.html">rocasio.com</a> 🇵🇷 — Fotografía personal
+</footer>
+
+<script>
+// Carousel
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+let autoplay;
+
+// Build dots
+const dotsContainer = document.getElementById('dots');
+for (let i = 0; i < totalSlides; i++) {
+  const dot = document.createElement('span');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dot.onclick = () => goToSlide(i);
+  dotsContainer.appendChild(dot);
+}
+const dots = document.querySelectorAll('.dot');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = n;
+  if (currentSlide >= totalSlides) currentSlide = 0;
+  if (currentSlide < 0) currentSlide = totalSlides - 1;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function changeSlide(dir) {
+  goToSlide(currentSlide + dir);
+  resetAutoplay();
+}
+
+function resetAutoplay() {
+  clearInterval(autoplay);
+  autoplay = setInterval(() => goToSlide(currentSlide + 1), 6000);
+}
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') changeSlide(-1);
+  if (e.key === 'ArrowRight') changeSlide(1);
+});
+
+// Touch swipe
+let touchStartX = 0;
+document.querySelector('.carousel').addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+document.querySelector('.carousel').addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].screenX;
+  if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1);
+  resetAutoplay();
+});
+
+// Music
+const bgMusic = document.getElementById('bgMusic');
+const playBtn = document.getElementById('playBtn');
+let musicPlaying = false;
+
+function toggleMusic() {
+  if (musicPlaying) {
+    bgMusic.pause();
+    playBtn.textContent = '🎵';
+    playBtn.classList.remove('playing');
+    musicPlaying = false;
+  } else {
+    bgMusic.volume = document.getElementById('volSlider').value / 100;
+    bgMusic.play().catch(() => {});
+    playBtn.textContent = '🔊';
+    playBtn.classList.add('playing');
+    musicPlaying = true;
+  }
+}
+
+function setVolume(v) {
+  bgMusic.volume = v / 100;
+}
+
+// Start autoplay
+autoplay = setInterval(() => goToSlide(currentSlide + 1), 6000);
+
+// Preload images for smooth transitions
+slides.forEach(s => {
+  const img = s.querySelector('img');
+  if (img && img.complete) return;
+  if (img) img.loading = 'eager';
+});
+</script>
+</body>
+</html>
