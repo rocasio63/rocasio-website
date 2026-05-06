@@ -30,7 +30,7 @@ const p=document.getElementById('pass').value;
 const params=new URLSearchParams(window.location.search);
 const page=params.get('page')||'tech';
 if(p==='nfbHAQzg9?TC'){
-document.cookie="auth=1;path=/;max-age=86400";
+document.cookie="auth=1;path=/";
 window.location.href=page+'.html';
 }else{
 document.getElementById('err').style.display='block';
