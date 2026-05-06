@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richard Ocasio | Personal</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0a0a;color:#f0f0f0;line-height:1.6}
+nav{background:#111;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;border-bottom:2px solid #ff6b35}
+nav .logo{font-size:1.5rem;font-weight:bold;color:#ff6b35}
+nav .links{display:flex;gap:1.5rem;flex-wrap:wrap}
+nav a{color:#ccc;text-decoration:none;transition:.3s;font-size:.95rem}
+nav a:hover{color:#ff6b35}
+.hero{text-align:center;padding:5rem 2rem;background:linear-gradient(135deg,#ff6b3511,#1a1a2e)}
+.hero h1{font-size:3rem;color:#ff6b35;margin-bottom:1rem}
+.hero p{font-size:1.2rem;color:#aaa;max-width:600px;margin:0 auto}
+.hero .tag{display:inline-block;background:#ff6b3522;color:#ff6b35;padding:.4rem 1rem;border-radius:20px;margin:.3rem;font-size:.9rem}
+.section{padding:3rem 2rem;max-width:900px;margin:0 auto}
+.section h2{font-size:2rem;color:#ff6b35;margin-bottom:1.5rem;border-bottom:2px solid #333;padding-bottom:.5rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+.card{background:#151515;padding:2rem;border-radius:12px;border:1px solid #222;transition:.3s}
+.card:hover{border-color:#ff6b35;transform:translateY(-2px)}
+.card h3{color:#ff6b35;margin-bottom:.5rem}
+.card .icon{font-size:2rem;margin-bottom:.5rem}
+.card.locked{position:relative}
+.card.locked::after{content:'🔒';position:absolute;top:1rem;right:1rem;font-size:1.2rem}
+footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;color:#666}
+@media(max-width:600px){.hero h1{font-size:2rem}}
+</style>
+</head>
+<body>
+<nav>
+<div class="logo">RO</div>
+<div class="links">
+<a href="index.html">🏠 Inicio</a>
+<a href="fotos.html">📸 Fotografía</a>
+<a href="bbq.html">🍖 BBQ</a>
+<a href="tech.html">💻 Tech</a>
+<a href="finanzas.html">📊 Finanzas</a>
+<a href="familia.html">👨‍👩‍👧‍👦 Familia</a>
+</div>
+</nav>
+
+<div class="hero">
+<h1>Richard Ocasio</h1>
+<p>63 años · Lajas, Puerto Rico · 33 años en Ricoh · Pizzero · Fotógrafo · BBQ lover</p>
+<div style="margin-top:1rem">
+<span class="tag">📸 Fotografía</span>
+<span class="tag">🍖 BBQ</span>
+<span class="tag">💻 Tecnología</span>
+<span class="tag">🎥 Videos</span>
+</div>
+</div>
+
+<div class="section">
+<h2>🧑 Sobre mí</h2>
+<p style="color:#ccc;font-size:1.1rem">
+Nacido y criado en Puerto Rico. Trabajé 33 años como Service Supervisor en Ricoh, donde aprendí el valor de la organización y la atención al detalle. Antes de eso, fui pizzero — y todavía hago una buena pizza. Me apasiona la fotografía, la tecnología, el BBQ y pasar tiempo con mi familia. Dos hijas que son mi orgullo. A mis 63 años sigo aprendiendo, invirtiendo y explorando nuevas tecnologías.
+</p>
+</div>
+
+<div class="section">
+<h2>🔍 Explora</h2>
+<div class="cards">
+<a href="fotos.html" style="text-decoration:none;color:inherit">
+<div class="card">
+<div class="icon">📸</div>
+<h3>Fotografía</h3>
+<p style="color:#999">Mi galería personal de fotos y proyectos visuales.</p>
+</div>
+</a>
+<a href="bbq.html" style="text-decoration:none;color:inherit">
+<div class="card">
+<div class="icon">🍖</div>
+<h3>BBQ & Recetas</h3>
+<p style="color:#999">Tips, recetas y secretos del grill.</p>
+</div>
+</a>
+<a href="tech.html" style="text-decoration:none;color:inherit">
+<div class="card locked">
+<div class="icon">💻</div>
+<h3>Tecnología</h3>
+<p style="color:#999">Mi setup, proyectos y herramientas.</p>
+</div>
+</a>
+<a href="finanzas.html" style="text-decoration:none;color:inherit">
+<div class="card locked">
+<div class="icon">📊</div>
+<h3>Finanzas</h3>
+<p style="color:#999">Dashboards e inversiones.</p>
+</div>
+</a>
+<a href="familia.html" style="text-decoration:none;color:inherit">
+<div class="card locked">
+<div class="icon">👨‍👩‍👧‍👦</div>
+<h3>Familia</h3>
+<p style="color:#999">Momentos familiares.</p>
+</div>
+</a>
+</div>
+</div>
+
+<footer>
+<p>rocasio.com &copy; 2026 — Hecho en Puerto Rico 🇵🇷</p>
+</footer>
+</body>
+</html>

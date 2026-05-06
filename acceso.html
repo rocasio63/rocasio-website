@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso Protegido | Richard Ocasio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0a0a0a;color:#f0f0f0;display:flex;align-items:center;justify-content:center;height:100vh}
+.box{background:#151515;padding:3rem;border-radius:16px;border:1px solid #222;text-align:center;max-width:400px;width:90%}
+.box h2{color:#ff6b35;margin-bottom:1.5rem}
+.box input{width:100%;padding:.8rem;background:#0a0a0a;border:1px solid #333;color:#fff;border-radius:8px;font-size:1rem;text-align:center}
+.box input:focus{outline:none;border-color:#ff6b35}
+.box button{width:100%;padding:.8rem;background:#ff6b35;color:#fff;border:none;border-radius:8px;font-size:1rem;cursor:pointer;margin-top:1rem;font-weight:bold}
+.box button:hover{background:#e85d2c}
+.error{color:#ff4444;margin-top:.5rem;display:none}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>🔒 Contenido Protegido</h2>
+<p style="color:#999;margin-bottom:1.5rem">Ingresa la clave para acceder</p>
+<input type="password" id="pass" placeholder="Contraseña" autofocus>
+<button onclick="check()">Entrar</button>
+<p class="error" id="err">Contraseña incorrecta</p>
+</div>
+<script>
+function check(){
+const p=document.getElementById('pass').value;
+const params=new URLSearchParams(window.location.search);
+const page=params.get('page')||'tech';
+if(p==='nfbHAQzg9?TC'){
+document.cookie="auth=1;path=/;max-age=86400";
+window.location.href=page+'.html';
+}else{
+document.getElementById('err').style.display='block';
+}}
+document.getElementById('pass').addEventListener('keydown',function(e){if(e.key==='Enter')check();});
+</script>
+</body>
+</html>
