@@ -1,17 +1,116 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>📊 Finanzas | Richard Ocasio</title>
-<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui,sans-serif;background:#0a0a0a;color:#f0f0f0;line-height:1.6}nav{background:#111;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #ff6b35}nav .logo{font-size:1.5rem;font-weight:bold;color:#ff6b35}nav a{color:#ccc;text-decoration:none}.section{padding:3rem 2rem;max-width:900px;margin:0 auto}.section h1{font-size:2.5rem;color:#ff6b35;margin-bottom:1rem}.section h2{color:#ff6b35;margin-top:2rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:1rem 0}.stat{background:#151515;padding:1.5rem;border-radius:12px;border:1px solid #222;text-align:center}.stat .num{font-size:2rem;font-weight:bold;color:#ff6b35}.stat .lbl{color:#999;font-size:.85rem}footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;color:#666;margin-top:3rem}</style></head><body>
-<script>if(document.cookie.indexOf('auth=1')===-1){window.location.href='acceso.html?page=finanzas';}</script>
-<nav><div class="logo">📊</div><a href="index.html">← Inicio</a></nav>
-<div class="section">
-<h1>📊 Finanzas</h1>
-<div class="grid">
-<div class="stat"><div class="num">$3,251</div><div class="lbl">Total Invertido</div></div>
-<div class="stat"><div class="num">4</div><div class="lbl">Plataformas</div></div>
-<div class="stat"><div class="num">$10</div><div class="lbl">Meta Diaria</div></div>
-</div>
-<h2>🏦 Plataformas</h2>
-<p style="color:#aaa">Fidelity ($1,572) · Stash ($1,260) · Webull ($233) · Coinbase ($96)</p>
-<h2>📈 Estrategia</h2>
-<p style="color:#aaa">Day trade crypto 24/7 · Metas cortas +5% · Capital rotativo · Sin inversiones a largo plazo</p>
-</div>
-<footer>rocasio.com 🇵🇷</footer></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📊 Mis Finanzas – Richard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f0f1a;color:#e0e0e0;font-family:-apple-system,system-ui,sans-serif;min-height:100vh}
+.header{background:#1a1a2e;padding:20px 30px;border-bottom:1px solid #2a2a4a;display:flex;justify-content:space-between;align-items:center}
+.header h1{font-size:1.5em;color:#f0c040}
+.header .badge{background:#2a2a4a;padding:6px 14px;border-radius:20px;font-size:.8em;color:#aaa}
+.dashboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;padding:20px}
+.card{background:#1a1a2e;border-radius:12px;padding:20px;border:1px solid #2a2a4a}
+.card h2{font-size:0.85em;color:#888;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.card .value{font-size:2.2em;font-weight:bold;margin:5px 0}
+.card .sub{font-size:.85em;color:#888}
+.green{color:#4caf50}
+.red{color:#f44336}
+.yellow{color:#f0c040}
+.blue{color:#64b5f6}
+.chart-wrap{position:relative;height:280px;margin-top:10px}
+canvas{width:100%!important}
+.table-wrap{overflow-x:auto;margin-top:10px}
+table{width:100%;border-collapse:collapse;font-size:.85em}
+th{text-align:left;padding:8px 6px;color:#888;border-bottom:1px solid #2a2a4a;font-size:.75em}
+td{padding:8px 6px;border-bottom:1px solid #1f1f3a}
+tr:hover{background:#1f1f3a}
+.tag{padding:2px 8px;border-radius:10px;font-size:.7em;font-weight:bold}
+.tag-sell{background:#b71c1c;color:#ff8a80}
+.tag-buy{background:#1b5e20;color:#69f0ae}
+.tag-hold{background:#1a237e;color:#64b5f6}
+.full{grid-column:1/-1}
+</style>
+</head>
+<body>
+
+<div class="header"><h1>📊 Mis Finanzas Dashboard</h1><span class="badge" id="badge"></span></div>
+<div class="dashboard" id="db"></div>
+
+<script>
+var PORTFOLIO = [["Ticker", "Nombre", "Precio", "Cambio %", "52W High", "52W Low", "Invertido ($)", "Senal"], ["QTUM", "Defiance Quantum ETF", "143.01", "23.50%", "143.91", "78.15", "$182.98", "Near High VENDER"], ["DOCTOR", "Doctor Doctor (Stash)", "\u2014", "10.40%", "\u2014", "\u2014", "$220.10", "\u2014"], ["QSR", "Restaurant Brands Intl", "77.56", "9.39%", "81.96", "61.33", "$105.53", "High REDUCIR"], ["META", "Meta Platforms", "623.62", "-5.72%", "796.25", "520.26", "$55.18", "Mid Range"], ["REGN", "Regeneron Pharmaceuticals", "714.8", "-9.00%", "821.11", "476.49", "$40.12", "Mid Range"], ["WORLD", "Stocks Worldwide (Stash)", "\u2014", "30.95%", "\u2014", "\u2014", "$21.85", "\u2014"], ["EUROPE", "Essential Europe (Stash)", "\u2014", "0.0424", "\u2014", "\u2014", "$10.04", "\u2014"], ["EUROPE", "Essential Europe (Stash)", "\u2014", "0.0424", "\u2014", "\u2014", "$10.04", "\u2014"]];
+var FIDELITY = [["Ticker", "Nombre", "Precio", "Cambio %", "52W High", "52W Low", "P/E", "Senal"], ["BP", "BP p.l.c.", "43.46", "-8.27%", "48.27", "28.13", "---", "High REDUCIR"], ["DE", "Deere and Co", "585.68", "-0.71%", "674.19", "433", "33.19", "Mid Range"], ["ETSY", "Etsy Inc", "63.74", "-0.93%", "76.52", "44", "---", "Mid Range"], ["F", "Ford Motor", "12.21", "1.08%", "14.8", "9.88", "---", "Mid Range"], ["GLD", "SPDR Gold Shares", "437.08", "3.17%", "509.7", "291.78", "---", "Mid Range"], ["GM", "General Motors", "78.75", "2.42%", "87.62", "46.09", "31.96", "High REDUCIR"], ["HAL", "Halliburton", "38.93", "-7.98%", "42.46", "19.38", "---", "High REDUCIR"], ["HD", "Home Depot", "323.54", "-1.60%", "426.75", "310.4", "22.75", "Near Low (11% COMPRAR)"], ["LLY", "Eli Lilly", "980.61", "4.92%", "1133.95", "623.78", "35.3", "Mid Range"], ["LMAT", "LeMaitre Vascular", "109.93", "0.16%", "118.01", "78.35", "43.29", "High REDUCIR"]];
+var CORTO = [["Ticker", "Nombre", "Entrada ($)", "Shares", "Invertido ($)", "Fecha Compra", "D\u00edas", "Precio Actual ($)", "Valor Actual ($)", "Ganancia ($)", "Ganancia (%)", "Estado"], ["CLSK", "CleanSpark", "13.91", "3", "41.73", "5/8/2026", "0", "14.2", "42.6", "0.87", "0.02084831057", "ACTIVO"], ["GRAB", "Grab Holdings", "$3.78", "9", "$34.02", "4/30/2026", "8", "$3.77", "$33.96", "-$0.06", "-0.17%", "CERRADO"], ["ICP", "Internet Computer", "$2.80", "10.01", "$28.03", "5/5/2026", "3", "$2.96", "$29.60", "$1.57", "5.61%", "CERRADO"]];
+
+function $$(v){ return parseFloat(String(v||'0').replace(/[$,%]/g,'')) || 0; }
+
+function render() {
+  var pRows = PORTFOLIO.slice(1).filter(function(r){ return r[0] && r[0] !== 'Ticker'; });
+  var fRows = FIDELITY.slice(1).filter(function(r){ return r[0] && r[0] !== 'Ticker'; });
+  var cRows = CORTO.slice(1).filter(function(r){ return r[0] && r[0] !== 'Ticker'; });
+  
+  var invested = pRows.reduce(function(s,r){ return s + $$(r[6]); }, 0);
+  var fInvested = fRows.reduce(function(s,r){ return s + ($$(r[2]) || 0); }, 0);
+  var sellCount = pRows.filter(function(r){ return (r[7]||'').indexOf('VENDER')>=0 || (r[7]||'').indexOf('REDUCIR')>=0; }).length;
+  var cClosed = cRows.filter(function(r){ return r[11] === 'CERRADO'; });
+  var cActive = cRows.filter(function(r){ return r[11] === 'ACTIVO'; });
+  var cGain = cClosed.reduce(function(s,r){ return s + $$(r[9]); }, 0);
+
+  var h = '';
+  h += '<div class="card"><h2>💰 Portfolio Stash</h2><div class="value">$' + invested.toLocaleString() + '</div><div class="sub">' + pRows.length + ' posiciones</div></div>';
+  h += '<div class="card"><h2>🏦 Fidelity</h2><div class="value blue">$' + Math.round(fInvested).toLocaleString() + '</div><div class="sub">' + fRows.length + ' posiciones</div></div>';
+  h += '<div class="card"><h2>🎯 Señales</h2><div class="value yellow">' + sellCount + ' VENDER</div><div class="sub">de ' + pRows.length + ' en Stash</div></div>';
+  h += '<div class="card"><h2>⏳ Corto Plazo</h2><div class="value ' + (cGain>=0?'green':'red') + '">' + (cGain>=0?'+':'') + '$' + cGain.toFixed(2) + '</div><div class="sub">' + cClosed.length + ' cerradas · ' + cActive.length + ' activa</div></div>';
+  
+  h += '<div class="card full"><h2>📊 Distribución Portfolio</h2><div class="chart-wrap"><canvas id="pieChart"></canvas></div></div>';
+  
+  // Stash table
+  h += '<div class="card full"><h2>📋 Stash</h2><div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Nombre</th><th>Precio</th><th>Cambio</th><th>Invertido</th><th>Señal</th></tr></thead><tbody>';
+  pRows.forEach(function(r){
+    var sig = r[7]||'';
+    var chg = $$(r[3]);
+    var cls = sig.indexOf('VENDER')>=0 ? 'tag-sell' : (sig.indexOf('COMPRAR')>=0 ? 'tag-buy' : 'tag-hold');
+    h += '<tr><td><b>' + r[0] + '</b></td><td>' + r[1] + '</td><td>' + r[2] + '</td><td class="' + (chg>=0?'green':'red') + '">' + r[3] + '</td><td>' + r[6] + '</td><td><span class="tag ' + cls + '">' + (sig||'—') + '</span></td></tr>';
+  });
+  h += '</tbody></table></div></div>';
+  
+  // Fidelity table
+  h += '<div class="card full"><h2>🏦 Fidelity</h2><div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Nombre</th><th>Precio</th><th>Cambio</th><th>52W Range</th><th>Señal</th></tr></thead><tbody>';
+  fRows.forEach(function(r){
+    var sig = r[7]||'';
+    var cls = (sig.indexOf('VENDER')>=0||sig.indexOf('REDUCIR')>=0) ? 'tag-sell' : (sig.indexOf('COMPRAR')>=0 ? 'tag-buy' : 'tag-hold');
+    h += '<tr><td><b>' + r[0] + '</b></td><td>' + r[1] + '</td><td>' + r[2] + '</td><td class="' + ($$(r[3])>=0?'green':'red') + '">' + r[3] + '</td><td>' + (r[5]||'—') + ' – ' + (r[4]||'—') + '</td><td><span class="tag ' + cls + '">' + (sig||'—') + '</span></td></tr>';
+  });
+  h += '</tbody></table></div></div>';
+  
+  // Corto Plazo
+  h += '<div class="card full"><h2>⏳ Corto Plazo</h2><div class="table-wrap"><table><thead><tr><th>Ticker</th><th>Entrada</th><th>Shares</th><th>Invertido</th><th>Actual</th><th>Ganancia</th><th>Estado</th></tr></thead><tbody>';
+  cRows.forEach(function(r){
+    var gv = $$(r[9]);
+    h += '<tr><td><b>' + r[0] + '</b></td><td>' + r[2] + '</td><td>' + r[3] + '</td><td>' + r[4] + '</td><td>' + r[7] + '</td><td class="' + (gv>=0?'green':'red') + '">' + (gv>=0?'+':'') + '$' + gv.toFixed(2) + '</td><td>' + (r[11]||'') + '</td></tr>';
+  });
+  h += '</tbody></table></div></div>';
+  
+  document.getElementById('db').innerHTML = h;
+  document.getElementById('badge').textContent = '✅ Cargado';
+  
+  setTimeout(function(){
+    var ctx = document.getElementById('pieChart');
+    if (!ctx) return;
+    var labels = pRows.map(function(r){ return r[0]; });
+    var vals = pRows.map(function(r){ return $$(r[6]); });
+    var colors = ['#f0c040','#64b5f6','#4caf50','#f44336','#ff9800','#9c27b0','#00bcd4','#e91e63'];
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: { labels: labels, datasets: [{ data: vals, backgroundColor: colors.slice(0,labels.length), borderColor: '#1a1a2e', borderWidth: 3 }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: '#aaa', padding: 12, font: {size: 11} } } } }
+    });
+  }, 100);
+}
+
+render();
+</script>
+</body>
+</html>
