@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>🍞 Panes | Richard Ocasio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0a0a0a;color:#f0f0f0;line-height:1.6}
+nav{background:#111;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #e67e22}
+nav .logo{font-size:1.5rem;font-weight:bold;color:#e67e22}
+nav a{color:#ccc;text-decoration:none;transition:.3s}
+nav a:hover{color:#e67e22}
+.container{max-width:800px;margin:0 auto;padding:3rem 2rem}
+h1{font-size:2.2rem;color:#e67e22;margin-bottom:.5rem}
+h2{color:#e67e22;margin:2rem 0 1rem;font-size:1.3rem;border-bottom:1px solid #222;padding-bottom:.5rem}
+.recipe-card{background:#151515;border:1px solid #252525;border-radius:16px;padding:2rem;margin:1.5rem 0}
+.recipe-card h3{font-size:1.4rem;color:#f0c040;margin-bottom:1.2rem}
+.recipe-card .subtitle{color:#888;font-size:.9rem;margin-bottom:1.2rem}
+table{width:100%;border-collapse:collapse;margin:1rem 0}
+th{text-align:left;color:#e67e22;padding:.6rem;border-bottom:2px solid #252525;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
+td{padding:.6rem;border-bottom:1px solid #1a1a1a;font-size:1rem}
+td:last-child{text-align:right;font-weight:600;color:#f0c040}
+.tip{background:#1a1208;border-left:3px solid #e67e22;padding:1rem 1.2rem;margin:1.5rem 0;border-radius:0 8px 8px 0;color:#ccc;font-size:.95rem}
+.tip::before{content:'💡 ';font-size:1.1rem}
+ol.steps{counter-reset:step;list-style:none;padding:0;margin:1.2rem 0}
+ol.steps li{counter-increment:step;padding:.7rem 0 .7rem 2.8rem;position:relative;color:#ccc;line-height:1.6}
+ol.steps li::before{content:counter(step);position:absolute;left:0;top:.7rem;width:1.8rem;height:1.8rem;background:#e67e22;color:#000;border-radius:50%;text-align:center;line-height:1.8rem;font-weight:700;font-size:.85rem}
+.tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+.tag{background:#1a1208;color:#e67e22;padding:.3rem .8rem;border-radius:12px;font-size:.8rem;border:1px solid #2a1a0a}
+footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;color:#666;margin-top:3rem}
+@media(max-width:500px){.container{padding:2rem 1rem}td{font-size:.9rem}}
+</style></head><body>
+<script>if(document.cookie.indexOf('auth=1')===-1){window.location.href='acceso.html?page=panes';}</script>
+<nav><div class="logo">🍞</div><a href="recetas.html">← Recetas</a></nav>
+<div class="container">
+<h1>🍞 Panes</h1>
+<p style="color:#888;margin-bottom:2rem">Con masa madre, levadura, y mucho amor — Lajas, PR 🇵🇷</p>
+
+<!-- Pan con Melaza -->
+<div class="recipe-card">
+<h3>🍞 Pan con Melaza (1.5 lb) — Menos Acidez</h3>
+<p class="subtitle">Receta balanceada, optimizada para el clima de Lajas, PR</p>
+<table>
+<tr><th>Ingrediente</th><th>Cantidad</th></tr>
+<tr><td>Agua (temp. ambiente)</td><td>208 g</td></tr>
+<tr><td>Masa Madre (activa/joven)</td><td>125 g</td></tr>
+<tr><td>Melaza</td><td>12 g</td></tr>
+<tr><td>Aceite o Mantequilla</td><td>14 g</td></tr>
+<tr><td>Harina de fuerza</td><td>315 g</td></tr>
+<tr><td>Sal</td><td>6 g</td></tr>
+<tr><td>Baking Powder</td><td>2.5 g</td></tr>
+<tr><td>Bicarbonato de Sodio</td><td>1.2 g (≈ ¼ cdta)</td></tr>
+<tr><td>Semillas de Caraway</td><td>5 g</td></tr>
+</table>
+<div class="tip">El bicarbonato y baking powder neutralizan la acidez de la masa madre en clima cálido como Lajas. Resultado: pan suave, sin sabor agrio.</div>
+<div class="tags">
+<span class="tag">🍞 Pan</span><span class="tag">🇵🇷 Puerto Rico</span><span class="tag">🌡️ Clima Cálido</span><span class="tag">🕐 1.5 lb</span>
+</div>
+</div>
+
+<!-- Focaccia -->
+<div class="recipe-card">
+<h3>🍞 Focaccia de Masa Madre — Molde 5×9"</h3>
+<p class="subtitle">Fermentación larga, sabor profundo — stretch & fold, sin máquina</p>
+<table>
+<tr><th>Ingrediente</th><th>Cantidad</th></tr>
+<tr><td>Masa madre (activa, alimentada)</td><td>100 g</td></tr>
+<tr><td>Harina de trigo (todo uso o pan)</td><td>200 g</td></tr>
+<tr><td>Agua tibia</td><td>150 g</td></tr>
+<tr><td>Aceite de oliva (masa)</td><td>15 g</td></tr>
+<tr><td>Levadura instantánea (empuje)</td><td>1 g</td></tr>
+<tr><td>Sal</td><td>4 g</td></tr>
+<tr><td>Aceite de oliva (molde + encima)</td><td>Generoso</td></tr>
+</table>
+<h4 style="color:#e67e22;margin:1.2rem 0 .5rem">🌿 Toppings (al gusto)</h4>
+<table>
+<tr><th>Ingrediente</th><th>Cantidad</th></tr>
+<tr><td>Romero fresco</td><td>Al gusto</td></tr>
+<tr><td>Sal gruesa</td><td>Al gusto</td></tr>
+<tr><td>Ajo laminado</td><td>Al gusto</td></tr>
+<tr><td>Tomate cherry</td><td>Opcional</td></tr>
+</table>
+<ol class="steps">
+<li><strong>Activar</strong> — Mezcla 150 g de agua tibia con 100 g de masa madre y 1 g de levadura. Reposa 10 min hasta que burbujee ligeramente.</li>
+<li><strong>Masa</strong> — En un bowl: 200 g de harina + 4 g de sal. Vierte la mezcla de masa madre + 15 g de aceite de oliva. Mezcla con espátula. <strong>No se amasa.</strong> Es una masa pegajosa — así debe ser.</li>
+<li><strong>Reposo 45 min</strong> — Cubre y deja reposar.</li>
+<li><strong>Pliegues (1ª ronda)</strong> — Con las manos mojadas, agarra un borde, estira hacia arriba y dóblalo sobre sí mismo. Gira el bowl y repite 3-4 veces. Cubre.</li>
+<li><strong>Pliegues (2ª ronda)</strong> — Después de 45 min, repite los pliegues. Cubre.</li>
+<li><strong>Pliegues (3ª ronda)</strong> — Después de 45 min más, repite. Cubre.</li>
+<li><strong>Pliegues (4ª ronda)</strong> — Después de 45 min, última ronda de pliegues. Cubre.</li>
+<li><strong>Al molde</strong> — Engrasa generosamente el molde 5×9" con aceite de oliva. Vierte la masa y estira suavemente con los dedos aceitados hacia las esquinas. Si se resiste, espera 10 min y vuelve a estirar.</li>
+<li><strong>Levado final</strong> — Cubre y deja levar 1-2 hrs hasta que esté hinchada y con burbujas visibles. La masa madre trabaja más lento — paciencia.</li>
+<li><strong>Hoyitos + toppings</strong> — Con los dedos bien aceitados, presiona toda la superficie para hacer los hoyitos clásicos. Esparce romero, sal gruesa, ajo laminado y un chorrito generoso de aceite de oliva por encima.</li>
+<li><strong>Hornear</strong> — 425°F por 22-25 min hasta dorada por encima. Bandeja del medio.</li>
+<li><strong>Enfriar</strong> — 5 min en el molde, luego desmoldar en rejilla.</li>
+</ol>
+<div class="tip">La masa madre es la protagonista. El gramito de levadura solo da empuje de respaldo. Sin azúcar — la masa madre no lo necesita. 4 rondas de pliegues cada 45 min crean una textura alveolada profunda. <strong>No uses la máquina de pan.</strong></div>
+<div class="tags">
+<span class="tag">🍞 Pan</span><span class="tag">🫙 Masa Madre</span><span class="tag">📐 5×9"</span><span class="tag">🇮🇹 Italiano</span><span class="tag">🔥 425°F</span><span class="tag">⏱️ ~5 hrs</span><span class="tag">✋ Manual</span>
+</div>
+</div>
+
+<!-- Panecillos -->
+<div class="recipe-card">
+<h3>🥖 Panecillos Crocantes con Masa Madre</h3>
+<div class="subtitle">Panecillos caseros tipo bolillo — corteza crocante, miga suave. Receta adaptada de TikTok (@el__jacc).</div>
+<table>
+<tr><th>Ingrediente</th><th>Cantidad</th></tr>
+<tr><td>Harina de trigo</td><td>270 g</td></tr>
+<tr><td>Masa madre (100% hidratación)</td><td>60 g</td></tr>
+<tr><td>Agua tibia</td><td>210 g</td></tr>
+<tr><td>Azúcar</td><td>12 g</td></tr>
+<tr><td>Manteca vegetal</td><td>12 g</td></tr>
+<tr><td>Sal</td><td>4 g</td></tr>
+<tr><td>Levadura instantánea</td><td>1 g</td></tr>
+</table>
+<ol class="steps">
+<li><strong>Máquina de pan</strong> — Todos los ingredientes al cubo. Agua tibia primero, luego harina, los demás encima. La levadura instantánea lejos de la sal. La masa madre en el centro. Ciclo <strong>Dough</strong> (1h 30min). La máquina amasa y hace el primer levado.</li>
+<li><strong>Bolitas</strong> — Saca la masa a una superficie enharinada. Divide en 5-6 porciones (≈100g c/u). Forma bolitas tensas. Cubre con paño y reposa <strong>20 min</strong>.</li>
+<li><strong>Formar</strong> — Aplana cada bolita con la mano quitando el aire. Estira de la mitad hacia arriba y de la mitad hacia abajo. Dobla la parte de abajo y sella. Dale forma alargada.</li>
+<li><strong>Levado final</strong> — Coloca en bandeja engrasada con el sello hacia abajo. Cubre con paño. Reposa <strong>30 min</strong> hasta que dupliquen tamaño.</li>
+<li><strong>Cortes</strong> — Haz cortes superficiales con cuchillo afilado o cuchilla. Rocía con agua toda la superficie.</li>
+<li><strong>Hornear</strong> — Horno precalentado a <strong>180°C (350°F)</strong> × 20 min. La bandeja del medio. Rocía agua al piso del horno al meterlos para vapor extra.</li>
+<li><strong>Enfriar</strong> — 5 min en rejilla. Comer tibios.</li>
+</ol>
+<div class="tip">La masa madre es la protagonista del sabor. El gramito de levadura instantánea solo da empuje de respaldo. El vapor del agua al hornear crea la corteza crocante. Si quieres más color, últimos 2 min a 200°C.</div>
+<div class="tags">
+<span class="tag">🍞 Pan</span><span class="tag">🫙 Masa Madre</span><span class="tag">🤖 Máquina de Pan</span><span class="tag">🇲🇽 Estilo Bolillo</span><span class="tag">🔥 350°F</span><span class="tag">⏱️ ~3 hrs</span><span class="tag">📱 TikTok</span>
+</div>
+</div>
+
+<!-- Pizza -->
+<div class="recipe-card">
+<h3>🍕 Pizza Jim Roll's — Receta Original (2 pizzas de 14")</h3>
+<div class="subtitle">Receta fiel al video de Jim Roll's — 650ml de agua, 30ml de aceite de oliva, huevo. Adaptada a 2 pizzas de 14 pulgadas con masa madre.</div>
+<table>
+<tr><th>Ingrediente</th><th>Cantidad</th></tr>
+<tr><td>Agua tibia</td><td>306 g</td></tr>
+<tr><td>Masa madre (100% hidratación)</td><td>95 g</td></tr>
+<tr><td>Huevo</td><td>1</td></tr>
+<tr><td>Aceite de oliva</td><td>14 g</td></tr>
+<tr><td>Harina de trigo</td><td>470 g</td></tr>
+<tr><td>Sal</td><td>8 g</td></tr>
+<tr><td>Levadura instantánea</td><td>1 g (solo empuje)</td></tr>
+</table>
+<h4>⚙️ Máquina</h4>
+<p>Setting <strong>⑧ Dough (Pâte)</strong> — amasa y mezcla. Luego la masa se trabaja a mano con pliegues para desarrollar la masa madre.</p>
+<ol class="steps">
+<li><strong>Cargar máquina</strong> — Agua tibia primero. Masa madre desmenuzada, huevo batido y aceite de oliva. Harina encima cubriendo todo. Sal en una esquina. Levadura en un hueco al centro, sin que toque el agua.</li>
+<li><strong>⑧ Dough</strong> — Solo el ciclo de amasado (~20 min). Cuando la máquina termine de amasar, <strong>apágala</strong>. No dejes que complete el ciclo entero — la masa madre necesita su propio ritmo.</li>
+<li><strong>Pliegues (4 rondas)</strong> — Saca la masa a un bowl aceitado. Cada <strong>45 min</strong>, haz un pliegue: estira un borde hacia arriba y dóblalo al centro. Gira el bowl 90° y repite con los 4 lados. Cubre con paño húmedo entre rondas. Total: 3 horas.</li>
+<li><strong>Dividir</strong> — Saca la masa a una superficie enharinada. Divide en 2 porciones iguales (≈400g c/u). Forma bolitas tensas.</li>
+<li><strong>Levado final</strong> — Cubre las bolitas con paño húmedo. Reposa <strong>45–60 min</strong> hasta que dupliquen.</li>
+<li><strong>Estirar</strong> — Con las manos (nunca rodillo), estira cada bolita desde el centro hacia afuera hasta 14 pulgadas. Deja el borde grueso — de ahí salen las burbujas.</li>
+<li><strong>Armar</strong> — Coloca la base en bandeja con papel pergamino o piedra. Salsa de tomate, mozzarella fresca en trozos, albahaca. Un chorrito de aceite de oliva por encima.</li>
+<li><strong>Hornear</strong> — Horno al <strong>máximo (500°F)</strong>. Si tienes piedra, precaliéntala 45 min. Hornea <strong>8–10 min</strong> hasta que el borde tenga manchas oscuras (leopardo) y el queso burbujee.</li>
+<li><strong>Servir</strong> — Corta con tijeras como Jim Roll's. ¡A comer inmediatamente!</li>
+</ol>
+<div class="tip">La masa madre es la protagonista del sabor y la textura alveolada. El gramito de levadura solo da empuje de respaldo — sin él, la masa madre sola también funciona pero tarda más. El huevo es el secreto del video original: elasticidad y dorado. Estirar a mano preserva las burbujas — el rodillo las aplasta. Corteza con manchas de leopardo = señal de pizza napolitana auténtica.</div>
+<div class="tags">
+<span class="tag">🍕 Pizza</span><span class="tag">🫙 Masa Madre</span><span class="tag">🤖 Máquina</span><span class="tag">🇮🇹 Napolitana</span><span class="tag">🔥 500°F</span><span class="tag">⏱️ ~5 hrs</span><span class="tag">📱 Jim Roll's</span><span class="tag">⑧ Dough</span>
+</div>
+</div>
+
+</div>
+<footer>rocasio.com 🇵🇷 — Panes caseros</footer>
+</body></html>
