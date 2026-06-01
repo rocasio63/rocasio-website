@@ -8,7 +8,7 @@ nav a{color:#ccc;text-decoration:none;transition:.3s}
 nav a:hover{color:#e67e22}
 .container{max-width:800px;margin:0 auto;padding:3rem 2rem}
 h1{font-size:2.2rem;color:#e67e22;margin-bottom:.5rem}
-h2{color:#e67e22;margin:2rem 0 1rem;font-size:1.3rem;border-bottom:1px solid #222;padding-bottom:.5rem}
+h2{color:#e67e22;margin:2rem 0 1rem;font-size:1.3rem;border-bottom:1px solid #222;padding-bottom:.5rem;scroll-margin-top:1rem}
 .recipe-card{background:#151515;border:1px solid #252525;border-radius:16px;padding:2rem;margin:1.5rem 0}
 .recipe-card h3{font-size:1.4rem;color:#f0c040;margin-bottom:1.2rem}
 .recipe-card .subtitle{color:#888;font-size:.9rem;margin-bottom:1.2rem}
@@ -23,38 +23,197 @@ ol.steps li{counter-increment:step;padding:.7rem 0 .7rem 2.8rem;position:relativ
 ol.steps li::before{content:counter(step);position:absolute;left:0;top:.7rem;width:1.8rem;height:1.8rem;background:#e67e22;color:#000;border-radius:50%;text-align:center;line-height:1.8rem;font-weight:700;font-size:.85rem}
 .tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
 .tag{background:#1a1208;color:#e67e22;padding:.3rem .8rem;border-radius:12px;font-size:.8rem;border:1px solid #2a1a0a}
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;margin:2rem 0}
-.cat-card{background:#151515;border:1px solid #252525;border-radius:16px;padding:2rem;text-align:center;text-decoration:none;transition:.3s;display:block}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:1.5rem 0}
+.cat-card{background:#151515;border:1px solid #252525;border-radius:16px;padding:1.5rem;text-align:center;text-decoration:none;transition:.3s;display:block}
 .cat-card:hover{border-color:#e67e22;transform:translateY(-2px)}
-.cat-card .emoji{font-size:3rem;display:block;margin-bottom:.8rem}
-.cat-card .title{font-size:1.3rem;color:#f0c040;font-weight:bold;margin-bottom:.4rem}
-.cat-card .count{color:#888;font-size:.9rem}
+.cat-card .emoji{font-size:2.5rem;display:block;margin-bottom:.6rem}
+.cat-card .title{font-size:1.1rem;color:#f0c040;font-weight:bold;margin-bottom:.3rem}
+.cat-card .count{color:#888;font-size:.85rem}
 footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;color:#666;margin-top:3rem}
-@media(max-width:500px){.container{padding:2rem 1rem}td{font-size:.9rem}.cat-grid{grid-template-columns:1fr}}
+@media(max-width:500px){.container{padding:2rem 1rem}td{font-size:.9rem}.cat-grid{grid-template-columns:1fr 1fr}}
 </style></head><body>
 <script>if(document.cookie.indexOf('auth=1')===-1){window.location.href='acceso.html?page=recetas';}</script>
 <nav><div class="logo">🍽️</div><a href="index.html">← Inicio</a></nav>
 <div class="container">
 <h1>🍽️ Mis Recetas</h1>
-<p style="color:#888;margin-bottom:2rem">Secretos de cocina, probados y ajustados en Lajas, Puerto Rico 🇵🇷</p>
+<p style="color:#888;margin-bottom:1.5rem">Secretos de cocina, probados y ajustados en Lajas, Puerto Rico 🇵🇷</p>
 
-<h2>📂 Categorías</h2>
 <div class="cat-grid">
-<a href="panes.html" class="cat-card">
+<a href="#panes" class="cat-card">
 <span class="emoji">🍞</span>
 <div class="title">Panes</div>
 <div class="count">4 recetas</div>
 </a>
-<a href="pastas.html" class="cat-card">
+<a href="#pastas" class="cat-card">
 <span class="emoji">🍝</span>
 <div class="title">Pastas</div>
 <div class="count">1 receta</div>
 </a>
+<a href="#otras" class="cat-card">
+<span class="emoji">📋</span>
+<div class="title">Otras</div>
+<div class="count">7 recetas</div>
+</a>
 </div>
 
-<h2>📋 Otras Recetas</h2>
+<!-- ============ PANES ============ -->
+<h2 id="panes">🍞 Panes</h2>
 
-<!-- Pancakes -->
+<div class="recipe-card">
+<h3>🍞 Pan con Melaza (1.5 lb) — Menos Acidez</h3>
+<p class="subtitle">Receta balanceada, optimizada para el clima de Lajas, PR</p>
+<table>
+<tr><th>Ingrediente</th><th>Cantidad</th></tr>
+<tr><td>Agua (temp. ambiente)</td><td>208 g</td></tr>
+<tr><td>Masa Madre (activa/joven)</td><td>125 g</td></tr>
+<tr><td>Melaza</td><td>12 g</td></tr>
+<tr><td>Aceite o Mantequilla</td><td>14 g</td></tr>
+<tr><td>Harina de fuerza</td><td>315 g</td></tr>
+<tr><td>Sal</td><td>6 g</td></tr>
+<tr><td>Baking Powder</td><td>2.5 g</td></tr>
+<tr><td>Bicarbonato de Sodio</td><td>1.2 g (≈ ¼ cdta)</td></tr>
+<tr><td>Semillas de Caraway</td><td>5 g</td></tr>
+</table>
+<div class="tip">El bicarbonato y baking powder neutralizan la acidez de la masa madre en clima cálido como Lajas. Resultado: pan suave, sin sabor agrio.</div>
+<div class="tags">
+<span class="tag">🍞 Pan</span><span class="tag">🇵🇷 Puerto Rico</span><span class="tag">🌡️ Clima Cálido</span><span class="tag">🕐 1.5 lb</span>
+</div>
+</div>
+
+<div class="recipe-card">
+<h3>🍞 Focaccia de Masa Madre — Molde 5×9"</h3>
+<p class="subtitle">Fermentación larga, sabor profundo — stretch & fold, sin máquina</p>
+<table>
+<tr><th>Ingrediente</th><th>Cantidad</th></tr>
+<tr><td>Masa madre (activa, alimentada)</td><td>100 g</td></tr>
+<tr><td>Harina de trigo (todo uso o pan)</td><td>200 g</td></tr>
+<tr><td>Agua tibia</td><td>150 g</td></tr>
+<tr><td>Aceite de oliva (masa)</td><td>15 g</td></tr>
+<tr><td>Levadura instantánea (empuje)</td><td>1 g</td></tr>
+<tr><td>Sal</td><td>4 g</td></tr>
+<tr><td>Aceite de oliva (molde + encima)</td><td>Generoso</td></tr>
+</table>
+<h4 style="color:#e67e22;margin:1.2rem 0 .5rem">🌿 Toppings (al gusto)</h4>
+<table>
+<tr><th>Ingrediente</th><th>Cantidad</th></tr>
+<tr><td>Romero fresco</td><td>Al gusto</td></tr>
+<tr><td>Sal gruesa</td><td>Al gusto</td></tr>
+<tr><td>Ajo laminado</td><td>Al gusto</td></tr>
+<tr><td>Tomate cherry</td><td>Opcional</td></tr>
+</table>
+<ol class="steps">
+<li><strong>Activar</strong> — Mezcla 150 g de agua tibia con 100 g de masa madre y 1 g de levadura. Reposa 10 min hasta que burbujee ligeramente.</li>
+<li><strong>Masa</strong> — En un bowl: 200 g de harina + 4 g de sal. Vierte la mezcla de masa madre + 15 g de aceite de oliva. Mezcla con espátula. <strong>No se amasa.</strong> Es una masa pegajosa — así debe ser.</li>
+<li><strong>Reposo 45 min</strong> — Cubre y deja reposar.</li>
+<li><strong>Pliegues (1ª ronda)</strong> — Con las manos mojadas, agarra un borde, estira hacia arriba y dóblalo sobre sí mismo. Gira el bowl y repite 3-4 veces. Cubre.</li>
+<li><strong>Pliegues (2ª ronda)</strong> — Después de 45 min, repite. Cubre.</li>
+<li><strong>Pliegues (3ª ronda)</strong> — Después de 45 min más, repite. Cubre.</li>
+<li><strong>Pliegues (4ª ronda)</strong> — Después de 45 min, última ronda. Cubre.</li>
+<li><strong>Al molde</strong> — Engrasa generosamente el molde 5×9" con aceite de oliva. Vierte la masa y estira suavemente hacia las esquinas. Si se resiste, espera 10 min y vuelve a estirar.</li>
+<li><strong>Levado final</strong> — Cubre y deja levar 1-2 hrs hasta que esté hinchada y con burbujas visibles.</li>
+<li><strong>Hoyitos + toppings</strong> — Con los dedos bien aceitados, presiona toda la superficie para hacer los hoyitos clásicos. Esparce romero, sal gruesa, ajo laminado y un chorrito generoso de aceite de oliva por encima.</li>
+<li><strong>Hornear</strong> — 425°F por 22-25 min hasta dorada por encima. Bandeja del medio.</li>
+<li><strong>Enfriar</strong> — 5 min en el molde, luego desmoldar en rejilla.</li>
+</ol>
+<div class="tip">La masa madre es la protagonista. El gramito de levadura solo da empuje de respaldo. 4 rondas de pliegues cada 45 min crean una textura alveolada profunda. <strong>No uses la máquina de pan.</strong></div>
+<div class="tags">
+<span class="tag">🍞 Pan</span><span class="tag">🫙 Masa Madre</span><span class="tag">📐 5×9"</span><span class="tag">🇮🇹 Italiano</span><span class="tag">🔥 425°F</span><span class="tag">⏱️ ~5 hrs</span><span class="tag">✋ Manual</span>
+</div>
+</div>
+
+<div class="recipe-card">
+<h3>🥖 Panecillos Crocantes con Masa Madre</h3>
+<div class="subtitle">Panecillos caseros tipo bolillo — corteza crocante, miga suave. Receta adaptada de TikTok (@el__jacc).</div>
+<table>
+<tr><th>Ingrediente</th><th>Cantidad</th></tr>
+<tr><td>Harina de trigo</td><td>270 g</td></tr>
+<tr><td>Masa madre (100% hidratación)</td><td>60 g</td></tr>
+<tr><td>Agua tibia</td><td>210 g</td></tr>
+<tr><td>Azúcar</td><td>12 g</td></tr>
+<tr><td>Manteca vegetal</td><td>12 g</td></tr>
+<tr><td>Sal</td><td>4 g</td></tr>
+<tr><td>Levadura instantánea</td><td>1 g</td></tr>
+</table>
+<ol class="steps">
+<li><strong>Máquina de pan</strong> — Todos los ingredientes al cubo. Agua tibia primero, luego harina, los demás encima. Ciclo <strong>Dough</strong> (1h 30min).</li>
+<li><strong>Bolitas</strong> — Divide en 5-6 porciones (≈100g c/u). Forma bolitas tensas. Reposa <strong>20 min</strong>.</li>
+<li><strong>Formar</strong> — Aplana cada bolita, estira y forma alargada.</li>
+<li><strong>Levado final</strong> — Cubre con paño. Reposa <strong>30 min</strong> hasta que dupliquen.</li>
+<li><strong>Cortes</strong> — Cortes superficiales con cuchilla. Rocía con agua.</li>
+<li><strong>Hornear</strong> — <strong>350°F</strong> × 20 min. Rocía agua al piso del horno para vapor.</li>
+<li><strong>Enfriar</strong> — 5 min en rejilla. Comer tibios.</li>
+</ol>
+<div class="tip">La masa madre es la protagonista del sabor. El gramito de levadura instantánea solo da empuje de respaldo. El vapor crea la corteza crocante. Si quieres más color, últimos 2 min a 200°C.</div>
+<div class="tags">
+<span class="tag">🍞 Pan</span><span class="tag">🫙 Masa Madre</span><span class="tag">🤖 Máquina de Pan</span><span class="tag">🇲🇽 Estilo Bolillo</span><span class="tag">🔥 350°F</span><span class="tag">⏱️ ~3 hrs</span>
+</div>
+</div>
+
+<div class="recipe-card">
+<h3>🍕 Pizza Jim Roll's — Receta Original (2 pizzas de 14")</h3>
+<div class="subtitle">Masa madre + huevo — adaptada a 2 pizzas de 14 pulgadas</div>
+<table>
+<tr><th>Ingrediente</th><th>Cantidad</th></tr>
+<tr><td>Agua tibia</td><td>306 g</td></tr>
+<tr><td>Masa madre (100% hidratación)</td><td>95 g</td></tr>
+<tr><td>Huevo</td><td>1</td></tr>
+<tr><td>Aceite de oliva</td><td>14 g</td></tr>
+<tr><td>Harina de trigo</td><td>470 g</td></tr>
+<tr><td>Sal</td><td>8 g</td></tr>
+<tr><td>Levadura instantánea</td><td>1 g (solo empuje)</td></tr>
+</table>
+<h4>⚙️ Máquina</h4>
+<p>Setting <strong>⑧ Dough (Pâte)</strong> — solo el ciclo de amasado (~20 min). Luego pliegues manuales.</p>
+<ol class="steps">
+<li><strong>Cargar máquina</strong> — Agua tibia primero. Masa madre, huevo batido y aceite. Harina encima. Sal en esquina. Levadura en hueco al centro.</li>
+<li><strong>⑧ Dough</strong> — Solo ciclo de amasado (~20 min). Luego <strong>apágala</strong>.</li>
+<li><strong>Pliegues (4 rondas)</strong> — Cada <strong>45 min</strong>, pliegue de 4 lados. Total: 3 horas.</li>
+<li><strong>Dividir</strong> — 2 porciones (≈400g c/u). Bolitas tensas.</li>
+<li><strong>Levado final</strong> — Cubre. Reposa <strong>45–60 min</strong>.</li>
+<li><strong>Estirar</strong> — Con las manos (nunca rodillo) hasta 14 pulgadas. Borde grueso.</li>
+<li><strong>Hornear</strong> — <strong>500°F</strong> × 8–10 min. Manchas de leopardo = listo.</li>
+</ol>
+<div class="tip">Masa madre + huevo = elasticidad y dorado. Estirar a mano preserva burbujas. Corteza con manchas oscuras = pizza napolitana auténtica.</div>
+<div class="tags">
+<span class="tag">🍕 Pizza</span><span class="tag">🫙 Masa Madre</span><span class="tag">🤖 Máquina</span><span class="tag">🇮🇹 Napolitana</span><span class="tag">🔥 500°F</span><span class="tag">⏱️ ~5 hrs</span>
+</div>
+</div>
+
+<!-- ============ PASTAS ============ -->
+<h2 id="pastas">🍝 Pastas</h2>
+
+<div class="recipe-card">
+<h3>🥗 Coditos (Ensalada de Pasta) — 3 Porciones</h3>
+<p class="subtitle">Clásico puertorriqueño — medidas exactas para consistencia perfecta</p>
+<table>
+<tr><th>Ingrediente</th><th>Cantidad</th></tr>
+<tr><td>Pasta de coditos (seca)</td><td>170 g</td></tr>
+<tr><td>Mayonesa</td><td>115 g</td></tr>
+<tr><td>Jamón cocido (en cubos)</td><td>100 g</td></tr>
+<tr><td>Queso (en cubos)</td><td>80 g</td></tr>
+<tr><td>Pimiento morrón (picado)</td><td>100 g</td></tr>
+<tr><td>Cebolla (picadita)</td><td>80 g</td></tr>
+<tr><td>Zanahoria rallada</td><td>30 g</td></tr>
+<tr><td>Mostaza (opcional)</td><td>10 g</td></tr>
+<tr><td>Sal y pimienta</td><td>Al gusto</td></tr>
+</table>
+<h4 style="color:#e67e22;margin:1.2rem 0 .5rem">👨‍🍳 Procedimiento</h4>
+<ol class="steps">
+<li><strong>Cocción de la pasta</strong> — Hierve los 170 g de coditos en agua con sal hasta que estén al dente. Escurre bien y deja enfriar completamente.</li>
+<li><strong>Preparación de la base</strong> — En un bol grande, mezcla la mayonesa (115 g) con la mostaza (10 g) hasta integrar.</li>
+<li><strong>Integración</strong> — Añade el pimiento morrón, cebolla picadita, zanahoria rallada, jamón en cubos y queso en cubos a la base.</li>
+<li><strong>Mezcla final</strong> — Incorpora la pasta fría y mezcla todo hasta que cada codito quede bien cubierto. Ajusta sal y pimienta al gusto.</li>
+<li><strong>Reposo</strong> — Refrigera mínimo 30 minutos antes de servir. ¡Mejor de un día para otro!</li>
+</ol>
+<div class="tip">El reposo en nevera es clave — los sabores se integran y la pasta absorbe la mayonesa. Perfecto para el calor de Lajas.</div>
+<div class="tags">
+<span class="tag">🥗 Ensalada</span><span class="tag">🇵🇷 Puerto Rico</span><span class="tag">👥 3 porciones</span><span class="tag">❄️ Frío</span>
+</div>
+</div>
+
+<!-- ============ OTRAS ============ -->
+<h2 id="otras">📋 Otras Recetas</h2>
+
 <div class="recipe-card">
 <h3>🥞 Pancakes Dorados — 6 Unidades</h3>
 <p class="subtitle">Medidas exactas en gramos — esponjosos y dorados perfectos</p>
@@ -69,54 +228,48 @@ footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;c
 <tr><td>Mantequilla derretida</td><td>30 g</td></tr>
 <tr><td>Esencia de vainilla</td><td>3 g</td></tr>
 </table>
-<h4 style="color:#e67e22;margin:1.2rem 0 .5rem">👨‍🍳 Procedimiento</h4>
 <ol class="steps">
-<li><strong>Mezcla de sólidos</strong> — Tamiza y mezcla la harina, azúcar, polvo de hornear y sal en un bol.</li>
-<li><strong>Mezcla de líquidos</strong> — Bate el huevo con la leche, vainilla y mantequilla derretida en un recipiente aparte. Asegúrate de que la mantequilla no esté tan caliente que cocine el huevo.</li>
-<li><strong>Integración</strong> — Incorpora los líquidos a los sólidos. Mezcla suavemente solo hasta que desaparezcan los rastros de harina. <strong>Pocos movimientos = mayor esponjosidad.</strong></li>
-<li><strong>Reposo</strong> — Deja reposar la masa 5 minutos. Espesará ligeramente y se formarán pequeñas burbujas.</li>
+<li><strong>Mezcla de sólidos</strong> — Tamiza y mezcla harina, azúcar, polvo de hornear y sal.</li>
+<li><strong>Mezcla de líquidos</strong> — Bate huevo con leche, vainilla y mantequilla derretida.</li>
+<li><strong>Integración</strong> — Incorpora líquidos a sólidos. Mezcla suave. <strong>Pocos movimientos = mayor esponjosidad.</strong></li>
+<li><strong>Reposo</strong> — 5 minutos.</li>
 </ol>
-<h4 style="color:#f0c040;margin:1.5rem 0 .8rem">🔑 Claves para el Dorado Perfecto</h4>
-<div class="tip"><strong>Sartén:</strong> Usa fuego medio-bajo. Temperatura ideal: <strong>375°F</strong> para planchas eléctricas.</div>
-<div class="tip"><strong>Grasa:</strong> Engrasa con mantequilla y retira el exceso con una servilleta. Una capa fina crea un dorado uniforme.</div>
-<div class="tip"><strong>Cocción:</strong> Vierte <strong>65 g</strong> de masa por pancake. Voltea solo cuando aparezcan burbujas en la superficie y los bordes se vean opacos.</div>
+<h4 style="color:#f0c040;margin:1.5rem 0 .8rem">🔑 Claves</h4>
+<div class="tip"><strong>Sartén:</strong> Fuego medio-bajo. <strong>375°F</strong> para planchas eléctricas.</div>
+<div class="tip"><strong>Cocción:</strong> <strong>65 g</strong> de masa por pancake. Voltea cuando aparezcan burbujas en la superficie.</div>
 <div class="tags">
 <span class="tag">🥞 Desayuno</span><span class="tag">👥 6 unidades</span><span class="tag">⏱️ 15 min</span><span class="tag">🔥 375°F</span>
 </div>
 </div>
 
-<!-- Dulce Chocolate -->
 <div class="recipe-card">
 <h3>🍫 Dulce Chocolate estilo Golden Coral — Molde 5×9"</h3>
-<p class="subtitle">Brownie compacto y grueso — receta AUMENTADA para llenar bien el molde 5"×9"</p>
+<p class="subtitle">Brownie compacto y grueso — receta AUMENTADA para llenar bien el molde</p>
 <table>
 <tr><th>Ingrediente</th><th>Cantidad</th></tr>
 <tr><td>Mantequilla (derretida)</td><td>150 g</td></tr>
 <tr><td>Azúcar blanca</td><td>260 g</td></tr>
 <tr><td>Cacao en polvo (sin azúcar)</td><td>60 g</td></tr>
 <tr><td>Huevos</td><td>2 grandes (100-110 g)</td></tr>
-<tr><td>Harina de trigo (todo uso)</td><td>125 g</td></tr>
+<tr><td>Harina de trigo</td><td>125 g</td></tr>
 <tr><td>Vainilla</td><td>6 g</td></tr>
 <tr><td>Sal</td><td>2 g</td></tr>
 </table>
-<h4 style="color:#f0c040;margin:1.5rem 0 .8rem">👨‍🍳 Procedimiento</h4>
 <ol class="steps">
-<li><strong>Fundir y Mezclar</strong> — Derrite los 150 g de mantequilla. Caliente, incorpora al azúcar y cacao. Mezcla fuerte.</li>
-<li><strong>Ligar</strong> — Añade los 2 huevos y vainilla. Mezcla suave hasta integrar.</li>
-<li><strong>Secos</strong> — Incorpora harina y sal. Mezcla hasta masa homogénea y brillante.</li>
-<li><strong>Horneado</strong> — Molde 5×9" con papel. 325°F por 20-22 min.</li>
-<li><strong>Estabilización</strong> — Enfriar → nevera para textura quebradiza estilo Golden Coral.</li>
+<li><strong>Fundir y Mezclar</strong> — Derrite mantequilla. Caliente, incorpora al azúcar y cacao.</li>
+<li><strong>Ligar</strong> — Añade huevos y vainilla.</li>
+<li><strong>Secos</strong> — Incorpora harina y sal.</li>
+<li><strong>Hornear</strong> — Molde 5×9" con papel. 325°F por 20-22 min.</li>
+<li><strong>Estabilizar</strong> — Enfriar → nevera para textura quebradiza.</li>
 </ol>
-<div class="tip">×1.3 la receta original. Cantidad generosa para un brownie grueso que llena bien el molde 5×9".</div>
 <div class="tags">
-<span class="tag">🍫 Chocolate</span><span class="tag">📐 5×9"</span><span class="tag">⏱️ 20-22 min</span><span class="tag">❄️ Frío</span><span class="tag">🔥 325°F</span>
+<span class="tag">🍫 Chocolate</span><span class="tag">📐 5×9"</span><span class="tag">🔥 325°F</span><span class="tag">⏱️ 20-22 min</span>
 </div>
 </div>
 
-<!-- Arepas -->
 <div class="recipe-card">
 <h3>🥥 Arepas de Coco — 8 Porciones</h3>
-<p class="subtitle">Clásico puertorriqueño — fritas, crujientes y con sabor a coco. Fuente: 7 Días de Sabor</p>
+<p class="subtitle">Clásico puertorriqueño — fritas, crujientes y con sabor a coco</p>
 <table>
 <tr><th>Ingrediente</th><th>Cantidad</th></tr>
 <tr><td>Harina todo uso</td><td>250 g</td></tr>
@@ -126,26 +279,22 @@ footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;c
 <tr><td>Leche de coco</td><td>240 g</td></tr>
 <tr><td>Aceite vegetal (para freír)</td><td>Suficiente</td></tr>
 </table>
-<h4 style="color:#e67e22;margin:1.2rem 0 .5rem">👨‍🍳 Procedimiento</h4>
 <ol class="steps">
-<li><strong>Mezcla de secos</strong> — En un bol grande, mezcla bien los 250 g de harina, 5 g de levadura, 200 g de azúcar y 1.5 g de sal.</li>
-<li><strong>Integración</strong> — Añade los 240 g de leche de coco y mezcla hasta formar una masa pegajosa y homogénea.</li>
-<li><strong>Amasado y reposo</strong> — Cubre tus manos y la superficie con un poco de harina. Amasa hasta que esté completamente combinada. Deja reposar la masa <strong>30 minutos</strong>.</li>
-<li><strong>Formado</strong> — Divide la masa y forma arepas de aproximadamente <strong>7.5 cm de diámetro × 0.6 cm de grosor</strong>.</li>
-<li><strong>Freír</strong> — Calienta abundante aceite en una sartén grande a fuego medio-alto. Fríe las arepas en tandas hasta que estén doradas por cada lado. Escurre sobre papel absorbente.</li>
+<li><strong>Mezcla de secos</strong> — Harina, levadura, azúcar y sal.</li>
+<li><strong>Integración</strong> — Añade leche de coco. Mezcla hasta masa pegajosa y homogénea.</li>
+<li><strong>Amasado y reposo</strong> — Amasa. Reposa <strong>30 minutos</strong>.</li>
+<li><strong>Formado</strong> — Arepas de <strong>7.5 cm × 0.6 cm de grosor</strong>.</li>
+<li><strong>Freír</strong> — Aceite medio-alto hasta dorar por cada lado.</li>
 </ol>
-<div class="tip">El reposo de 30 minutos es clave — permite que la levadura active y la masa sea más manejable. No las hagas muy gruesas o quedarán crudas por dentro.</div>
+<div class="tip">El reposo de 30 minutos permite que la levadura active. No las hagas muy gruesas o quedarán crudas por dentro.</div>
 <div class="tags">
-<span class="tag">🥥 Coco</span><span class="tag">🇵🇷 Puerto Rico</span><span class="tag">👥 8 porciones</span><span class="tag">🍳 Freír</span><span class="tag">⏱️ 40 min</span>
+<span class="tag">🥥 Coco</span><span class="tag">🇵🇷 Puerto Rico</span><span class="tag">👥 8 porciones</span><span class="tag">🍳 Freír</span>
 </div>
 </div>
 
-<!-- Donas -->
 <div class="recipe-card">
-<h3>🍩 Donas Estilo Krispy Kreme — 6 Unidades</h3>
-<p class="subtitle">Suavecitas y glaseadas — adaptado para Hamilton Beach 29981G</p>
-<h4 style="color:#e67e22;margin:1.2rem 0 .5rem">⚙️ Máquina</h4>
-<div class="tip" style="border-left-color:#e67e22;background:#1a1208">Usar <strong>⑧ Dough (Pâte)</strong> — amasa, kneads y primer levado automático.</div>
+<h3>🍩 Donas — 6 Unidades</h3>
+<p class="subtitle">Suavecitas y glaseadas — para Hamilton Beach 29981G</p>
 <h4 style="color:#e67e22;margin:1.2rem 0 .5rem">📋 Masa</h4>
 <table>
 <tr><th>Ingrediente</th><th>Cantidad</th></tr>
@@ -153,35 +302,31 @@ footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;c
 <tr><td>Huevo batido</td><td>1 (~50 g)</td></tr>
 <tr><td>Mantequilla derretida</td><td>28 g</td></tr>
 <tr><td>Esencia de vainilla</td><td>3 g</td></tr>
-<tr><td>Harina de trigo (todo uso)</td><td>250 g</td></tr>
+<tr><td>Harina de trigo</td><td>250 g</td></tr>
 <tr><td>Azúcar blanca</td><td>38 g</td></tr>
 <tr><td>Sal</td><td>2.5 g</td></tr>
 <tr><td>Levadura instantánea</td><td>3.5 g</td></tr>
 </table>
-<h4 style="color:#e67e22;margin:1.5rem 0 .5rem">✨ Glaseado</h4>
+<h4 style="color:#e67e22;margin:1rem 0 .5rem">✨ Glaseado</h4>
 <table>
 <tr><th>Ingrediente</th><th>Cantidad</th></tr>
-<tr><td>Azúcar en polvo (glass)</td><td>150 g</td></tr>
+<tr><td>Azúcar en polvo</td><td>150 g</td></tr>
 <tr><td>Leche</td><td>30 g</td></tr>
 <tr><td>Vainilla</td><td>2 g</td></tr>
 </table>
-<h4 style="color:#e67e22;margin:1.2rem 0 .5rem">👨‍🍳 Procedimiento</h4>
 <ol class="steps">
-<li><strong>Cargar la máquina en este orden</strong> — Líquidos primero: leche, huevo, mantequilla derretida, vainilla. Secos encima: harina, azúcar, sal (en las esquinas).</li>
-<li><strong>Levadura al final</strong> — Haz un hueco en el centro de la harina. Echa la levadura ahí sin que toque los líquidos.</li>
-<li><strong>Máquina</strong> — Selecciona <strong>⑧ Dough (Pâte)</strong> → Start. Deja que complete el ciclo (~1.5 hrs). La máquina amasa y hace el primer levado.</li>
-<li><strong>Formar</strong> — Saca la masa, estira a 1 cm de grosor. Corta círculos de ~8 cm y haz el hueco del centro con un cortador pequeño.</li>
-<li><strong>Segundo levado</strong> — Coloca en bandeja enharinada, cubre y deja levar 30-40 min.</li>
-<li><strong>Freír</strong> — Aceite a 350°F. Fríe 45-60 segundos por cada lado hasta dorar. Escurre en papel absorbente.</li>
-<li><strong>Glaseado</strong> — Mezcla azúcar en polvo + leche + vainilla hasta que esté liso. Sumerge las donas tibias y deja escurrir en rejilla.</li>
+<li><strong>Cargar máquina</strong> — Líquidos primero, secos encima. Levadura en hueco al centro.</li>
+<li><strong>⑧ Dough</strong> → Start (~1.5 hrs).</li>
+<li><strong>Formar</strong> — Estira a 1 cm, corta círculos de ~8 cm con hueco al centro.</li>
+<li><strong>Segundo levado</strong> — 30-40 min.</li>
+<li><strong>Freír</strong> — 350°F, 45-60 seg por lado.</li>
+<li><strong>Glaseado</strong> — Mezcla azúcar + leche + vainilla. Sumerge donas tibias.</li>
 </ol>
-<div class="tip">La máquina se encarga del amasado y primer levado. El <strong>segundo levado manual de 30-40 min</strong> es lo que da esa textura aireada clásica de Krispy Kreme. Glasear tibias para el brillo perfecto.</div>
 <div class="tags">
-<span class="tag">🍩 Donas</span><span class="tag">🤖 Máquina</span><span class="tag">⑧ Dough</span><span class="tag">👥 6 unidades</span><span class="tag">🔥 350°F</span><span class="tag">🍳 Freír</span>
+<span class="tag">🍩 Donas</span><span class="tag">🤖 Máquina</span><span class="tag">⑧ Dough</span><span class="tag">🔥 350°F</span>
 </div>
 </div>
 
-<!-- Pastelillos -->
 <div class="recipe-card">
 <h3>🥟 Pastelillos de Guayaba — 10 Unidades</h3>
 <p class="subtitle">Hojaldre crujiente relleno de guayaba y queso crema — clásico boricua</p>
@@ -194,27 +339,21 @@ footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;c
 <tr><td>Azúcar cruda (opcional)</td><td>1 cda</td></tr>
 <tr><td>Azúcar en polvo (para decorar)</td><td>Al gusto</td></tr>
 </table>
-<h4 style="color:#e67e22;margin:1.2rem 0 .5rem">👨‍🍳 Procedimiento</h4>
 <ol class="steps">
-<li><strong>Descongelar</strong> — Saca el puff pastry del congelador. Deja descongelar <strong>15–20 minutos</strong> a temperatura ambiente. No más — si se ablanda demasiado no trabaja bien.</li>
-<li><strong>Precalentar horno</strong> — Enciende el horno a <strong>400°F</strong>. Prepara una bandeja con papel pergamino.</li>
-<li><strong>Cortar la masa</strong> — Desenrolla las 2 láminas. Ponlas una sobre otra (sin los papeles). Corta cada lámina en <strong>5 rectángulos</strong>: primero en 2 columnas siguiendo el doblez natural, luego cortes horizontales. Total: 10 bases + 10 tapas. Separa las tapas.</li>
-<li><strong>Preparar el relleno</strong> — Corta la pasta de guayaba en <strong>10 rebanadas finas</strong> (⅛"). Corta el cream cheese en <strong>10 chunks</strong> pequeños. Si la guayaba está muy dura, 10 segundos al microondas.</li>
-<li><strong>Rellenar</strong> — Sobre cada base coloca <strong>1–2 rebanadas de guayaba</strong> al centro y <strong>1 chunk de cream cheese</strong> encima. Deja espacio en los bordes — no sobrecargues.</li>
-<li><strong>Cortes en las tapas</strong> — Con la punta de un cuchillo, haz <strong>2–3 cortecitos</strong> a cada tapa para que respire el vapor al hornear.</li>
-<li><strong>Tapar</strong> — Coloca cada tapa sobre su base. No hace falta presionar los bordes — el hojaldre sella solo. Si quieres borde decorativo, usa un tenedor.</li>
-<li><strong>Egg wash</strong> — Bate el huevo fresco. Con brocha, pinta cada pastelillo por encima. <strong>No te saltes este paso</strong> — es lo que da el color dorado característico.</li>
-<li><strong>Azúcar (opcional)</strong> — Espolvorea azúcar cruda sobre el egg wash para ese crunch y brillo.</li>
-<li><strong>Hornear</strong> — Bandeja al horno. <strong>15 minutos</strong> a 400°F. Vigila desde los 10 minutos. Listos cuando estén dorados arriba y los bordes ligeramente tostaditos.</li>
-<li><strong>Servir</strong> — Deja enfriar 5 minutos. Espolvorea azúcar en polvo. Con cafecito negro puertorriqueño... imbatible.</li>
+<li><strong>Descongelar</strong> — Puff pastry 15–20 min a temp. ambiente.</li>
+<li><strong>Precalentar</strong> — Horno a <strong>400°F</strong>.</li>
+<li><strong>Cortar</strong> — 10 rectángulos base + 10 tapas.</li>
+<li><strong>Rellenar</strong> — 1-2 rebanadas de guayaba + 1 chunk cream cheese por base.</li>
+<li><strong>Tapar</strong> — Tapas con 2-3 cortecitos para el vapor.</li>
+<li><strong>Egg wash</strong> — Pinta con huevo batido por encima.</li>
+<li><strong>Hornear</strong> — <strong>15 min</strong> a 400°F. Dorados = listos.</li>
+<li><strong>Servir</strong> — Enfriar 5 min. Espolvorea azúcar en polvo.</li>
 </ol>
-<div class="tip">La pasta de guayaba se consigue en cualquier supermercado boricua (Goya, Iberia, Conchita). El egg wash con huevo fresco bate mejor que uno ya batido de antes. Si quieres variar, puedes sustituir el cream cheese por queso blanco del país o incluso hacerlos solo de guayaba. Son igual de buenos fríos al otro día… si es que sobran.</div>
 <div class="tags">
-<span class="tag">🥟 Pastelillos</span><span class="tag">🇵🇷 Puerto Rico</span><span class="tag">🍬 Guayaba</span><span class="tag">🧀 Queso Crema</span><span class="tag">🔥 400°F</span><span class="tag">⏱️ 35 min</span><span class="tag">☕ Con Café</span>
+<span class="tag">🥟 Pastelillos</span><span class="tag">🇵🇷 Puerto Rico</span><span class="tag">🍬 Guayaba</span><span class="tag">🔥 400°F</span>
 </div>
 </div>
 
-<!-- Moca -->
 <div class="recipe-card">
 <h3>☕ Moca Cremoso — Versión Mini (23 g agua)</h3>
 <p class="subtitle">Chocolate + café + leche en proporción perfecta para un antojo personal</p>
@@ -225,21 +364,20 @@ footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;c
 <tr><td>Chocolate en polvo</td><td>5–7 g *</td></tr>
 <tr><td>Café instantáneo o expresso</td><td>Al gusto</td></tr>
 </table>
-<p style="color:#888;font-size:.85rem;margin-top:.5rem">* 5 g si el chocolate trae azúcar. 7 g si es chocolate amargo sin azúcar.</p>
+<p style="color:#888;font-size:.85rem;margin-top:.5rem">* 5 g si el chocolate trae azúcar. 7 g si es chocolate amargo.</p>
 <ol class="steps">
 <li><strong>Calentar el agua</strong> — 23 g de agua bien caliente, casi hirviendo.</li>
-<li><strong>Mezclar los polvos</strong> — En taza pequeña, junta la leche en polvo y el chocolate en polvo. Mézclalos en seco primero para que no se empeloten.</li>
-<li><strong>Agregar el agua</strong> — Vierte el agua caliente poco a poco mientras revuelves con cuchara pequeña. Sin prisa — así sale cremoso, sin grumos.</li>
-<li><strong>Café</strong> — Agrega tu café al gusto. Si es instantáneo, échalo en el paso 2 con los demás polvos. Si es expresso, al final.</li>
-<li><strong>Disfrutar</strong> — Bien calentito. Espeso, sabroso, sin desperdicio.</li>
+<li><strong>Mezclar los polvos</strong> — Leche en polvo + chocolate en polvo en seco primero.</li>
+<li><strong>Agregar el agua</strong> — Vierte poco a poco mientras revuelves. Sin prisa.</li>
+<li><strong>Café</strong> — Al gusto.</li>
+<li><strong>Disfrutar</strong> — Bien calentito.</li>
 </ol>
-<div class="tip">La clave es mezclar los polvos en seco PRIMERO y agregar el agua de a poquito. Si sale muy espeso, baja la leche a 6 g la próxima vez. Si muy aguado, súbela a 8 g. El chocolate sin azúcar da un moca más intenso y menos dulce — como el de cafetería buena.</div>
+<div class="tip">Mezclar los polvos en seco PRIMERO evita grumos. Si muy espeso: 6 g leche. Si muy aguado: 8 g.</div>
 <div class="tags">
-<span class="tag">☕ Moca</span><span class="tag">🍫 Chocolate</span><span class="tag">🥛 Leche en Polvo</span><span class="tag">⏱️ 3 min</span><span class="tag">👤 Personal</span>
+<span class="tag">☕ Moca</span><span class="tag">🍫 Chocolate</span><span class="tag">🥛 Leche en Polvo</span><span class="tag">⏱️ 3 min</span>
 </div>
 </div>
 
-<!-- Leche para Cereal -->
 <div class="recipe-card">
 <h3>🥛 Leche para Cereal — Cremosa, No Aguada</h3>
 <p class="subtitle">Leche en polvo + agua — medidas exactas para mojar cereal sin que sepa a agua</p>
@@ -249,9 +387,9 @@ footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;c
 <tr><td>Espesita pero bebible</td><td>95–110 g</td></tr>
 <tr><td>Muy espesa (casi pudín)</td><td>120 g+</td></tr>
 </table>
-<div class="tip">Para 450 g de agua. La recomendada es 85–90 g — cremosa, agarra bien el cereal, y todavía fluye pa' beberte lo que sobra. Mézclala con batidor o cuchara, sin prisa, pa' que no queden grumos.</div>
+<div class="tip">Para 450 g de agua. La recomendada es 85–90 g — cremosa, agarra bien el cereal, y todavía fluye pa' beberte lo que sobra.</div>
 <div class="tags">
-<span class="tag">🥛 Cereal</span><span class="tag">🥣 Desayuno</span><span class="tag">⏱️ 1 min</span><span class="tag">👤 Personal</span>
+<span class="tag">🥛 Cereal</span><span class="tag">🥣 Desayuno</span><span class="tag">⏱️ 1 min</span>
 </div>
 </div>
 
