@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🛒 Víveres – Richard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f0f1a;color:#e0e0e0;font-family:-apple-system,system-ui,sans-serif;min-height:100vh}
+.header{background:#1a1a2e;padding:20px 30px;border-bottom:1px solid #2a2a4a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.header h1{font-size:1.4em;color:#f0c040}
+.header .badge{background:#2a2a4a;padding:6px 14px;border-radius:20px;font-size:.8em;color:#aaa}
+.filters{display:flex;gap:10px;padding:15px 20px;flex-wrap:wrap;background:#12122a;border-bottom:1px solid #2a2a4a}
+.filters select,.filters input{background:#1a1a2e;color:#e0e0e0;border:1px solid #2a2a4a;padding:8px 12px;border-radius:8px;font-size:.85em}
+.filters select:focus,.filters input:focus{outline:none;border-color:#f0c040}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;padding:15px 20px}
+.stat{background:#1a1a2e;border-radius:10px;padding:14px;border:1px solid #2a2a4a;text-align:center}
+.stat .label{font-size:.7em;color:#888;text-transform:uppercase;letter-spacing:1px}
+.stat .value{font-size:1.6em;font-weight:bold;margin:4px 0}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:15px 20px}
+.chart-card{background:#1a1a2e;border-radius:12px;padding:16px;border:1px solid #2a2a4a}
+.chart-card h2{font-size:.8em;color:#888;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
+.chart-wrap{position:relative;height:300px}
+.table-wrap{padding:0 20px 20px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.82em}
+th{text-align:left;padding:8px 6px;color:#888;border-bottom:1px solid #2a2a4a;font-size:.75em;position:sticky;top:0;background:#0f0f1a}
+td{padding:7px 6px;border-bottom:1px solid #1a1a2e}
+tr:hover{background:#1a1a2e}
+.cat{padding:2px 8px;border-radius:10px;font-size:.7em;font-weight:bold;display:inline-block}
+.cat-supermercado{background:#1b5e20;color:#69f0ae}
+.cat-alcohol{background:#4a148c;color:#ce93d8}
+.cat-restaurant{background:#b71c1c;color:#ff8a80}
+.cat-mascotas{background:#1a237e;color:#64b5f6}
+.cat-efectos{background:#e65100;color:#ffcc80}
+.cat-regalos{background:#880e4f;color:#f48fb1}
+.green{color:#4caf50}.yellow{color:#f0c040}.red{color:#f44336}.blue{color:#64b5f6}
+@media(max-width:700px){.charts{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+canvas{width:100%!important}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🛒 Víveres Dashboard</h1>
+  <span class="badge" id="updated"></span>
+</div>
+<div class="filters">
+  <select id="fCat"><option value="">Todas las categorías</option></select>
+  <select id="fMonth"><option value="">Todos los meses</option></select>
+  <input type="text" id="fSearch" placeholder="🔍 Buscar tienda o artículo...">
+</div>
+<div class="stats" id="stats"></div>
+<div class="charts">
+  <div class="chart-card"><h2>🥧 Por Categoría</h2><div class="chart-wrap"><canvas id="pieChart"></canvas></div></div>
+  <div class="chart-card"><h2>📊 Por Mes</h2><div class="chart-wrap"><canvas id="barChart"></canvas></div></div>
+</div>
+<div class="table-wrap"><table id="tbl"><thead><tr><th>Fecha</th><th>Tienda</th><th>Artículo</th><th style="text-align:right">Precio</th><th style="text-align:right">IVU</th><th style="text-align:right">Total</th><th>Categoría</th><th>Notas</th></tr></thead><tbody id="tbody"></tbody></table></div>
+
+<script>
+if(document.cookie.indexOf('auth=1')===-1){window.location.href='acceso.html?page=viveres';}
+
+var DATA = [
+["01/02/2026","Sam's Club - Mayaguez","MEOW MIX","$30.44","$3.50","$33.94","Mascotas","Scan and Go - Visa *5532"],
+["01/28/2026","Walgreens","Snacks, Dasani x2, Yardley soap, Crest, Peeps, popcorn, bolsa","$34.26","$1.86","$36.12","Supermercado","Visa - Ahorro $2.49"],
+["02/21/2026","Sam's Club - Ponce","MM MEXSHRED","$7.16","$0.00","$7.16","Supermercado","Scan and Go - Visa *5532"],
+["02/21/2026","Sam's Club - Ponce","MINH CHKN ER","$9.86","$0.00","$9.86","Supermercado","Scan and Go - Visa *5532"],
+["03/10/2026","Sam's Club - Mayaguez","MM EGG 24CT","$12.34","$0.00","$12.34","Supermercado","Scan and Go - 2 qty"],
+["03/10/2026","Sam's Club - Mayaguez","GRAPE TOMATO","$7.76","$0.00","$7.76","Supermercado","Scan and Go"],
+["03/10/2026","Sam's Club - Mayaguez","24PC PLASTIC","$15.98","$0.00","$15.98","Efectos Personales","Scan and Go - Ahorro $1.00"],
+["03/13/2026","Walgreens","Snacks (chips, biscoff, crunch), agua, Crest, Dentyne, tissue, Coco Rico, bolsa","$25.92","$1.43","$27.35","Supermercado","Visa - Walgreens rewards $0.25"],
+["03/30/2026","Sam's Club - Mayaguez","NAVY","$79.96","$0.00","$79.96","Efectos Personales","Scan and Go"],
+["03/30/2026","Sam's Club - Mayaguez","TIDY GLADE","$17.78","$0.00","$17.78","Supermercado","Scan and Go"],
+["03/30/2026","Sam's Club - Mayaguez","MR TANGO PAR","$10.98","$0.00","$10.98","Supermercado","Scan and Go"],
+["03/30/2026","Sam's Club - Mayaguez","3 BRK COT","$7.26","$0.00","$7.26","Supermercado","Scan and Go"],
+["03/30/2026","Sam's Club - Mayaguez","DAWN FR 900Z","$8.88","$0.00","$8.88","Supermercado","Scan and Go"],
+["04/15/2026","Veterinario","Veterinario (gato)","$253.00","$29.10","$282.10","Mascotas","Debo a Anna"],
+["04/15/2026","Walmart","Jaula para gato","$33.00","$3.80","$36.80","Mascotas","Debo a Anna"],
+["04/20/2026","Sam's Club - Mayaguez","MEOW MIX","$30.44","$3.50","$33.94","Mascotas","Scan and Go"],
+["04/20/2026","Sam's Club - Mayaguez","ORG MUSHROOM","$5.87","$0.00","$5.87","Supermercado","Scan and Go"],
+["04/20/2026","Sam's Club - Mayaguez","DON Q","$15.17","$1.74","$16.91","Alcohol","Scan and Go"],
+["04/20/2026","Sam's Club - Mayaguez","BUCHANAN'S","$29.98","$3.45","$33.43","Alcohol","Scan and Go"],
+["04/22/2026","Walgreens","Hostess Twinkies 2.7oz","$2.79","$0.13","$2.92","Supermercado","FSA"],
+["04/22/2026","Walgreens","Frontera Merlot 750ml x2","$15.98","$0.73","$16.71","Alcohol","FSA"],
+["04/22/2026","Walgreens","Glucose Tabs Tropical Fruit 50s","$8.29","$0.38","$8.67","Efectos Personales","FSA"],
+["04/22/2026","Walgreens","Glucose Tabs Orange 10s","$1.99","$0.09","$2.08","Efectos Personales","FSA"],
+["04/22/2026","Walgreens","Powerade Fruit Punch 20oz","$1.19","$0.05","$1.24","Supermercado","FSA"],
+["04/22/2026","Walgreens","Cheese Balls 8.5oz","$2.99","$0.14","$3.13","Supermercado","3 unidades"],
+["04/22/2026","Walgreens","Shopping bag","$0.10","$0.01","$0.11","Supermercado","En oferta"],
+["04/22/2026","Walgreens","Original Potato Chip 8oz","$1.99","$0.09","$2.08","Supermercado","En oferta"],
+["04/22/2026","Walgreens","BBQ Potato Chip 2.5oz","$1.29","$0.06","$1.35","Supermercado","En oferta"],
+["04/29/2026","Animalix Clínica Veter","Vacuna de gatos","$105.00","$12.08","$117.08","Mascotas","Debo a Anna"],
+["05/13/2026","Pueblo Mayaguez Mall","Borges Aceite Oliva Ext/Suav","$9.99","$0.00","$9.99","Supermercado","3 unidades"],
+["05/13/2026","Pueblo Mayaguez Mall","Tomato Paste Tube","$2.29","$0.00","$2.29","Supermercado","En oferta"],
+["05/13/2026","Pueblo Mayaguez Mall","Barilla Oven Lasagna","$2.29","$0.00","$2.29","Supermercado","En oferta"],
+["05/13/2026","Pueblo Mayaguez Mall","Bolsa Pueblo Heavy Duty","$0.10","$0.01","$0.11","Supermercado","En oferta"],
+["05/13/2026","Pueblo Mayaguez Mall","Vegetales Rebajados (3)","$3.00","$0.00","$3.00","Supermercado","3 unidades"],
+["05/13/2026","Pueblo Mayaguez Mall","Remolacha Suelta","$2.96","$0.00","$2.96","Supermercado","1.35 lb @ $2.19/lb"],
+["05/13/2026","Pueblo Mayaguez Mall","Calabaza Cortada","$0.80","$0.00","$0.80","Supermercado","0.53 lb @ $3.99/lb"],
+["05/13/2026","Pueblo Mayaguez Mall","Pimiento Cocinar","$2.11","$0.00","$2.11","Supermercado","En oferta"],
+["05/13/2026","Pueblo Mayaguez Mall","FC Cheese Ricotta Whl Mlk","$3.49","$0.00","$3.49","Supermercado","En oferta"],
+["05/13/2026","Pueblo Mayaguez Mall","Vaca Negra Papaya Yogurt","$2.99","$0.00","$2.99","Supermercado","En oferta"],
+["05/13/2026","Pueblo Mayaguez Mall","Vaca Negra Pina Colada","$2.99","$0.00","$2.99","Supermercado","En oferta"],
+["05/13/2026","Sam's Club - Mayaguez","Beats Earbuds (regalo para mi)","$149.95","$17.24","$167.19","Regalos","Scan and Go"],
+["05/19/2026","Walgreens","Cristalia Spring Water 1gal","$1.99","$0.02","$2.01","Supermercado","En oferta"],
+["05/19/2026","Walgreens","Nice Distilled Water 1gal","$2.29","$0.02","$2.31","Supermercado","Debit T42 - Cajero: Danyl S."],
+["05/19/2026","Walgreens","Grandma's Mini Sandwich cookies 3oz","$1.09","$0.01","$1.10","Supermercado","Debit T42 - Cajero: Danyl S."],
+["05/19/2026","Walgreens","BBQ Potato Chip 7.75oz","$1.99","$0.02","$2.01","Supermercado","Drive-thru - MC/Visa ****1219"],
+["05/19/2026","Walgreens","Nice Original Potato Chip 8oz","$1.99","$0.02","$2.01","Supermercado","Drive-thru - MC/Visa ****1219"],
+["05/19/2026","Mr. Special - San German","Despensa (cafe, pasta, frijoles, mantequilla, velveeta, guineos, tomates, lechuga)","$35.78","$1.87","$37.65","Supermercado","Debit T42 - Cajero: Danyl S."],
+["05/25/2026","Animalix Clínica Veter","Clínica veterinaria","$81.00","$0.00","$81.00","Mascotas","Debo a Anna"],
+["05/25/2026","Sam's Club - Mayaguez","MEOW MIX","$27.44","$3.16","$30.60","Mascotas","Scan and Go - Ahorro $3.00"],
+["05/25/2026","Sam's Club - Mayaguez","3 BRK COT","$7.26","$0.00","$7.26","Supermercado","Scan and Go"],
+["05/25/2026","Sam's Club - Mayaguez","BETIS PURE","$9.98","$0.00","$9.98","Supermercado","Scan and Go"],
+["05/25/2026","Sam's Club - Mayaguez","FAVORITA","$6.72","$0.00","$6.72","Supermercado","Scan and Go"],
+["05/25/2026","Sam's Club - Mayaguez","MM EGG 24CT","$12.34","$0.00","$12.34","Supermercado","Scan and Go - 2 qty"],
+["05/25/2026","Sam's Club - Mayaguez","PORK CHOPS","$18.48","$0.00","$18.48","Supermercado","Scan and Go"],
+["05/28/2026","Walgreens","Crunch N Munch caramel 3.5oz x2","$2.50","$0.12","$2.62","Supermercado","Visa - Ahorro $1.68"],
+["05/28/2026","Walgreens","Honey Nut Cheerios 3.5oz","$1.25","$0.06","$1.31","Supermercado","Debit Visa ****4058 - Cajera: Viviana"],
+["06/03/2026","Burger King #10052","Whopper + Whopper Jr + Tenders 6 + papas + Pepsi","$13.99","$0.98","$14.97","Restaurant","Drive-thru - MC/Visa ****1219"],
+["06/11/2026","New Era Chinese Restaurant - San Germán","Comida china","$11.75","$0.83","$12.58","Restaurant","ATH Debit ****4719"],
+["06/11/2026","Mr. Special - San German","Despensa (flores, salami, queso, confetti, barras)","$40.71","$1.70","$42.41","Supermercado","Debit T42 - Cajera: Natalia L."],
+["06/11/2026","Walgreens","Kisses x2, Suiza leche, Magnum, Powerade, Dove, disinfectante, veggie chips, BBQ chips, bolsa","$29.88","$2.30","$32.18","Supermercado","Visa - Ahorro $1.68"],
+["06/12/2026","JJ Ice Cream Factory - Cabo Rojo","3x Helado + 1 Barquilla","$12.90","$0.90","$13.80","Restaurant","Debit Visa ****4058 - Cajera: Viviana"],
+["06/12/2026","Selectos Lajas","Huevos, vegetales, limon, zanahoria, sierra, paper towels","$28.86","$0.59","$29.45","Supermercado","Visa ****2443 - 18 items - Ahorro $18.75"],
+["06/12/2026","Selectos Lajas","Carlo Rossi Cabernet Sauvignon","$9.19","$1.07","$10.26","Alcohol","Visa ****2443"],
+["06/13/2026","Amazon","Guantes para gatos","$16.00","$1.84","$17.84","Mascotas","Debo a Anna"],
+["06/14/2026","Harbor Restaurant","Buchanans + Bombay","$16.00","$1.84","$17.84","Alcohol","Rincón - Cashier: Héctor"],
+["06/14/2026","Arquiel","Perfume para Arquiel","$35.00","$0.00","$35.00","Regalos","Debo a Anna"],
+["06/17/2026","Romanos Macaroni Grill - Mayaguez Mall","2x Il Trio Perfetto + drinks","$29.98","$2.10","$32.08","Restaurant","Server: Isabel - Mesa 40"],
+["06/17/2026","Econo San German","Manzanas, hot dogs, mantequilla Finlandia, Clorox, agua Nikini","$17.04","$0.63","$17.67","Supermercado","Visa ****2443 - Cajero: Rosalyn V. - Ahorro $2.92"],
+["06/17/2026","Walmart - Mayaguez","Guineos, Suiza, mantequilla, colador, bolsas 15cf, Rx","$46.31","$3.35","$49.66","Supermercado","Walmart Pay Visa ****3854"],
+["06/17/2026","Grocery Store","2x Cerveza Inedit","$18.58","$2.14","$20.72","Alcohol","Visa ****0471"],
+["06/18/2026","Walgreens","Agua purified 1 gal","$1.79","$0.08","$1.87","Supermercado","Visa ****0471"],
+["06/18/2026","Walgreens","YooHoo chocolate drink 15.5oz","$2.29","$0.11","$2.40","Supermercado",""],
+["06/18/2026","Walgreens","Jelly beans assorted 7oz","$1.99","$0.09","$2.08","Supermercado","Scan and Go"],
+["06/18/2026","Walgreens","Black Gallery Frame 8x10","$11.29","$0.52","$11.81","Efectos Personales","Scan and Go - Ahorro $0.50"],
+["06/18/2026","Walgreens","White Gallery Frame 8x10","$5.64","$0.26","$5.90","Efectos Personales","Scan and Go"],
+["06/18/2026","Walgreens","Photofinishing x2","$6.58","$0.30","$6.88","Efectos Personales","Scan and Go"],
+["06/18/2026","Walgreens","Purified Water 1gal","$1.79","$0.08","$1.87","Supermercado","Scan and Go - Ahorro $0.50"],
+["06/18/2026","Walgreens","Powerade Fruit Punch 20oz","$1.19","$0.05","$1.24","Supermercado","Scan and Go - Ahorro $3.00"],
+["06/18/2026","Walgreens","Coronita 6pk 7oz","$5.99","$0.69","$6.68","Alcohol","Scan and Go"]
+];
+
+function $(v){return parseFloat(String(v||'0').replace(/[$,]/g,''))||0}
+
+var COLORS={Supermercado:'#4caf50',Alcohol:'#ce93d8',Restaurant:'#ff8a80',Mascotas:'#64b5f6','Efectos Personales':'#ffcc80',Regalos:'#f48fb1'};
+var CATCLASS={Supermercado:'cat-supermercado',Alcohol:'cat-alcohol',Restaurant:'cat-restaurant',Mascotas:'cat-mascotas','Efectos Personales':'cat-efectos',Regalos:'cat-regalos'};
+
+var months=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+function monthKey(d){var p=d.split('/');return p[2]+'-'+p[0];}
+function monthLabel(k){var p=k.split('-');return months[parseInt(p[1])-1]+' '+p[0].slice(2);}
+
+// Populate filters
+var cats=new Set(),mons=new Set();
+DATA.forEach(function(r){cats.add(r[6]);mons.add(monthKey(r[0]));});
+var fCat=document.getElementById('fCat');
+[...cats].sort().forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=c;fCat.appendChild(o);});
+var fMonth=document.getElementById('fMonth');
+[...mons].sort().forEach(function(m){var o=document.createElement('option');o.value=m;o.textContent=monthLabel(m);fMonth.appendChild(o);});
+
+var pieChart,barChart;
+
+function render(){
+  var fc=fCat.value,fm=fMonth.value,fs=fSearch.value.toLowerCase();
+  var rows=DATA.filter(function(r){
+    if(fc&&r[6]!==fc)return false;
+    if(fm&&monthKey(r[0])!==fm)return false;
+    if(fs&&(r[1].toLowerCase().indexOf(fs)===-1&&r[2].toLowerCase().indexOf(fs)===-1))return false;
+    return true;
+  });
+
+  // Stats
+  var total=rows.reduce(function(s,r){return s+$(r[5])},0);
+  var ivu=rows.reduce(function(s,r){return s+$(r[4])},0);
+  var precio=rows.reduce(function(s,r){return s+$(r[3])},0);
+  var prom=rows.length?total/rows.length:0;
+  document.getElementById('stats').innerHTML=
+    '<div class="stat"><div class="label">Items</div><div class="value yellow">'+rows.length+'</div></div>'+
+    '<div class="stat"><div class="label">Total</div><div class="value green">$'+total.toFixed(2)+'</div></div>'+
+    '<div class="stat"><div class="label">Subtotal</div><div class="value blue">$'+precio.toFixed(2)+'</div></div>'+
+    '<div class="stat"><div class="label">IVU</div><div class="value" style="color:#ff8a80">$'+ivu.toFixed(2)+'</div></div>'+
+    '<div class="stat"><div class="label">Promedio</div><div class="value" style="color:#aaa">$'+prom.toFixed(2)+'</div></div>';
+
+  // Pie by category
+  var catData={};
+  rows.forEach(function(r){catData[r[6]]=(catData[r[6]]||0)+$(r[5]);});
+  var catLabels=Object.keys(catData).sort(function(a,b){return catData[b]-catData[a]});
+  var catValues=catLabels.map(function(c){return catData[c]});
+  var catColors=catLabels.map(function(c){return COLORS[c]||'#888'});
+  var catTotal=catValues.reduce(function(a,b){return a+b},0);
+
+  if(pieChart)pieChart.destroy();
+  pieChart=new Chart(document.getElementById('pieChart'),{
+    type:'pie',
+    data:{labels:catLabels,datasets:[{data:catValues,backgroundColor:catColors,borderColor:'#0f0f1a',borderWidth:2}]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{position:'bottom',labels:{color:'#e0e0e0',font:{size:11},padding:12}},
+        tooltip:{callbacks:{label:function(ctx){var v=ctx.raw;var pct=(v/catTotal*100).toFixed(1);return ctx.label+': $'+v.toFixed(2)+' ('+pct+'%)';}}},
+        datalabels:{color:'#fff',font:{weight:'bold',size:11},formatter:function(value,ctx){var pct=(value/catTotal*100).toFixed(1);if(pct<5)return'';return'$'+value.toFixed(0)+'\n'+pct+'%';},textAlign:'center'}
+      }
+    },
+    plugins:[ChartDataLabels]
+  });
+
+  // Bar by month
+  var monData={};
+  rows.forEach(function(r){var k=monthKey(r[0]);monData[k]=(monData[k]||0)+$(r[5]);});
+  var monLabels=Object.keys(monData).sort();
+  var monValues=monLabels.map(function(m){return monData[m]});
+  monLabels=monLabels.map(monthLabel);
+
+  if(barChart)barChart.destroy();
+  barChart=new Chart(document.getElementById('barChart'),{
+    type:'bar',
+    data:{labels:monLabels,datasets:[{data:monValues,backgroundColor:'#f0c040',borderRadius:6}]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},datalabels:{display:false},
+        tooltip:{callbacks:{label:function(ctx){return'$'+ctx.raw.toFixed(2);}}}},
+      scales:{y:{ticks:{color:'#888',callback:function(v){return'$'+v}},grid:{color:'#1a1a2e'}},x:{ticks:{color:'#888'},grid:{display:false}}}
+    }
+  });
+
+  // Table
+  var tbody=document.getElementById('tbody');
+  tbody.innerHTML='';
+  rows.forEach(function(r){
+    var catClass=CATCLASS[r[6]]||'';
+    tbody.innerHTML+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td style="text-align:right">'+r[3]+'</td><td style="text-align:right">'+r[4]+'</td><td style="text-align:right;font-weight:bold">'+r[5]+'</td><td><span class="cat '+catClass+'">'+r[6]+'</span></td><td style="color:#888;font-size:.8em">'+r[7]+'</td></tr>';
+  });
+
+  document.getElementById('updated').textContent='Actualizado: '+new Date().toLocaleDateString('es-PR');
+}
+
+document.getElementById('fCat').onchange=render;
+document.getElementById('fMonth').onchange=render;
+document.getElementById('fSearch').oninput=render;
+render();
+</script>
+</body>
+</html>
