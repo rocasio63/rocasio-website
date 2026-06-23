@@ -30,6 +30,12 @@ tr:hover { background: #22223a; }
 </style>
 </head>
 <body>
+<script>
+(function(){
+  const cookie=document.cookie.split(';').find(c=>c.trim().startsWith('auth='));
+  if(!cookie){window.location.href='acceso.html?page=openrouter';}
+})();
+</script>
 <h1>💰 OpenRouter Dashboard</h1>
 <p class="subtitle">Gastos & Uso — Richard Ocasio | Auto Top-up: $11 @ &lt;$2</p>
 
