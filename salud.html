@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expediente Médico | Richard Ocasio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0a0a;color:#e0e0e0;min-height:100vh;padding:1rem}
+.header{text-align:center;padding:2rem 0;border-bottom:1px solid #222;margin-bottom:2rem}
+.header h1{color:#ff6b35;font-size:1.8rem;margin-bottom:.3rem}
+.header p{color:#888;font-size:.9rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.2rem;max-width:1200px;margin:0 auto}
+.card{background:#151515;border:1px solid #222;border-radius:12px;padding:1.5rem;transition:border-color .2s}
+.card:hover{border-color:#ff6b35}
+.card h3{color:#ff6b35;font-size:1rem;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.card h3 span{font-size:1.2rem}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th{text-align:left;color:#888;padding:.4rem .3rem;border-bottom:1px solid #222;font-weight:500}
+td{padding:.4rem .3rem;border-bottom:1px solid #1a1a1a}
+td:first-child{color:#ccc;font-weight:500}
+.alert{background:#1a0a0a;border-color:#ff4444 !important}
+.alert h3{color:#ff4444}
+.ok{background:#0a1a0a;border-color:#2d5a2d !important}
+.ok h3{color:#4caf50}
+.tag{display:inline-block;padding:.15rem .5rem;border-radius:4px;font-size:.7rem;font-weight:600;margin:.1rem}
+.tag-red{background:#3a1515;color:#ff6666}
+.tag-green{background:#153a15;color:#66ff66}
+.tag-yellow{background:#3a3a15;color:#ffdd66}
+.tag-blue{background:#15153a;color:#6699ff}
+.mono{font-family:'SF Mono',monospace;font-size:.8rem}
+.bar{height:6px;border-radius:3px;background:#222;margin-top:.3rem}
+.bar-fill{height:100%;border-radius:3px;transition:width .5s}
+.bar-good{background:linear-gradient(90deg,#2d5a2d,#4caf50)}
+.bar-warn{background:linear-gradient(90deg,#5a4a15,#ffdd66)}
+.bar-bad{background:linear-gradient(90deg,#5a1515,#ff4444)}
+.footer{text-align:center;padding:2rem 0;color:#444;font-size:.75rem;margin-top:2rem}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.card{padding:1rem}}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>🩺 Expediente Médico</h1>
+<p>Richard Ocasio Alvarado — 63 años</p>
+</div>
+
+<div class="grid">
+
+<!-- CONDICIONES -->
+<div class="card">
+<h3><span>📋</span> Condiciones</h3>
+<table>
+<tr><td>Diabetes Tipo 2</td><td><span class="tag tag-yellow">Controlada</span></td></tr>
+<tr><td>Enfermedad Renal</td><td><span class="tag tag-red">Etapa 3a</span></td></tr>
+<tr><td>Neuropatía</td><td><span class="tag tag-red">Severa</span></td></tr>
+<tr><td>Retinopatía</td><td><span class="tag tag-green">Estable</span></td></tr>
+<tr><td>Anemia Crónica</td><td><span class="tag tag-yellow">Activa</span></td></tr>
+<tr><td>Hipotiroidismo</td><td><span class="tag tag-blue">Controlado</span></td></tr>
+<tr><td>Próstata</td><td><span class="tag tag-blue">HBP</span></td></tr>
+</table>
+</div>
+
+<!-- MEDICAMENTOS -->
+<div class="card">
+<h3><span>💊</span> Medicamentos</h3>
+<table>
+<tr><th>Medicina</th><th>Dosis</th><th>Para</th></tr>
+<tr><td>Insulina Lantus+R</td><td>~40u AM</td><td>Diabetes</td></tr>
+<tr><td>Metformina</td><td>1000mg</td><td>Diabetes</td></tr>
+<tr><td>Jardiance</td><td>25mg</td><td>Diabetes</td></tr>
+<tr><td>Losartán ⚠️</td><td>25mg</td><td>Presión/Riñón</td></tr>
+<tr><td>Carvedilol</td><td>—</td><td>Presión</td></tr>
+<tr><td>Tamsulosina</td><td>0.4mg</td><td>Próstata</td></tr>
+<tr><td>Gabapentina</td><td>300mg</td><td>Neuropatía</td></tr>
+<tr><td>Pravastatina</td><td>—</td><td>Colesterol</td></tr>
+<tr><td>Levotiroxina</td><td>0.112mg</td><td>Tiroides</td></tr>
+<tr><td>Vitamina D3</td><td>10,000 UI</td><td>Deficiencia</td></tr>
+</table>
+</div>
+
+<!-- LABORATORIOS -->
+<div class="card">
+<h3><span>🔬</span> Laboratorios (Abril 2026)</h3>
+<table>
+<tr><th>Prueba</th><th>Resultado</th><th>Meta</th></tr>
+<tr><td>A1c</td><td class="mono">7.7%</td><td>&lt;7.0%</td></tr>
+<tr><td>Glucosa ayunas</td><td class="mono">103 mg/dL</td><td>&lt;100</td></tr>
+<tr><td>eGFR</td><td class="mono" style="color:#ff6666">56 mL/min</td><td>&gt;60</td></tr>
+<tr><td>Creatinina</td><td class="mono">1.40 mg/dL</td><td>&lt;1.2</td></tr>
+<tr><td>Microalbúmina</td><td class="mono" style="color:#ffdd66">32 mg/L</td><td>&lt;30</td></tr>
+<tr><td>Proteína 24h</td><td class="mono" style="color:#ff6666">301 mg</td><td>&lt;150</td></tr>
+<tr><td>Hemoglobina</td><td class="mono" style="color:#ffdd66">11.6</td><td>&gt;13.5</td></tr>
+<tr><td>Plaquetas</td><td class="mono" style="color:#ffdd66">~101</td><td>150-400</td></tr>
+<tr><td>Potasio</td><td class="mono" style="color:#66ff66">4.20</td><td>3.5-5.0</td></tr>
+<tr><td>LDL</td><td class="mono" style="color:#66ff66">90</td><td>&lt;100</td></tr>
+<tr><td>Vitamina D</td><td class="mono" style="color:#66ff66">47.80</td><td>30-100</td></tr>
+</table>
+</div>
+
+<!-- CGM -->
+<div class="card ok">
+<h3><span>📡</span> CGM — Libre 3+ (90 días)</h3>
+<table>
+<tr><td>Promedio glucosa</td><td class="mono">175 mg/dL</td></tr>
+<tr><td>Time in Range</td><td class="mono">59%</td></tr>
+<tr><td>Sobre 180</td><td class="mono">33%</td></tr>
+<tr><td>Sobre 250</td><td class="mono">8%</td></tr>
+<tr><td>Bajo 70</td><td class="mono" style="color:#66ff66">0%</td></tr>
+<tr><td>Low events</td><td class="mono">5 en 90 días</td></tr>
+</table>
+<div style="margin-top:.8rem">
+<div style="display:flex;justify-content:space-between;font-size:.75rem;color:#888"><span>Bajo 70</span><span>70-180</span><span>Sobre 180</span></div>
+<div class="bar"><div class="bar-fill bar-good" style="width:59%;display:inline-block"></div><div class="bar-fill bar-bad" style="width:33%;display:inline-block"></div></div>
+</div>
+</div>
+
+<!-- ALERTA -->
+<div class="card alert">
+<h3><span>⚠️</span> Alertas</h3>
+<table>
+<tr><td>Losartán 25mg</td><td style="color:#ff6666">Discrepancia vs Irbesartán 300mg — verificar con médico</td></tr>
+<tr><td>eGFR bajando</td><td style="color:#ff6666">67 → 56 en 4 meses. Monitorear.</td></tr>
+<tr><td>Proteína 24h</td><td style="color:#ffdd66">301mg — daño renal activo</td></tr>
+<tr><td>Time in Range</td><td style="color:#ffdd66">59% — meta es &gt;70%</td></tr>
+<tr><td>Anemia</td><td style="color:#ffdd66">Hb 11.6 + Plaquetas bajas</td></tr>
+</table>
+</div>
+
+<!-- SUPLEMENTOS -->
+<div class="card">
+<h3><span>🌱</span> Suplementos</h3>
+<table>
+<tr><td>✅ Black Seed Oil</td><td style="color:#66ff66">OK</td></tr>
+<tr><td>✅ Brazil Nuts</td><td style="color:#66ff66">1-2/día max</td></tr>
+<tr><td>⚠️ Pumpkin Seed Oil</td><td style="color:#ffdd66">Choca con Tamsulosina</td></tr>
+<tr><td>❌ Kombucha casera</td><td style="color:#ff6666">Prohibida</td></tr>
+<tr><td>❌ Wormwood</td><td style="color:#ff6666">Neurotóxico</td></tr>
+<tr><td>❌ Té de salvia</td><td style="color:#ff6666">Hipoglucemia</td></tr>
+<tr><td>❌ Shilajit</td><td style="color:#ff6666">Peligroso pa'l riñón</td></tr>
+<tr><td>❌ Ashwagandha</td><td style="color:#ff6666">Peligroso pa'l riñón</td></tr>
+</table>
+</div>
+
+<!-- EVOLUCIÓN -->
+<div class="card">
+<h3><span>📈</span> Evolución A1c</h3>
+<table>
+<tr><th>Fecha</th><th>A1c</th><th>Tendencia</th></tr>
+<tr><td>Ene 2025</td><td class="mono" style="color:#ff6666">10.9%</td><td>🔴</td></tr>
+<tr><td>Abr 2025</td><td class="mono" style="color:#ffdd66">~9%</td><td>🟡</td></tr>
+<tr><td>Abr 2026</td><td class="mono" style="color:#66ff66">7.7%</td><td>🟢 ↓3.2 pts</td></tr>
+</table>
+<div style="margin-top:.8rem;font-size:.8rem;color:#66ff66">↓ Excelente progreso — casi en meta</div>
+</div>
+
+</div>
+
+<div class="footer">
+Expediente generado por Dove 🕊️ — Junio 2026<br>
+Datos de laboratorios Abril 2026 · CGM 90 días (Mar-Jun 2026)<br>
+⚠️ No es consejo médico — verificar con doctor
+</div>
+
+</body>
+</html>
