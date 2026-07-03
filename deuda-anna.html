@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💰 Deuda Anna – Richard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f0f1a;color:#e0e0e0;font-family:-apple-system,system-ui,sans-serif;min-height:100vh;padding:20px}
+.header{background:#1a1a2e;padding:20px 30px;border-radius:12px;margin-bottom:20px;border:1px solid #2a2a4a}
+.header h1{font-size:1.4em;color:#f0c040}
+.header .total{font-size:2em;font-weight:bold;color:#ff8a80;margin-top:10px}
+.header .label{font-size:.7em;color:#888;text-transform:uppercase;letter-spacing:1px}
+.table-wrap{background:#1a1a2e;border-radius:12px;padding:20px;border:1px solid #2a2a4a;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.85em}
+th{text-align:left;padding:10px 8px;color:#888;border-bottom:1px solid #2a2a4a;font-size:.75em;text-transform:uppercase;letter-spacing:1px}
+td{padding:10px 8px;border-bottom:1px solid #1a1a2e}
+.deuda{color:#ff8a80}
+.abono{color:#4caf50}
+.cat{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.75em;font-weight:600}
+.cat-deuda{background:rgba(255,138,128,.15);color:#ff8a80}
+.cat-abono{background:rgba(76,175,80,.15);color:#4caf50}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:20px}
+.stat{background:#1a1a2e;border-radius:10px;padding:14px;border:1px solid #2a2a4a;text-align:center}
+.stat .label{font-size:.7em;color:#888;text-transform:uppercase;letter-spacing:1px}
+.stat .value{font-size:1.6em;font-weight:bold;margin:4px 0}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>💰 Deuda Anna</h1>
+  <div class="label">Saldo pendiente</div>
+  <div class="total">$477.85</div>
+</div>
+
+<div class="summary">
+  <div class="stat"><div class="label">Total Deudas</div><div class="value deuda">$578.85</div></div>
+  <div class="stat"><div class="label">Total Abonos</div><div class="value abono">-$101.00</div></div>
+  <div class="stat"><div class="label">Pendiente</div><div class="value" style="color:#f0c040">$477.85</div></div>
+</div>
+
+<div class="table-wrap" style="margin-top:20px">
+<table>
+  <thead>
+    <tr><th>Fecha</th><th>Concepto</th><th>Monto</th><th>Tipo</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>04/15/2026</td><td>Veterinario (gato)</td><td class="deuda">$282.10</td><td><span class="cat cat-deuda">Deuda</span></td></tr>
+    <tr><td>04/29/2026</td><td>Animalix - vacuna de gatos</td><td class="deuda">$117.08</td><td><span class="cat cat-deuda">Deuda</span></td></tr>
+    <tr><td>05/25/2026</td><td>Animalix - clínica veterinaria</td><td class="deuda">$81.00</td><td><span class="cat cat-deuda">Deuda</span></td></tr>
+    <tr><td>06/14/2026</td><td>Perfume para Arquiel</td><td class="deuda">$39.03</td><td><span class="cat cat-deuda">Deuda</span></td></tr>
+    <tr><td>04/15/2026</td><td>Walmart - jaula para gato</td><td class="deuda">$36.80</td><td><span class="cat cat-deuda">Deuda</span></td></tr>
+    <tr><td>06/13/2026</td><td>Amazon - guantes para gatos</td><td class="deuda">$17.84</td><td><span class="cat cat-deuda">Deuda</span></td></tr>
+    <tr><td>07/02/2026</td><td>Wipes limpiar espejuelos</td><td class="deuda">$5.00</td><td><span class="cat cat-deuda">Deuda</span></td></tr>
+    <tr><td>07/02/2026</td><td>Hilo de tejer</td><td class="abono">-$23.00</td><td><span class="cat cat-abono">Abono</span></td></tr>
+    <tr><td>07/02/2026</td><td>Aceite de oliva</td><td class="abono">-$8.00</td><td><span class="cat cat-abono">Abono</span></td></tr>
+    <tr><td>06/08/2026</td><td>Pago cheque x4149/x5208</td><td class="abono">-$70.00</td><td><span class="cat cat-abono">Abono</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+</body>
+</html>
