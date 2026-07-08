@@ -39,6 +39,8 @@ footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;c
 <h1>🍽️ Mis Recetas</h1>
 <p style="color:#888;margin-bottom:1.5rem">Secretos de cocina, probados y ajustados en Lajas, Puerto Rico 🇵🇷</p>
 
+<input type="text" id="buscador" placeholder="🔍 Buscar receta..." onkeyup="buscarReceta()" style="width:100%;padding:.8rem 1rem;background:#151515;border:1px solid #252525;border-radius:12px;color:#f0f0f0;font-size:1rem;margin-bottom:1rem;box-sizing:border-box">
+
 <div class="cat-grid">
 <a href="javascript:mostrarCategoria('panes')" class="cat-card"><span class="emoji">🍞</span><div class="title">Panes</div><div class="count">4 recetas</div></a>
 <a href="javascript:mostrarCategoria('pastas')" class="cat-card"><span class="emoji">🍝</span><div class="title">Pastas</div><div class="count">3 recetas</div></a>
@@ -79,6 +81,26 @@ function mostrarCategoria(id) {
   }
   v.style.display = 'inline-block';
   window.scrollTo(0,0);
+}
+function buscarReceta() {
+  var q = document.getElementById('buscador').value.toLowerCase().trim();
+  var cards = document.querySelectorAll('.recipe-card');
+  var g = document.querySelector('.cat-grid');
+  var v = document.getElementById('volver');
+  if (q === '') {
+    g.style.display = 'grid';
+    document.querySelectorAll('h2').forEach(function(h) { h.style.display = 'block'; });
+    cards.forEach(function(c) { c.style.display = 'block'; });
+    if (v) v.style.display = 'none';
+    return;
+  }
+  g.style.display = 'none';
+  document.querySelectorAll('h2').forEach(function(h) { h.style.display = 'none'; });
+  if (v) v.style.display = 'none';
+  cards.forEach(function(c) {
+    var txt = c.innerText.toLowerCase();
+    c.style.display = txt.includes(q) ? 'block' : 'none';
+  });
 }
 function mostrarTodas() {
   document.querySelectorAll('h2').forEach(function(h) { h.style.display = 'block'; });
