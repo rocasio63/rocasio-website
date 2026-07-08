@@ -40,12 +40,54 @@ footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;c
 <p style="color:#888;margin-bottom:1.5rem">Secretos de cocina, probados y ajustados en Lajas, Puerto Rico 🇵🇷</p>
 
 <div class="cat-grid">
-<a href="#panes" class="cat-card"><span class="emoji">🍞</span><div class="title">Panes</div><div class="count">4 recetas</div></a>
-<a href="#pastas" class="cat-card"><span class="emoji">🍝</span><div class="title">Pastas</div><div class="count">3 recetas</div></a>
-<a href="#dulces" class="cat-card"><span class="emoji">🍬</span><div class="title">Dulces</div><div class="count">8 recetas</div></a>
-<a href="#sandwiches" class="cat-card"><span class="emoji">🥪</span><div class="title">Sándwiches</div><div class="count">20 recetas</div></a>
-<a href="#otras" class="cat-card"><span class="emoji">📋</span><div class="title">Otras</div><div class="count">4 recetas</div></a>
+<a href="javascript:mostrarCategoria('panes')" class="cat-card"><span class="emoji">🍞</span><div class="title">Panes</div><div class="count">4 recetas</div></a>
+<a href="javascript:mostrarCategoria('pastas')" class="cat-card"><span class="emoji">🍝</span><div class="title">Pastas</div><div class="count">3 recetas</div></a>
+<a href="javascript:mostrarCategoria('dulces')" class="cat-card"><span class="emoji">🍬</span><div class="title">Dulces</div><div class="count">8 recetas</div></a>
+<a href="javascript:mostrarCategoria('sandwiches')" class="cat-card"><span class="emoji">🥪</span><div class="title">Sándwiches</div><div class="count">20 recetas</div></a>
+<a href="javascript:mostrarCategoria('otras')" class="cat-card"><span class="emoji">📋</span><div class="title">Otras</div><div class="count">4 recetas</div></a>
 </div>
+
+<script>
+function mostrarCategoria(id) {
+  var h2s = document.querySelectorAll('h2');
+  var cards = document.querySelectorAll('.recipe-card');
+  var grid = document.querySelector('.cat-grid');
+  // Oculta todo
+  h2s.forEach(function(h) { h.style.display = 'none'; });
+  cards.forEach(function(c) { c.style.display = 'none'; });
+  grid.style.display = 'none';
+  // Muestra la categoría seleccionada
+  var titulo = document.getElementById(id);
+  if (titulo) {
+    titulo.style.display = 'block';
+    var el = titulo.nextElementSibling;
+    while (el) {
+      if (el.tagName === 'H2' && el.id && el.id !== id) break;
+      if (el.classList && el.classList.contains('recipe-card')) el.style.display = 'block';
+      el = el.nextElementSibling;
+    }
+  }
+  // Botón volver
+  var v = document.getElementById('volver');
+  if (!v) {
+    v = document.createElement('a');
+    v.id = 'volver';
+    v.href = 'javascript:mostrarTodas()';
+    v.style.cssText = 'display:inline-block;margin-bottom:1rem;color:#e67e22;text-decoration:none;font-size:1.1rem';
+    v.innerHTML = '← Todas las recetas';
+    document.querySelector('.container').insertBefore(v, document.querySelector('.container').children[2]);
+  }
+  v.style.display = 'inline-block';
+  window.scrollTo(0,0);
+}
+function mostrarTodas() {
+  document.querySelectorAll('h2').forEach(function(h) { h.style.display = 'block'; });
+  document.querySelectorAll('.recipe-card').forEach(function(c) { c.style.display = 'block'; });
+  document.querySelector('.cat-grid').style.display = 'grid';
+  var v = document.getElementById('volver');
+  if (v) v.style.display = 'none';
+}
+</script>
 
 <!-- ===== PANES ===== -->
 <h2 id="panes">🍞 Panes</h2>
