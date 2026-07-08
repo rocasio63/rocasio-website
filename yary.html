@@ -56,6 +56,7 @@ canvas{width:100%!important}
   <div class="chart-card"><h2>🥧 Por Categoría</h2><div class="chart-wrap"><canvas id="pieChart"></canvas></div></div>
   <div class="chart-card"><h2>📊 Por Mes</h2><div class="chart-wrap"><canvas id="barChart"></canvas></div></div>
 </div>
+<div class="table-wrap"><table id="tbl"><thead><tr><th>Fecha</th><th>Tienda</th><th>Artículo</th><th style="text-align:right">Precio</th><th style="text-align:right">IVU</th><th style="text-align:right">Total</th><th>Categoría</th><th>Notas</th></tr></thead><tbody id="tbody"></tbody></table></div>
 
 <script>
 if(document.cookie.indexOf('auth=1')===-1){window.location.href='acceso.html?page=viveres';}
@@ -155,7 +156,7 @@ function render(){
   tbody.innerHTML='';
   rows.forEach(function(r){
     var catClass=CATCLASS[r[6]]||'';
-    tbody.innerHTML+='<tr></tr>';
+    tbody.innerHTML+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td style="text-align:right">'+r[3]+'</td><td style="text-align:right">'+r[4]+'</td><td style="text-align:right;font-weight:bold">'+r[5]+'</td><td><span class="cat '+catClass+'">'+r[6]+'</span></td><td style="color:#888;font-size:.8em">'+r[7]+'</td></tr>';
   });
 
   document.getElementById('updated').textContent='Actualizado: '+new Date().toLocaleDateString('es-PR');
