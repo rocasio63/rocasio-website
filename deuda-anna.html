@@ -7,59 +7,218 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#0f0f1a;color:#e0e0e0;font-family:-apple-system,system-ui,sans-serif;min-height:100vh;padding:20px}
-.header{background:#1a1a2e;padding:20px 30px;border-radius:12px;margin-bottom:20px;border:1px solid #2a2a4a}
+.header{background:#1a1a2e;padding:20px 30px;border-radius:12px;margin-bottom:20px;border:1px solid #2a2a4a;text-align:center}
 .header h1{font-size:1.4em;color:#f0c040}
 .header .total{font-size:2em;font-weight:bold;color:#ff8a80;margin-top:10px}
 .header .label{font-size:.7em;color:#888;text-transform:uppercase;letter-spacing:1px}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px}
+.stat{background:#1a1a2e;border-radius:10px;padding:14px;border:1px solid #2a2a4a;text-align:center}
+.stat .label{font-size:.7em;color:#888;text-transform:uppercase;letter-spacing:1px}
+.stat .value{font-size:1.5em;font-weight:bold;margin:4px 0}
+.progress-wrap{margin-top:8px}
+.progress-bar{background:#2a2a4a;border-radius:8px;height:10px;overflow:hidden}
+.progress-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,#4caf50,#f0c040)}
+.progress-text{font-size:.7em;color:#888;margin-top:4px}
+.pie-section{background:#1a1a2e;border-radius:12px;padding:20px;border:1px solid #2a2a4a;margin-bottom:20px;text-align:center}
+.pie-section h2{font-size:.9em;color:#f0c040;margin-bottom:16px}
+.pie-wrap{display:flex;align-items:center;justify-content:center;gap:30px;flex-wrap:wrap}
+.pie{width:180px;height:180px;border-radius:50%;position:relative}
+.pie::after{content:'';position:absolute;top:35px;left:35px;width:110px;height:110px;border-radius:50%;background:#1a1a2e}
+.pie-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;text-align:center}
+.pie-center .pct{font-size:1.8em;font-weight:bold;color:#f0c040}
+.pie-center .sub{font-size:.6em;color:#888}
+.legend{display:flex;flex-direction:column;gap:10px;text-align:left}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:.85em}
+.legend-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
 .table-wrap{background:#1a1a2e;border-radius:12px;padding:20px;border:1px solid #2a2a4a;overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:.85em}
 th{text-align:left;padding:10px 8px;color:#888;border-bottom:1px solid #2a2a4a;font-size:.75em;text-transform:uppercase;letter-spacing:1px}
-td{padding:10px 8px;border-bottom:1px solid #1a1a2e}
-.deuda{color:#ff8a80}
-.abono{color:#4caf50}
+td{padding:10px 8px;border-bottom:1px solid #1a1a1a}
+.deuda{color:#ff8a80}.abono{color:#4caf50}.interes{color:#ff9800}
 .cat{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.75em;font-weight:600}
 .cat-deuda{background:rgba(255,138,128,.15);color:#ff8a80}
 .cat-abono{background:rgba(76,175,80,.15);color:#4caf50}
-.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:20px}
-.stat{background:#1a1a2e;border-radius:10px;padding:14px;border:1px solid #2a2a4a;text-align:center}
-.stat .label{font-size:.7em;color:#888;text-transform:uppercase;letter-spacing:1px}
-.stat .value{font-size:1.6em;font-weight:bold;margin:4px 0}
+.cat-interes{background:rgba(255,152,0,.15);color:#ff9800}
+.footer{text-align:center;margin-top:20px;color:#555;font-size:.7em}
 </style>
 </head>
 <body>
+
 <div class="header">
   <h1>💰 Deuda Anna</h1>
   <div class="label">Saldo pendiente</div>
-  <div class="total">$377.85</div>
+  <div class="total" id="totalPendiente">$0.00</div>
 </div>
 
 <div class="summary">
-  <div class="stat"><div class="label">Total Deudas</div><div class="value deuda">$578.85</div></div>
-  <div class="stat"><div class="label">Total Abonos</div><div class="value abono">-$201.00</div></div>
-  <div class="stat"><div class="label">Pendiente</div><div class="value" style="color:#f0c040">$377.85</div></div>
+  <div class="stat"><div class="label">Total Deudas</div><div class="value deuda" id="totalDeudas">$0</div></div>
+  <div class="stat"><div class="label">Total Abonos</div><div class="value abono" id="totalAbonos">-$0</div></div>
+  <div class="stat"><div class="label">Total Intereses</div><div class="value interes" id="totalIntereses">$0</div></div>
+  <div class="stat">
+    <div class="label">Pagado</div><div class="value" style="color:#4caf50" id="pctPagado">0%</div>
+    <div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div></div>
+  </div>
+  <div class="stat"><div class="label">Interés mensual</div><div class="value" style="color:#ff9800" id="tasaMensual">2%</div><div class="progress-text">Sobre saldo pendiente</div></div>
 </div>
 
-<div class="table-wrap" style="margin-top:20px">
+<div class="pie-section">
+  <h2>📊 Composición</h2>
+  <div class="pie-wrap">
+    <div style="position:relative">
+      <div class="pie" id="pieChart"></div>
+      <div class="pie-center"><div class="pct" id="piePct">0%</div><div class="sub">pagado</div></div>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#ff8a80"></div><span id="legPendiente">Pendiente: $0 (0%)</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#4caf50"></div><span id="legPagado">Pagado: $0 (0%)</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#ff9800"></div><span id="legInteres">Intereses: $0</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="table-wrap">
 <table>
   <thead>
-    <tr><th>Fecha</th><th>Concepto</th><th>Monto</th><th>Tipo</th></tr>
+    <tr><th>Fecha</th><th>Concepto</th><th>Monto</th><th>Interés</th><th>Total</th><th>Tipo</th></tr>
   </thead>
-  <tbody>
-    <tr><td>06/08/2026</td><td>Pago cheque x4149/x5208</td><td class="abono">-$70.00</td><td><span class="cat cat-abono">Abono</span></td></tr>
-    <tr><td>04/27/2026</td><td>Pago Power Cash x4149/x5208</td><td class="abono">-$50.00</td><td><span class="cat cat-abono">Abono</span></td></tr>
-    <tr><td>05/12/2026</td><td>Pago Power Cash x4149/x5208</td><td class="abono">-$50.00</td><td><span class="cat cat-abono">Abono</span></td></tr>
-    <tr><td>07/02/2026</td><td>Hilo de tejer</td><td class="abono">-$23.00</td><td><span class="cat cat-abono">Abono</span></td></tr>
-    <tr><td>07/02/2026</td><td>Aceite de oliva</td><td class="abono">-$8.00</td><td><span class="cat cat-abono">Abono</span></td></tr>
-    <tr><td>07/02/2026</td><td>Wipes limpiar espejuelos</td><td class="deuda">$5.00</td><td><span class="cat cat-deuda">Deuda</span></td></tr>
-    <tr><td>06/13/2026</td><td>Amazon - guantes para gatos</td><td class="deuda">$17.84</td><td><span class="cat cat-deuda">Deuda</span></td></tr>
-    <tr><td>06/14/2026</td><td>Perfume para Arquiel</td><td class="deuda">$39.03</td><td><span class="cat cat-deuda">Deuda</span></td></tr>
-    <tr><td>05/25/2026</td><td>Animalix - clínica veterinaria</td><td class="deuda">$81.00</td><td><span class="cat cat-deuda">Deuda</span></td></tr>
-    <tr><td>04/29/2026</td><td>Animalix - vacuna de gatos</td><td class="deuda">$117.08</td><td><span class="cat cat-deuda">Deuda</span></td></tr>
-    <tr><td>04/15/2026</td><td>Walmart - jaula para gato</td><td class="deuda">$36.80</td><td><span class="cat cat-deuda">Deuda</span></td></tr>
-    <tr><td>04/15/2026</td><td>Veterinario (gato)</td><td class="deuda">$282.10</td><td><span class="cat cat-deuda">Deuda</span></td></tr>
-  </tbody>
+  <tbody id="tablaBody"></tbody>
 </table>
 </div>
 
+<div class="footer">
+  🕊️ Dove — Actualizado: <span id="fechaActual"></span>
+</div>
+
+<script>
+var TASA_MENSUAL = 0.02; // 2% mensual
+
+var datos = [
+  {fecha:"2026-07-08",concepto:"Vacuna de gatos",monto:51.00,tipo:"deuda"},
+  {fecha:"2026-07-02",concepto:"Wipes limpiar espejuelos",monto:5.00,tipo:"deuda"},
+  {fecha:"2026-07-02",concepto:"Aceite de oliva",monto:8.00,tipo:"abono"},
+  {fecha:"2026-07-02",concepto:"Hilo de tejer",monto:23.00,tipo:"abono"},
+  {fecha:"2026-06-14",concepto:"Perfume para Arquiel",monto:39.03,tipo:"deuda"},
+  {fecha:"2026-06-13",concepto:"Amazon - guantes para gatos",monto:17.84,tipo:"deuda"},
+  {fecha:"2026-06-08",concepto:"Pago cheque x4149/x5208",monto:70.00,tipo:"abono"},
+  {fecha:"2026-05-27",concepto:"Pago Power Cash x4149/x5208",monto:50.00,tipo:"abono"},
+  {fecha:"2026-05-25",concepto:"Animalix - clínica veterinaria",monto:81.00,tipo:"deuda"},
+  {fecha:"2026-05-12",concepto:"Pago Power Cash x4149/x5208",monto:50.00,tipo:"abono"},
+  {fecha:"2026-04-29",concepto:"Animalix - vacuna de gatos",monto:117.08,tipo:"deuda"},
+  {fecha:"2026-04-27",concepto:"Pago Power Cash x4149/x5208",monto:50.00,tipo:"abono"},
+  {fecha:"2026-04-15",concepto:"Walmart - jaula para gato",monto:36.80,tipo:"deuda"},
+  {fecha:"2026-04-15",concepto:"Veterinario (gato)",monto:282.10,tipo:"deuda"}
+];
+
+function fmt(n){return "$"+n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,",")}
+
+function calcularIntereses(){
+  var totalDeudas=0, totalAbonos=0;
+  datos.forEach(function(d){
+    if(d.tipo==="deuda") totalDeudas+=d.monto;
+    else totalAbonos+=d.monto;
+  });
+  var saldoOriginal = totalDeudas;
+  var totalPagado = totalAbonos;
+  var totalIntereses = 0;
+
+  // Calcular intereses acumulados mes a mes sobre el saldo
+  var saldo = saldoOriginal;
+  var fechaInicio = new Date("2026-04-15");
+  var ahora = new Date();
+
+  // Recorrer cada transacción y calcular intereses acumulados
+  var saldoCorriente = 0;
+  var interesAcumulado = 0;
+  var mesAnterior = -1;
+
+  datos.forEach(function(d){
+    var f = new Date(d.fecha);
+    var mes = f.getFullYear()*12 + f.getMonth();
+
+    // Agregar intereses por cada mes que pasa
+    while(mesAnterior >= 0 && mesAnterior < mes){
+      mesAnterior++;
+      if(saldoCorriente > 0){
+        var interesMes = saldoCorriente * TASA_MENSUAL;
+        interesAcumulado += interesMes;
+        saldoCorriente += interesMes; // interés se capitaliza
+      }
+    }
+    mesAnterior = mes;
+
+    if(d.tipo==="deuda"){
+      saldoCorriente += d.monto;
+    } else {
+      saldoCorriente -= d.monto;
+    }
+  });
+
+  // Intereses desde la última transacción hasta hoy
+  var mesAhora = ahora.getFullYear()*12 + ahora.getMonth();
+  while(mesAnterior < mesAhora){
+    mesAnterior++;
+    if(saldoCorriente > 0){
+      var im = saldoCorriente * TASA_MENSUAL;
+      interesAcumulado += im;
+      saldoCorriente += im;
+    }
+  }
+
+  var pendiente = Math.max(0, saldoCorriente);
+  var pagadoPct = saldoOriginal > 0 ? ((totalPagado / (totalDeudas + interesAcumulado)) * 100) : 0;
+
+  // Actualizar header
+  document.getElementById("totalPendiente").textContent = fmt(pendiente);
+
+  // Actualizar summary
+  document.getElementById("totalDeudas").textContent = fmt(totalDeudas);
+  document.getElementById("totalAbonos").textContent = "-"+fmt(totalAbonos);
+  document.getElementById("totalIntereses").textContent = fmt(interesAcumulado);
+  document.getElementById("pctPagado").textContent = Math.round(pagadoPct)+"%";
+  document.getElementById("progressFill").style.width = pagadoPct+"%";
+
+  // Pie chart
+  var totalConInteres = totalDeudas + interesAcumulado;
+  var degPagado = totalConInteres > 0 ? (totalPagado / totalConInteres * 360) : 0;
+  var degInteres = totalConInteres > 0 ? (interesAcumulado / totalConInteres * 360) : 0;
+  var degPendiente = 360 - degPagado - degInteres;
+  if(degPendiente < 0) degPendiente = 0;
+
+  document.getElementById("pieChart").style.background =
+    "conic-gradient(#ff9800 0deg "+degInteres+"deg, #4caf50 "+degInteres+"deg "+(degInteres+degPagado)+"deg, #ff8a80 "+(degInteres+degPagado)+"deg 360deg)";
+
+  document.getElementById("piePct").textContent = Math.round(pagadoPct)+"%";
+  document.getElementById("legPendiente").textContent = "Pendiente: "+fmt(pendiente)+" ("+Math.round(100-pagadoPct-degInteres/3.6)+"%)";
+  document.getElementById("legPagado").textContent = "Pagado: "+fmt(totalPagado)+" ("+Math.round(degPagado/3.6)+"%)";
+  document.getElementById("legInteres").textContent = "Intereses: "+fmt(interesAcumulado)+" ("+Math.round(degInteres/3.6)+"%)";
+
+  // Fecha
+  document.getElementById("fechaActual").textContent = ahora.toLocaleDateString("es-PR");
+
+  // Tabla
+  var tbody = document.getElementById("tablaBody");
+  tbody.innerHTML = "";
+  var saldoParcial = 0;
+  datos.forEach(function(d){
+    var tr = document.createElement("tr");
+    var tipoClass = d.tipo === "deuda" ? "deuda" : "abono";
+    var catClass = d.tipo === "deuda" ? "cat-deuda" : "cat-abono";
+    var tipoLabel = d.tipo === "deuda" ? "Deuda" : "Abono";
+
+    if(d.tipo==="deuda") saldoParcial += d.monto;
+    else saldoParcial -= d.monto;
+
+    tr.innerHTML = "<td>"+d.fecha+"</td>"+
+      "<td>"+d.concepto+"</td>"+
+      "<td class='"+tipoClass+"'>"+(d.tipo==="abono"?"-":"")+fmt(d.monto)+"</td>"+
+      "<td class='interes'>—</td>"+
+      "<td class='"+tipoClass+"'>"+fmt(saldoParcial)+"</td>"+
+      "<td><span class='cat "+catClass+"'>"+tipoLabel+"</span></td>";
+    tbody.appendChild(tr);
+  });
+}
+
+calcularIntereses();
+</script>
 </body>
 </html>
