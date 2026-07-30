@@ -27,7 +27,6 @@ body{background:#0f0f1a;color:#e0e0e0;font-family:-apple-system,system-ui,sans-s
 table{width:100%;border-collapse:collapse;font-size:.82em}
 th{text-align:left;padding:8px 6px;color:#888;border-bottom:1px solid #2a2a4a;font-size:.75em;position:sticky;top:0;background:#0f0f1a}
 td{padding:7px 6px;border-bottom:1px solid #1a1a2e}
-td:first-child{white-space:nowrap;width:90px;font-size:.78em;color:#aaa}
 tr:hover{background:#1a1a2e}
 .cat{padding:2px 8px;border-radius:10px;font-size:.7em;font-weight:bold;display:inline-block}
 .cat-supermercado{background:#1b5e20;color:#69f0ae}
@@ -36,13 +35,19 @@ tr:hover{background:#1a1a2e}
 .cat-mascotas{background:#1a237e;color:#64b5f6}
 .cat-efectos{background:#e65100;color:#ffcc80}
 .cat-regalos{background:#880e4f;color:#f48fb1}
-.cat-digital{background:#0d47a1;color:#80d8ff}
+.cat-medicinas{background:#004d40;color:#80cbc4}
+.cat-autos{background:#263238;color:#90a4ae}
+.cat-camping{background:#1b5e20;color:#a5d6a7}
+.cat-chef{background:#4e342e;color:#bcaaa4}
+.cat-gasolina{background:#1a237e;color:#90caf9}
+.cat-ferreteria{background:#37474f;color:#80cbc4}
 .green{color:#4caf50}.yellow{color:#f0c040}.red{color:#f44336}.blue{color:#64b5f6}
 @media(max-width:700px){.charts{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
 canvas{width:100%!important}
 </style>
 </head>
 <body>
+<a href="/" style="position:fixed;top:12px;left:12px;z-index:9999;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.2em;color:#fff;transition:.2s">←</a>
 <div class="header">
   <h1>🛒 Víveres Dashboard</h1>
   <span class="badge" id="updated"></span>
@@ -63,6 +68,7 @@ canvas{width:100%!important}
 if(document.cookie.indexOf('auth=1')===-1){window.location.href='acceso.html?page=viveres';}
 
 var DATA = [
+["07/23/2026","Walgreens #670","Photofinishing $0.39, Nice Purified Water 1gal $1.79, Walg Alcohol Swab Sterile 100s $2.79","4.97","0.38","5.35","Efectos Personales","Visa"],
 ["01/02/2026","MAYAGUEZ VICTORY","Compra","$8.90","$0.00","$8.90","Restaurant","BPPR Debit X5532"],
 ["01/02/2026","DOMINOS PIZZA 167","Pizza","$21.39","$0.00","$21.39","Restaurant","BPPR Debit X5532"],
 ["01/02/2026","WAL-MART #2067","Compra Walmart","$4.90","$0.00","$4.90","Supermercado","BPPR Debit X5532"],
@@ -361,7 +367,17 @@ var DATA = [
 ["06/25/2026","Mr Special San German","Brook Queso Cheddar","$2.50","$0.00","$2.50","Supermercado","VISA T42"],
 ["06/25/2026","Mr Special San German","Brook Queso Colby Jack","$2.50","$0.00","$2.50","Supermercado","VISA T42"],
 ["06/25/2026","Mr Special San German","Kirkland Salted Butter","$3.69","$0.00","$3.69","Supermercado","VISA T42"],
+["07/15/2026","Farmacia Caridad 17","Farmacia","$10.50","$0.00","$10.50","Medicinas","Cash - ATH1"],
 ["06/25/2026","Mr Special San German","Pan Criollo 1LB","$2.69","$0.00","$2.69","Supermercado","VISA T42"],
+["04/21/2026","AutoZone San German","BlueDevil Oil Stop Leak 8oz, Subaru Oil Filter, STP Full Synthetic OW-20","$44.97","$5.56","$50.53","Autos","Visa Débito •4058"],
+["05/07/2026","Walmart Mar: Mario","RX items + Shape, GV Hab Reg, Fabric Tac, Mrs Freshley, Site Merch, Brookfield","$55.09","$5.12","$60.11","Medicinas","Visa Débito •3576"],
+["05/07/2026","Marshalls HomeGoods Mayaguez","Gourmet Food, Cookware, Bakeware, Men's Furnish, Kitchen Access, Inf&Toddlers x3, $20 SVC","$84.95","$7.05","$92.00","Chef","Visa Débito •4058"],
+["03/18/2026","ATH Panaderia Trapiche San German","Compra","$8.86","$1.13","$9.99","Supermercado","Visa Débito •4058"],
+["06/30/2026","Mr Special Lajas","Gullon, Crema Coco, Pimiento Molido, Pollock, Chayotes, Calabaza, Tres Leches, Indulac","$20.38","$0.20","$20.58","Supermercado","Visa •••• T42"],
+["07/12/2026","Kokomo Mayaguez Mall","Flatwater Shoes Blk 12","$29.99","$3.45","$33.44","Camping","Visa/MC"],
+["07/03/2026","Garage Damian","Gasolina","$33.00","$0.00","$33.00","Gasolina","Visa ****4058 - Contactless"],
+["07/13/2026","Franval Inc","Resolene, dye, strap, screws, buckle","$31.80","$3.66","$35.46","Ferretería","Visa/MC - Leathercraft supplies"],
+["07/14/2026","Farmacia Lajas","Rosuvastatina, Cetirizina","$7.99","$0.69","$8.68","Medicinas","Visa ****2443 - Rx + OTC"],
 ["06/27/2026","Barber","Recorte de Richard","$5.00","$0.58","$5.58","Efectos Personales",""],
 ["06/26/2026","Restaurant/Bar","Nutra Coco 1L","$3.99","$0.46","$4.45","Supermercado",""],
 ["06/26/2026","Restaurant/Bar","Sopa del Dia Broccoli","$10.00","$1.15","$11.15","Restaurant",""],
@@ -377,7 +393,6 @@ var DATA = [
 ["03/21/2026","Mr Special Lajas","Vinos","$28.99","$3.33","$32.32","Alcohol","VISA T42"],
 ["03/21/2026","Mr Special Lajas","Pechuga T-Rico","$2.53","$0.00","$2.53","Supermercado","VISA T42"],
 ["03/21/2026","Mr Special Lajas","Carne Molida Res","$3.79","$0.00","$3.79","Supermercado","VISA T42"],
-["03/21/2026","Mr Special Lajas","Carne Molida Res","$3.79","$0.00","$3.79","Supermercado","VISA T42"],
 ["03/21/2026","Mr Special Lajas","Cadera Molida EU","$2.06","$0.00","$2.06","Supermercado","VISA T42"],
 ["03/21/2026","Mr Special Lajas","Salchichas Oscar Mayer","$7.79","$0.90","$8.69","Supermercado","VISA T42"],
 ["03/21/2026","Mr Special Lajas","Bacon Plumrose","$0.99","$0.00","$0.99","Supermercado","VISA T42"],
@@ -385,17 +400,19 @@ var DATA = [
 ["03/21/2026","Mr Special Lajas","Friskies Prime Chicken","$1.29","$0.15","$1.44","Mascotas","VISA T42"],
 ["03/21/2026","Mr Special Lajas","Friskies Chicken","$1.29","$0.15","$1.44","Mascotas","VISA T42"],
 ["07/01/2026","Churchs Chicken Hormigueros","Repollo x3","$5.67","$0.65","$6.32","Restaurant","VISA #2443"],
-["07/01/2026","Churchs Chicken Hormigueros","Biscuits x2","$3.78","$0.43","$4.21","Restaurant","VISA #2443"],
-["07/06/2026","Burger King #4325","Sundae Caramelo + Apple Pie","$4.39","$0.30","$4.69","Restaurant","Mastercard/Visa"],
-["07/09/2026","Selectos Lajas","28 artículos (compra completa)","$84.85","$2.71","$87.56","Supermercado","Visa ****4058"],
-["07/03/2026","GARAGE DAMIAN LAJAS","Gasolina","$33.00","$0.00","$33.00","Gasolina","Visa ****4058"],
-["07/28/2026","Xiaomi MiMo API Platform","API Platform (Link.com)","$6.00","$0.00","$6.00","Digital","MC •4429"]
+["07/01/2026","Churchs Chicken Hormigueros","Biscuits x2","$3.78","$0.43","$4.21","Restaurant","VISA #2443"]
 ];
+
+DATA.sort(function(a,b){
+  var pa=a[0].split('/'),pb=b[0].split('/');
+  var da=new Date(pa[2],pa[0]-1,pa[1]),db=new Date(pb[2],pb[0]-1,pb[1]);
+  return db-da;
+});
 
 function $(v){return parseFloat(String(v||'0').replace(/[$,]/g,''))||0}
 
-var COLORS={Supermercado:'#4caf50',Alcohol:'#ce93d8',Restaurant:'#ff8a80',Mascotas:'#64b5f6','Efectos Personales':'#ffcc80',Regalos:'#f48fb1',Digital:'#80d8ff'};
-var CATCLASS={Supermercado:'cat-supermercado',Alcohol:'cat-alcohol',Restaurant:'cat-restaurant',Mascotas:'cat-mascotas','Efectos Personales':'cat-efectos',Regalos:'cat-regalos',Digital:'cat-digital'};
+var COLORS={Supermercado:'#4caf50',Alcohol:'#ce93d8',Restaurant:'#ff8a80',Mascotas:'#64b5f6','Efectos Personales':'#ffcc80',Regalos:'#f48fb1',Medicinas:'#80cbc4',Autos:'#90a4ae',Camping:'#a5d6a7',Chef:'#bcaaa4',Gasolina:'#90caf9','Ferretería':'#80cbc4'};
+var CATCLASS={Supermercado:'cat-supermercado',Alcohol:'cat-alcohol',Restaurant:'cat-restaurant',Mascotas:'cat-mascotas','Efectos Personales':'cat-efectos',Regalos:'cat-regalos',Medicinas:'cat-medicinas',Autos:'cat-autos',Camping:'cat-camping',Chef:'cat-chef',Gasolina:'cat-gasolina','Ferretería':'cat-ferreteria'};
 
 var months=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
 function monthKey(d){var p=d.split('/');return p[2]+'-'+p[0];}
@@ -447,7 +464,6 @@ function render(){
     options:{
       responsive:true,maintainAspectRatio:false,
       plugins:{
-        legend:{display:true,position:'bottom',labels:{color:'white',font:{size:12,weight:'bold'},padding:8,usePointStyle:true,pointStyle:'rectRounded',generateLabels:function(chart){var data=chart.data;return data.labels.map(function(lbl,i){var v=data.datasets[0].data[i];var pct=(v/catTotal*100).toFixed(1);return{text:lbl+' $'+v.toFixed(0)+' ('+pct+'%)',fillStyle:data.datasets[0].backgroundColor[i],strokeStyle:'#0f0f1a',lineWidth:2,color:'white',fontColor:'white',index:i};});}}},
         tooltip:{callbacks:{label:function(ctx){var v=ctx.raw;var pct=(v/catTotal*100).toFixed(1);return ctx.label+': $'+v.toFixed(2)+' ('+pct+'%)';}}},
         datalabels:{color:'white',font:{weight:'bold',size:14,family:'Arial'},formatter:function(value,ctx){var pct=(value/catTotal*100).toFixed(1);return pct+'%';},anchor:'end',align:'end',offset:8,clamp:true,textStrokeColor:'black',textStrokeWidth:3}
       }
