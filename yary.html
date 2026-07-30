@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🛒 Gastos Familia</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f0f1a;color:#e0e0e0;font-family:-apple-system,system-ui,sans-serif;min-height:100vh;padding-bottom:60px}
+.tabs{display:flex;background:#1a1a2e;border-bottom:2px solid #2a2a4a;position:sticky;top:0;z-index:100}
+.tab{flex:1;text-align:center;padding:14px 10px;font-size:.95em;font-weight:bold;color:#555;cursor:pointer;border-bottom:4px solid transparent;transition:.2s;-webkit-tap-highlight-color:transparent}
+.tab.active-y{color:#f0c040;border-bottom-color:#f0c040;background:#12122a}
+.tab.active-a{color:#64b5f6;border-bottom-color:#64b5f6;background:#12122a}
+.tab.active-n{color:#ff8a80;border-bottom-color:#ff8a80;background:#12122a}
+.tab:active{background:#222}
+.tab-icon{font-size:1.5em;display:block;margin-bottom:2px}
+.view{display:none}.view.active{display:block}
+.hdr{background:#1a1a2e;padding:20px;border-bottom:1px solid #2a2a4a;text-align:center}
+.hdr h1{font-size:1.3em}
+.hdr .sub{font-size:.75em;color:#888;margin-top:4px}
+.hy h1{color:#f0c040}.ha h1{color:#64b5f6}.hn h1{color:#ff8a80}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:15px 20px}
+.s{background:#1a1a2e;border-radius:10px;padding:14px;border:1px solid #2a2a4a;text-align:center}
+.s .l{font-size:.7em;color:#888;text-transform:uppercase;letter-spacing:1px}
+.s .v{font-size:1.4em;font-weight:bold;margin:4px 0}
+.sec{padding:10px 20px}
+.sec h2{font-size:.8em;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.bar{display:flex;align-items:center;margin-bottom:8px;gap:8px}
+.bar .n{font-size:.72em;color:#aaa;min-width:110px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .t{flex:1;height:20px;background:#1a1a2e;border-radius:4px;overflow:hidden}
+.bar .f{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:.65em;font-weight:bold;color:#fff}
+.bar .a{font-size:.72em;color:#f0c040;min-width:55px}
+.tbl{padding:10px 20px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.78em}
+th{text-align:left;padding:8px 6px;color:#888;border-bottom:1px solid #2a2a4a;font-size:.72em;background:#0f0f1a}
+td{padding:6px;border-bottom:1px solid #1a1a2e}
+tr:hover{background:#1a1a2e}
+.r{text-align:right;font-weight:bold;color:#f0c040}
+.m{font-size:.7em;color:#888}
+.d{font-size:.75em;color:#bbb;max-width:350px;white-space:normal}
+.dep{color:#4caf50;font-weight:bold}
+.info{background:#1a1a2e;border-radius:10px;padding:16px;border:1px solid #2a2a4a}
+.info .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #12122a;font-size:.85em}
+.info .row:last-child{border-bottom:none}
+.info .row .k{color:#888}
+.info .row .v{font-weight:bold}
+.note{background:#1a1a2e;border-radius:10px;padding:14px;border:1px solid #2a2a4a;font-size:.8em;color:#bbb;line-height:1.6}
+.tr{color:#f44336}.cr{color:#4caf50}
+.filter-bar{display:flex;gap:6px;padding:10px 20px;flex-wrap:wrap}
+.filter-btn{padding:6px 14px;border-radius:20px;border:1px solid #2a2a4a;background:#1a1a2e;color:#888;font-size:.78em;cursor:pointer;transition:.2s}
+.filter-btn.active{background:#f0c040;color:#0f0f1a;border-color:#f0c040;font-weight:bold}
+.filter-btn:active{transform:scale(.95)}
+</style>
+</head>
+<body>
+<a href="/" style="position:fixed;top:12px;left:12px;z-index:9999;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.2em;color:#fff;transition:.2s">←</a>
+
+<div class="tabs">
+<div class="tab active-y" id="tabY" onclick="show('y')">
+<span class="tab-icon">🛒</span>Yary
+</div>
+<div class="tab" id="tabA" onclick="show('a')">
+<span class="tab-icon">👤</span>Alexis
+</div>
+<div class="tab" id="tabN" onclick="show('n')">
+<span class="tab-icon">💰</span>Anna
+</div>
+</div>
+
+<!-- YARY -->
+<div class="view active" id="vY">
+<div class="hdr hy">
+<h1>🛒 Yary – Gastos</h1>
+<div class="sub">Cuenta: Junta Fiscal x3539 | Actualizado: 07/07/2026</div>
+</div>
+<div class="stats">
+<div class="s"><div class="l">Total Gastos</div><div class="v" style="color:#f0c040">$177.17</div></div>
+<div class="s"><div class="l">Transacciones</div><div class="v" style="color:#64b5f6">14</div></div>
+<div class="s"><div class="l">Depósito Yary</div><div class="v dep">+$375.00</div></div>
+<div class="s"><div class="l">Balance Yary</div><div class="v" style="color:#4caf50">$197.83</div></div>
+<div class="s" style="grid-column:span 2"><div class="l">💰 Balance Total Cuenta x3539</div><div class="v" style="color:#64b5f6;font-size:1.6em">$822.84</div></div>
+</div>
+
+<div class="sec">
+<h2>💰 Depósitos</h2>
+<div class="info" style="margin-bottom:12px">
+<div class="row"><div class="k">04/27/2026</div><div class="v dep">+$375.00 (Transferencia)</div></div>
+<div class="row"><div class="k">04/29/2026</div><div class="v dep">+$125.00 (Transferencia)</div></div>
+<div class="row"><div class="k">06/04/2026</div><div class="v dep">+$250.00 (Transferencia)</div></div>
+<div class="row"><div class="k">07/07/2026</div><div class="v dep">+$250.00 (Transferencia)</div></div>
+<div class="row"><div class="k">Total brutos</div><div class="v dep">+$1,000.00</div></div>
+<div class="row"><div class="k">05/01 Pago Depósito de Alexandro</div><div class="v tr">-$250.00</div></div>
+<div class="row"><div class="k">Total neto</div><div class="v dep">+$750.00</div></div>
+<div class="row"><div class="k">½ Yary</div><div class="v dep">+$375.00</div></div>
+<div class="row"><div class="k">½ Alexis</div><div class="v" style="color:#64b5f6">+$375.00</div></div>
+</div>
+</div>
+
+<div class="sec">
+<h2>🥧 Por Tienda</h2>
+<div class="bar"><div class="n">Walgreens</div><div class="t"><div class="f" style="width:100%;background:#f0c040">82%</div></div><div class="a">$145.49</div></div>
+<div class="bar"><div class="n">Walmart</div><div class="t"><div class="f" style="width:6%;background:#64b5f6">6%</div></div><div class="a">$11.13</div></div>
+<div class="bar"><div class="n">Panadería Trapiche</div><div class="t"><div class="f" style="width:6%;background:#ce93d8">6%</div></div><div class="a">$10.73</div></div>
+<div class="bar"><div class="n">Farmacia Caridad</div><div class="t"><div class="f" style="width:2%;background:#ff9800">2%</div></div><div class="a">$4.00</div></div>
+<div class="bar"><div class="n">Depósito de Alexandro</div><div class="t"><div class="f" style="width:100%;background:#f44336">—</div></div><div class="a">-$250.00</div></div>
+</div>
+
+<div class="sec">
+<h2>📊 Por Mes</h2>
+<div class="bar"><div class="n">05/2026</div><div class="t"><div class="f" style="width:27%;background:#f0c040">27%</div></div><div class="a">$46.36</div></div>
+<div class="bar"><div class="n">06/2026</div><div class="t"><div class="f" style="width:51%;background:#64b5f6">51%</div></div><div class="a">$90.38</div></div>
+<div class="bar"><div class="n">07/2026</div><div class="t"><div class="f" style="width:23%;background:#ce93d8">23%</div></div><div class="a">$40.43</div></div>
+</div>
+
+<div class="filter-bar">
+<div class="filter-btn active" onclick="filterMonth('all',this)">Todos</div>
+<div class="filter-btn" onclick="filterMonth('05',this)">Mayo</div>
+<div class="filter-btn" onclick="filterMonth('06',this)">Junio</div>
+<div class="filter-btn" onclick="filterMonth('07',this)">Julio</div>
+</div>
+<div class="tbl">
+<table>
+<thead><tr><th>Fecha</th><th>Tienda</th><th>Artículos</th><th style="text-align:right">Total</th><th>Método</th></tr></thead>
+<tbody>
+<tr data-month="07"><td>07/23/2026</td><td>Walgreens #670</td><td class="d">Bigelow Chamomile Lavander 1.18oz, Eckrich Lunch Mkr Chicken 2oz, Secret Antiperspirant Powder 5oz, Nice Mini Choc Chip Cookies 4.5oz, Act II Mini Popcorn Butter 1.6oz, Nice Butter Ring Cookies 5oz, Chobani Strawberry Banana 7oz, Campbell Chicken Noodle 10.5oz, DS Baby Lotion 13.6oz</td><td class="r">$20.78</td><td class="m">Visa</td></tr>
+<tr data-month="07"><td>07/03/2026</td><td>Walgreens D570 San Germán</td><td class="d">Doritos Nacho 2.4oz, Shopping Bag Fee, Nice Hikers Trail Mix 9oz, Crunch N Munch Caramel 3.5oz x2, Pampers Sensitive Wipes 56s, Off Family Care Smooth Dry Aero 4oz, Cristalia Distilled Water 1gal, Nestle Ice Cream Sandwich 6oz</td><td class="r">$18.57</td><td class="m">Junta Fiscal x3539</td></tr>
+<tr data-month="07"><td>07/03/2026</td><td>Panadería Trapiche</td><td class="d">1LB Pan Sobao $5.00, Café 7oz $1.75</td><td class="r">$10.73</td><td class="m">Junta Fiscal x3539</td></tr>
+<tr data-month="07"><td>07/06/2026</td><td>Walmart #02067</td><td class="d">Sleepshirt</td><td class="r">$11.13</td><td class="m">Visa ****9740</td></tr>
+<tr data-month="06"><td>06/25/2026</td><td>Walgreens #670</td><td class="d">Frosted Flakes Handi Pack 7.2oz 6s, Crunch N Munch Caramel 3.5oz, Sharpie Chisel Black 2s, Bauducco Maria Cookie 6oz, Shopping Bag Fee</td><td class="r">$24.07</td><td class="m">Junta Fiscal x3539</td></tr>
+<tr data-month="06"><td>06/18/2026</td><td>Walgreens #670</td><td class="d">Nice BBQ Potato Chip 7.75oz, Campbell HS Country Chicken Noodle 10.5oz, Crest Tartar Control Toothpaste 8.5oz, Bic Velocity Orig Gel Fashion 4s, Nice Butter Ring Cookies 5oz, Oral-B Healthy Clean Med TB, Grandma Oatmeal Raisin 2.875oz, Bauducco Maria Cookie 6oz</td><td class="r">$17.24</td><td class="m">Junta Fiscal x3539</td></tr>
+<tr data-month="06"><td>06/12/2026</td><td>Transferencia</td><td class="d">Internet Card Yary</td><td class="r tr">-$20.00</td><td class="m">Junta Fiscal x3539</td></tr>
+<tr data-month="06"><td>06/11/2026</td><td>Walgreens #670</td><td class="d">Cheerios Pouch 2.2oz, Garnier Fructis Pure Moisture Shm 12oz, Schick Triple Blade Mens Razor 4s, Petit Nectar Pera 6.8oz 3s, Bauducco Maria Cookie 6oz, Lactovit Lact Deo Repairing 1.7oz, V8 Camp Splash Fruit Med 200ml, Shopping Bag Fee</td><td class="r">$25.07</td><td class="m">Junta Fiscal x3539</td></tr>
+<tr data-month="06"><td>06/08/2026</td><td>Farmacia Caridad Lajas</td><td class="d">Compra farmacia</td><td class="r">$4.00</td><td class="m">Junta Fiscal x3539</td></tr>
+<tr data-month="05"><td>05/28/2026</td><td>Walgreens #670 San Germán</td><td class="d">Nice BBQ Potato Chip 7.75oz, Crunch N Munch Caramel 3.5oz, Honey Nut Cheerios Pouch 3.5oz, Bauducco Maria Cookie 6oz, Glade Hawaiian Breeze Air Freshener 9oz, Colgate Kids Harry Potter Toothpaste 4.6oz, Shopping Bag Fee</td><td class="r">$11.04</td><td class="m">Junta Fiscal x3539</td></tr>
+<tr data-month="05"><td>05/19/2026</td><td>Transferencia</td><td class="d">Internet Card Yary</td><td class="r tr">-$20.00</td><td class="m">Junta Fiscal x3539</td></tr>
+<tr data-month="05"><td>05/19/2026</td><td>Walgreens #670</td><td class="d">Nice BBQ Potato Chip 2.5oz, Real Coco 100% Coconut Water 11.2oz, T T Gil Clear Gel Cool Deo 5oz, Holsum Donitas 2.1oz 5s</td><td class="r">$8.21</td><td class="m">Visa ****9740</td></tr>
+<tr data-month="05"><td>05/08/2026</td><td>Walgreens #670</td><td class="d">Pearl Beads Fresh Linen 8oz, Crest Tartar Control Toothpaste 8.5oz, Oral-B Healthy Clean Med TB, Walgreens Soothing Coconut Body Wash 15oz, Shopping Bag Fee</td><td class="r">$7.11</td><td class="m">Visa ****9740</td></tr>
+<tr data-month="05"><td>05/01/2026</td><td>Depósito de Alexandro</td><td class="d">Pago casa mensual</td><td class="r tr">-$125.00</td><td class="m">Junta Fiscal x3539</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- ANNA -->
+<div class="view" id="vN">
+<div class="hdr hn">
+<h1>💰 Anna – Deuda</h1>
+<div class="sub">Préstamos y pagos pendientes | 2% interés mensual</div>
+</div>
+<div class="stats">
+<div class="s"><div class="l">Deuda Total</div><div class="v" style="color:#ff8a80">$893.01</div></div>
+<div class="s"><div class="l">Artículos</div><div class="v" style="color:#ff9800">8 deudas</div></div>
+<div class="s"><div class="l">Total Pagado</div><div class="v dep">-$251.00</div></div>
+<div class="s"><div class="l">Balance</div><div class="v" style="color:#4caf50">$642.01</div></div>
+</div>
+<div class="sec">
+<h2>🏦 Detalle</h2>
+<div class="info" style="margin-bottom:12px">
+<div class="row"><div class="k">Tabla de Ikea</div><div class="v tr">$253.00</div></div>
+<div class="row"><div class="k">Vacuna de gatos</div><div class="v tr">$51.00</div></div>
+<div class="row"><div class="k">Veterinario (gato)</div><div class="v tr">$282.10</div></div>
+<div class="row"><div class="k">Animalix - clínica</div><div class="v tr">$81.00</div></div>
+<div class="row"><div class="k">Animalix - vacuna</div><div class="v tr">$117.08</div></div>
+<div class="row"><div class="k">Perfume Arquiel</div><div class="v tr">$39.03</div></div>
+<div class="row"><div class="k">Walmart - jaula gato</div><div class="v tr">$36.80</div></div>
+<div class="row"><div class="k">Amazon - guantes gatos</div><div class="v tr">$17.84</div></div>
+<div class="row"><div class="k">Wipes espejuelos</div><div class="v tr">$5.00</div></div>
+<div class="row"><div class="k">Abonos (6 pagos)</div><div class="v cr">-$251.00</div></div>
+</div>
+</div>
+<div class="sec">
+<a href="deuda-anna.html" style="display:block;text-align:center;padding:14px;background:#1a1a2e;border-radius:10px;border:1px solid #2a2a4a;color:#f0c040;text-decoration:none;font-weight:bold;font-size:.9em">📊 Ver dashboard completo con intereses →</a>
+</div>
+</div>
+
+<!-- ALEXIS -->
+<div class="view" id="vA">
+<div class="hdr ha">
+<h1>👤 Alexis – Cuenta</h1>
+<div class="sub">Hermano de Richard | Junta Fiscal x3539 | Actualizado: 07/07/2026</div>
+</div>
+<div class="stats">
+<div class="s"><div class="l">Balance Disponible</div><div class="v" style="color:#64b5f6">$375.00</div></div>
+<div class="s"><div class="l">Depósitos Netos</div><div class="v dep">+$375.00</div></div>
+</div>
+<div class="sec">
+<h2>💰 Depósitos</h2>
+<div class="info" style="margin-bottom:12px">
+<div class="row"><div class="k">04/27/2026</div><div class="v dep">+$187.50 (½ de $375)</div></div>
+<div class="row"><div class="k">04/29/2026</div><div class="v dep">+$62.50 (½ de $125)</div></div>
+<div class="row"><div class="k">06/04/2026</div><div class="v dep">+$125.00 (½ de $250)</div></div>
+<div class="row"><div class="k">07/07/2026</div><div class="v dep">+$125.00 (½ de $250)</div></div>
+<div class="row"><div class="k">Subtotal</div><div class="v dep">+$500.00</div></div>
+<div class="row"><div class="k">05/01 Depósito de Alexandro</div><div class="v tr">-$125.00</div></div>
+<div class="row"><div class="k">Total Alexis</div><div class="v dep">+$375.00</div></div>
+</div>
+</div>
+<div class="sec">
+<h2>🏦 Cuenta</h2>
+<div class="info">
+<div class="row"><div class="k">Banco</div><div class="v">Popular</div></div>
+<div class="row"><div class="k">Cuenta</div><div class="v">Junta Fiscal x3539</div></div>
+<div class="row"><div class="k">Titular</div><div class="v">Alexis</div></div>
+<div class="row"><div class="k">Balance total cuenta</div><div class="v">$822.84</div></div>
+<div class="row"><div class="k">Gastos</div><div class="v" style="color:#888">Ninguno registrado</div></div>
+</div>
+</div>
+<div class="sec">
+<h2>📝 Notas</h2>
+<div class="note">
+Los depósitos de $1,000.00 se dividen mitad y mitad. El 05/01 se pagó $125.00 a cada uno por Depósito de Alexandro, quedando $375.00 disponibles para cada quien. Los gastos del estado de cuenta son de Yary y se registran en su pestaña.
+</div>
+</div>
+</div>
+
+<script>
+function filterMonth(m,btn){
+  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  document.querySelectorAll('#vY tbody tr').forEach(function(r){
+    if(m==='all'||r.dataset.month===m) r.style.display='';
+    else r.style.display='none';
+  });
+}
+function show(t){
+  document.getElementById('vY').className=t==='y'?'view active':'view';
+  document.getElementById('vA').className=t==='a'?'view active':'view';
+  document.getElementById('vN').className=t==='n'?'view active':'view';
+  document.getElementById('tabY').className=t==='y'?'tab active-y':'tab';
+  document.getElementById('tabA').className=t==='a'?'tab active-a':'tab';
+  document.getElementById('tabN').className=t==='n'?'tab active-n':'tab';
+}
+</script>
+</body>
+</html>
