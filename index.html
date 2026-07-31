@@ -3,134 +3,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ocasio Hub</title>
+<title>Richard Ocasio | Personal</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5066900006813744" crossorigin="anonymous"></script>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    min-height: 100vh;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px;
-  }
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 8px;
-    background: linear-gradient(90deg, #f093fb, #f5576c, #4facfe);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .subtitle { color: #8888aa; font-size: 0.9rem; margin-bottom: 40px; }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 16px;
-    width: 100%;
-    max-width: 600px;
-  }
-  .card {
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 16px;
-    padding: 24px 14px;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-  .card:hover {
-    transform: translateY(-4px);
-    background: rgba(255,255,255,0.15);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  }
-  .icon {
-    font-size: 2rem;
-    width: 56px; height: 56px;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 14px;
-  }
-  .label { font-weight: 600; font-size: 0.95rem; }
-  .desc { font-size: 0.72rem; color: #9999bb; line-height: 1.3; }
-  .bg1 { background: rgba(76,175,80,0.25); }
-  .bg2 { background: rgba(33,150,243,0.25); }
-  .bg3 { background: rgba(255,152,0,0.25); }
-  .bg4 { background: rgba(233,30,99,0.25); }
-  .bg5 { background: rgba(244,67,54,0.25); }
-  .bg6 { background: rgba(0,188,212,0.25); }
-  .bg7 { background: rgba(156,39,176,0.25); }
-  .bg8 { background: rgba(0,200,83,0.25); }
-  .bg9 { background: rgba(255,193,7,0.25); }
-  .footer { margin-top: 48px; color: #555; font-size: 0.75rem; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0a0a;color:#f0f0f0;line-height:1.6}
+nav{background:#111;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;border-bottom:2px solid #ff6b35}
+nav .logo{font-size:1.5rem;font-weight:bold;color:#ff6b35}
+nav .links{display:flex;gap:1.5rem;flex-wrap:wrap}
+nav a{color:#ccc;text-decoration:none;transition:.3s;font-size:.95rem}
+nav a:hover{color:#ff6b35}
+.hero{text-align:center;padding:5rem 2rem;background:linear-gradient(135deg,#ff6b3511,#1a1a2e)}
+.hero h1{font-size:3rem;color:#ff6b35;margin-bottom:1rem}
+.hero p{font-size:1.2rem;color:#aaa;max-width:600px;margin:0 auto}
+.hero .tag{display:inline-block;background:#ff6b3522;color:#ff6b35;padding:.4rem 1rem;border-radius:20px;margin:.3rem;font-size:.9rem}
+.section{padding:3rem 2rem;max-width:900px;margin:0 auto}
+.section h2{font-size:2rem;color:#ff6b35;margin-bottom:1.5rem;border-bottom:2px solid #333;padding-bottom:.5rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+.card{background:#151515;padding:2rem;border-radius:12px;border:1px solid #222;transition:.3s}
+.card:hover{border-color:#ff6b35;transform:translateY(-2px)}
+.card h3{color:#ff6b35;margin-bottom:.5rem}
+.card .icon{font-size:2rem;margin-bottom:.5rem}
+.card.locked{position:relative}
+.card.locked::after{content:'🔒';position:absolute;top:1rem;right:1rem;font-size:1.2rem}
+footer{text-align:center;padding:2rem;background:#111;border-top:1px solid#222;color:#666}
+@media(max-width:600px){.hero h1{font-size:2rem}}
 </style>
 </head>
 <body>
-  <h1>🏠 Ocasio Hub</h1>
-  <p class="subtitle">Todo en un solo lugar</p>
-  <div class="grid">
-    <a class="card" href="viveres.html">
-      <div class="icon bg1">🛒</div>
-      <span class="label">Gastos Familia</span>
-      <span class="desc">Víveres y medicinas</span>
-    </a>
-    <a class="card" href="cuentas.html">
-      <div class="icon bg2">💳</div>
-      <span class="label">Cuentas</span>
-      <span class="desc">Estados de cuenta y tarjetas</span>
-    </a>
-    <a class="card" href="https://207.246.72.104:9447/">
-      <div class="icon bg2">📦</div>
-      <span class="label">Inventario</span>
-      <span class="desc">Inventario de casa</span>
-    </a>
-    <a class="card" href="acceso.html">
-      <div class="icon bg3">🔑</div>
-      <span class="label">Acceso</span>
-      <span class="desc">Acceso familiar</span>
-    </a>
-    <a class="card" href="yary.html">
-      <div class="icon bg4">👩</div>
-      <span class="label">Yary</span>
-      <span class="desc">Página de Yary</span>
-    </a>
-    <a class="card" href="deepseek-gastos.html">
-      <div class="icon bg5">💸</div>
-      <span class="label">DeepSeek API</span>
-      <span class="desc">Gastos Julio 2026</span>
-    </a>
-    <a class="card" href="deuda-anna.html">
-      <div class="icon bg5">💰</div>
-      <span class="label">Deuda Anna</span>
-      <span class="desc">Control de deudas</span>
-    </a>
-    <a class="card" href="fuera-deuda.html">
-      <div class="icon bg9">✅</div>
-      <span class="label">Fuera de Deuda</span>
-      <span class="desc">Pagado / excluido</span>
-    </a>
-    <a class="card" href="dermatologos-vital.html">
-      <div class="icon bg6">🏥</div>
-      <span class="label">Dermatólogos</span>
-      <span class="desc">Directorio médico</span>
-    </a>
-    <a class="card" href="https://207.246.72.104:9443/">
-      <div class="icon bg7">🤖</div>
-      <span class="label">Hermes</span>
-      <span class="desc">Dashboard Hermes</span>
-    </a>
-    <a class="card" href="signal-link.html">
-      <div class="icon bg8">📡</div>
-      <span class="label">Signal</span>
-      <span class="desc">Enlace Signal</span>
-    </a>
-  </div>
-  <p class="footer">Ocasio Hub v1.0</p>
+<nav>
+<div class="logo">RO</div>
+<div class="links">
+<a href="index.html">🏠 Inicio</a>
+<a href="fotos.html">📸 Fotografía</a>
+<a href="videos.html">🎥 Videos</a>
+<a href="recetas.html">🍽️ Recetas</a>
+<a href="tech.html">💻 Tech</a>
+<a href="finanzas.html">📊 Nuestras Finanzas</a>
+<a href="acceso.html?page=viveres">🛒 Víveres</a>
+<a href="familia.html">👨‍👩‍👧‍👦 Familia</a>
+</div>
+</nav>
+
+<div class="hero">
+<h1>Richard Ocasio</h1>
+<p>63 años · Lajas, Puerto Rico · 33 años como Service Supervisor · Pizzero · Fotógrafo · BBQ lover</p>
+<div style="margin-top:1rem">
+<span class="tag">📸 Fotografía</span>
+<span class="tag">🍽️ Recetas</span>
+<span class="tag">💻 Tecnología</span>
+<span class="tag">🎥 Videos</span>
+</div>
+</div>
+
+<div class="section">
+<h2>🧑 Sobre mí</h2>
+<p style="color:#ccc;font-size:1.1rem">
+Nacido y criado en Puerto Rico. Trabajé 33 años como Service Supervisor, donde aprendí el valor de la organización y la atención al detalle. Antes de eso, fui pizzero — y todavía hago una buena pizza. Me apasiona la fotografía, la tecnología, el BBQ y pasar tiempo con mi familia. Dos hijas que son mi orgullo. A mis 63 años sigo aprendiendo, invirtiendo y explorando nuevas tecnologías.
+</p>
+</div>
+
+<div class="section">
+<h2>🔍 Explora</h2>
+<div class="cards">
+<a href="fotos.html" style="text-decoration:none;color:inherit">
+<div class="card">
+<div class="icon">📸</div>
+<h3>Fotografía</h3>
+<p style="color:#999">Mi galería personal de fotos y proyectos visuales.</p>
+</div>
+</a>
+<a href="recetas.html" style="text-decoration:none;color:inherit">
+<div class="card locked">
+<div class="icon">🍽️</div>
+<h3>Recetas</h3>
+<p style="color:#999">Mis recetas personales y secretos de cocina.</p>
+</div>
+</a>
+<a href="tech.html" style="text-decoration:none;color:inherit">
+<div class="card locked">
+<div class="icon">💻</div>
+<h3>Tecnología</h3>
+<p style="color:#999">Mi setup, proyectos y herramientas.</p>
+</div>
+</a>
+<a href="finanzas.html" style="text-decoration:none;color:inherit">
+<div class="card locked">
+<div class="icon">📊</div>
+<h3>Nuestras Finanzas</h3>
+<p style="color:#999">Nuestras inversiones y dashboards financieros.</p>
+</div>
+</a>
+<a href="acceso.html?page=viveres" style="text-decoration:none;color:inherit">
+<div class="card locked">
+<div class="icon">🛒</div>
+<h3>Víveres</h3>
+<p style="color:#999">Dashboard de gastos de víveres y supermercado.</p>
+</div>
+</a>
+<a href="familia.html" style="text-decoration:none;color:inherit">
+<div class="card locked">
+<div class="icon">👨‍👩‍👧‍👦</div>
+<h3>Familia</h3>
+<p style="color:#999">Momentos familiares.</p>
+</div>
+</a>
+</div>
+</div>
+
+<div class="section" style="text-align:center;padding:1rem 2rem 2rem">
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5066900006813744"
+     data-ad-slot="auto"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<footer>
+<p>rocasio.com &copy; 2026 — Hecho en Puerto Rico 🇵🇷</p>
+</footer>
 </body>
 </html>
