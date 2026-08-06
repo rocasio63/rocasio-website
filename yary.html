@@ -62,9 +62,6 @@ tr:hover{background:#1a1a2e}
 <div class="tab" id="tabA" onclick="show('a')">
 <span class="tab-icon">👤</span>Alexis
 </div>
-<div class="tab" id="tabN" onclick="show('n')">
-<span class="tab-icon">💰</span>Anna
-</div>
 </div>
 
 <!-- YARY -->
@@ -143,38 +140,6 @@ tr:hover{background:#1a1a2e}
 </div>
 </div>
 
-<!-- ANNA -->
-<div class="view" id="vN">
-<div class="hdr hn">
-<h1>💰 Anna – Deuda</h1>
-<div class="sub">Préstamos y pagos pendientes | 2% interés mensual</div>
-</div>
-<div class="stats">
-<div class="s"><div class="l">Deuda Total</div><div class="v" style="color:#ff8a80">$893.01</div></div>
-<div class="s"><div class="l">Artículos</div><div class="v" style="color:#ff9800">8 deudas</div></div>
-<div class="s"><div class="l">Total Pagado</div><div class="v dep">-$251.00</div></div>
-<div class="s"><div class="l">Balance</div><div class="v" style="color:#4caf50">$642.01</div></div>
-</div>
-<div class="sec">
-<h2>🏦 Detalle</h2>
-<div class="info" style="margin-bottom:12px">
-<div class="row"><div class="k">Tabla de Ikea</div><div class="v tr">$253.00</div></div>
-<div class="row"><div class="k">Vacuna de gatos</div><div class="v tr">$51.00</div></div>
-<div class="row"><div class="k">Veterinario (gato)</div><div class="v tr">$282.10</div></div>
-<div class="row"><div class="k">Animalix - clínica</div><div class="v tr">$81.00</div></div>
-<div class="row"><div class="k">Animalix - vacuna</div><div class="v tr">$117.08</div></div>
-<div class="row"><div class="k">Perfume Arquiel</div><div class="v tr">$39.03</div></div>
-<div class="row"><div class="k">Walmart - jaula gato</div><div class="v tr">$36.80</div></div>
-<div class="row"><div class="k">Amazon - guantes gatos</div><div class="v tr">$17.84</div></div>
-<div class="row"><div class="k">Wipes espejuelos</div><div class="v tr">$5.00</div></div>
-<div class="row"><div class="k">Abonos (6 pagos)</div><div class="v cr">-$251.00</div></div>
-</div>
-</div>
-<div class="sec">
-<a href="deuda-anna.html" style="display:block;text-align:center;padding:14px;background:#1a1a2e;border-radius:10px;border:1px solid #2a2a4a;color:#f0c040;text-decoration:none;font-weight:bold;font-size:.9em">📊 Ver dashboard completo con intereses →</a>
-</div>
-</div>
-
 <!-- ALEXIS -->
 <div class="view" id="vA">
 <div class="hdr ha">
@@ -228,10 +193,8 @@ function filterMonth(m,btn){
 function show(t){
   document.getElementById('vY').className=t==='y'?'view active':'view';
   document.getElementById('vA').className=t==='a'?'view active':'view';
-  document.getElementById('vN').className=t==='n'?'view active':'view';
   document.getElementById('tabY').className=t==='y'?'tab active-y':'tab';
   document.getElementById('tabA').className=t==='a'?'tab active-a':'tab';
-  document.getElementById('tabN').className=t==='n'?'tab active-n':'tab';
 }
 </script>
 </body>
