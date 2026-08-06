@@ -164,7 +164,9 @@ function buscarReceta() {
   var h2s = document.querySelectorAll('h2');
   h2s.forEach(function(h) { h.style.display = 'none'; });
   cards.forEach(function(c) {
-    var txt = c.innerText.toLowerCase();
+    // Buscar solo en el TITULO del item (primer h3), no en todo el contenido
+    var h3 = c.querySelector('h3');
+    var txt = h3 ? h3.textContent.toLowerCase() : c.innerText.toLowerCase();
     c.style.display = txt.includes(q) ? 'block' : 'none';
   });
   // Show h2 only if it has at least one visible recipe-card after it
