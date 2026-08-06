@@ -159,11 +159,25 @@ function buscarReceta() {
     return;
   }
   g.style.display = 'none';
-  document.querySelectorAll('h2').forEach(function(h) { h.style.display = 'none'; });
   if (v) v.style.display = 'none';
+  // Hide all h2 first, then show only those with visible cards
+  var h2s = document.querySelectorAll('h2');
+  h2s.forEach(function(h) { h.style.display = 'none'; });
   cards.forEach(function(c) {
     var txt = c.innerText.toLowerCase();
     c.style.display = txt.includes(q) ? 'block' : 'none';
+  });
+  // Show h2 only if it has at least one visible recipe-card after it
+  h2s.forEach(function(h) {
+    var el = h.nextElementSibling;
+    while (el) {
+      if (el.tagName === 'H2') break;
+      if (el.classList && el.classList.contains('recipe-card') && el.style.display !== 'none') {
+        h.style.display = 'block';
+        break;
+      }
+      el = el.nextElementSibling;
+    }
   });
 }
 function mostrarTodas() {
