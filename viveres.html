@@ -688,13 +688,19 @@ function render(){
 
   // Stats
   var total=rows.reduce(function(s,r){return s+$(r[5])},0);
+  var totalGastos=rows.filter(function(r){return r[6]!=='Resta'&&r[6]!=='Transferencia'&&r[6]!=='Retiro'&&r[6]!=='Depósito'}).reduce(function(s,r){return s+$(r[5])},0);
+  var totalMov=rows.filter(function(r){return r[6]==='Resta'||r[6]==='Transferencia'||r[6]==='Retiro'}).reduce(function(s,r){return s+$(r[5])},0);
+  var totalDep=rows.filter(function(r){return r[6]==='Depósito'}).reduce(function(s,r){return s+$(r[5])},0);
   var ivu=rows.reduce(function(s,r){return s+$(r[4])},0);
   var precio=rows.reduce(function(s,r){return s+$(r[3])},0);
   var prom=rows.length?total/rows.length:0;
   document.getElementById('stats').innerHTML=
+    '<div class="stat"><div class="label">💸 Gastos</div><div class="value green">$'+totalGastos.toFixed(2)+'</div></div>'+
+    '<div class="stat"><div class="label">🔄 Movimientos</div><div class="value" style="color:#ff8a80">$'+totalMov.toFixed(2)+'</div></div>'+
+    '<div class="stat"><div class="label">💰 Depósitos</div><div class="value blue">$'+totalDep.toFixed(2)+'</div></div>'+
     '<div class="stat"><div class="label">Items</div><div class="value yellow">'+rows.length+'</div></div>'+
-    '<div class="stat"><div class="label">Total</div><div class="value green">$'+total.toFixed(2)+'</div></div>'+
-    '<div class="stat"><div class="label">Subtotal</div><div class="value blue">$'+precio.toFixed(2)+'</div></div>'+
+    '<div class="stat"><div class="label">Total General</div><div class="value" style="color:#aaa">$'+total.toFixed(2)+'</div></div>'+
+    '<div class="stat"><div class="label">Subtotal</div><div class="value" style="color:#aaa">$'+precio.toFixed(2)+'</div></div>'+
     '<div class="stat"><div class="label">IVU</div><div class="value" style="color:#ff8a80">$'+ivu.toFixed(2)+'</div></div>'+
     '<div class="stat"><div class="label">Promedio</div><div class="value" style="color:#aaa">$'+prom.toFixed(2)+'</div></div>';
 
