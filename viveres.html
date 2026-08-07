@@ -620,15 +620,11 @@ function render(){
       responsive:true,maintainAspectRatio:false,
       plugins:{
         legend:{
-          onClick:function(e,legendItem,legend){
-            var index=legendItem.index;
-            var ci=legend.chart;
-            var meta=ci.getDatasetMeta(0);
-            var showAll=meta.data[index].hidden;
-            meta.data.forEach(function(el,i){
-              el.hidden=showAll?false:(i!==index);
-            });
-            ci.update();
+          onClick:function(e,legendItem){
+            var cat=legendItem.text;
+            var sel=document.getElementById('fCat');
+            sel.value=(sel.value===cat)?'':cat;
+            render();
           }
         },
         tooltip:{callbacks:{label:function(ctx){var v=ctx.raw;var pct=(v/catTotal*100).toFixed(1);return ctx.label+': $'+v.toFixed(2)+' ('+pct+'%)';}}},
