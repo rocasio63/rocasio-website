@@ -15,6 +15,10 @@ body{background:#0f0f1a;color:#e0e0e0;font-family:-apple-system,system-ui,sans-s
 .filters{display:flex;gap:10px;padding:15px 20px;flex-wrap:wrap;background:#12122a;border-bottom:1px solid #2a2a4a}
 .filters select,.filters input{background:#1a1a2e;color:#e0e0e0;border:1px solid #2a2a4a;padding:8px 12px;border-radius:8px;font-size:.85em}
 .filters select:focus,.filters input:focus{outline:none;border-color:#f0c040}
+.tabs{display:flex;gap:8px;padding:10px 20px;background:#12122a;border-bottom:1px solid #2a2a4a}
+.tab-btn{background:#1a1a2e;color:#aaa;border:1px solid #2a2a4a;padding:8px 18px;border-radius:20px;font-size:.85em;cursor:pointer;transition:.2s}
+.tab-btn:hover{border-color:#f0c040;color:#e0e0e0}
+.tab-btn.active{background:#f0c040;color:#1a1a2e;font-weight:bold;border-color:#f0c040}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;padding:15px 20px}
 .stat{background:#1a1a2e;border-radius:10px;padding:14px;border:1px solid #2a2a4a;text-align:center}
 .stat .label{font-size:.7em;color:#888;text-transform:uppercase;letter-spacing:1px}
@@ -40,6 +44,10 @@ tr:hover{background:#1a1a2e}
 .cat-camping{background:#1b5e20;color:#a5d6a7}
 .cat-chef{background:#4e342e;color:#bcaaa4}
 .cat-gasolina{background:#1a237e;color:#90caf9}
+.cat-deposito{background:#1b5e20;color:#a5d6a7}
+.cat-transferencia{background:#4a148c;color:#ce93d8}
+.cat-retiro{background:#37474f;color:#80cbc4}
+.cat-pago{background:#263238;color:#90a4ae}
 .cat-ferreteria{background:#37474f;color:#80cbc4}
 .green{color:#4caf50}.yellow{color:#f0c040}.red{color:#f44336}.blue{color:#64b5f6}
 @media(max-width:700px){.charts{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
@@ -51,6 +59,11 @@ canvas{width:100%!important}
 <div class="header">
   <h1>🛒 Víveres Dashboard</h1>
   <span class="badge" id="updated"></span>
+</div>
+<div class="tabs" id="tabs">
+  <button class="tab-btn active" data-tab="todo">📊 Todo</button>
+  <button class="tab-btn" data-tab="gastos">💸 Gastos</button>
+  <button class="tab-btn" data-tab="depositos">💰 Depósitos</button>
 </div>
 <div class="filters">
   <select id="fCat"><option value="">Todas las categorías</option></select>
@@ -68,8 +81,7 @@ canvas{width:100%!important}
 <script>
 // Auth handled by nginx at Hub level
 
-var DATA = [
-["01/02/2026","MAYAGUEZ VICTORY","Compra","$8.90","$0.00","$8.90","Restaurant","Anna - BPPR Debit X5532"],
+var DATA = [["01/02/2026","MAYAGUEZ VICTORY","Compra","$8.90","$0.00","$8.90","Restaurant","Anna - BPPR Debit X5532"],
 ["01/02/2026","DOMINOS PIZZA 167","Pizza","$21.39","$0.00","$21.39","Restaurant","Anna - BPPR Debit X5532"],
 ["01/02/2026","WAL-MART #2067","Compra Walmart","$4.90","$0.00","$4.90","Supermercado","Anna - BPPR Debit X5532"],
 ["01/02/2026","ULTRA TOP FUEL SA","Gasolina","$30.00","$0.00","$30.00","Gas Anna","Anna - BPPR Debit X5532"],
@@ -533,7 +545,6 @@ var DATA = [
 ["08/03/2026","HOSP LA CONCEPCIO","Cafeteria","$6.33","$0.00","$6.33","Restaurant","Anna - BPPR Debit X5532"],
 ["08/03/2026","WAL-MART #2067","Compra Walmart","$15.83","$0.00","$15.83","Supermercado","Anna - BPPR Debit X5532"],
 ["08/04/2026","WHEAT BAKERY","Pan","$12.09","$0.00","$12.09","Supermercado","Anna - BPPR Debit X5532"],
-["","","TOTAL","","$6.63","$80.73","","15 items"],
 ["12/26/2026","Depósito EFT Paypal","Depósito EFT Paypal","$100.00","$0.00","$100.00","Transferencia","Cuenta Cheques 243-095208"],
 ["01/02/2026","Depósito EFT Tolc Credits","Depósito EFT Tolc Credits","$1300.00","$0.00","$1300.00","Depósito","Cuenta Cheques 243-095208"],
 ["01/22/2026","TelePago Crédito","TelePago Crédito","$115.92","$0.00","$115.92","Transferencia","Cuenta Cheques 243-095208"],
@@ -641,8 +652,7 @@ var DATA = [
 ["07/15/2026","TelePago Pentagon Federal Cu X4145","TelePago Pentagon Federal Cu X4145","$225.00","$0.00","$225.00","Pago EFT","Cuenta Cheques 243-095208"],
 ["07/21/2026","TelePago Transferencia a Cuenta Cheques X3960","TelePago Transferencia a Cuenta Cheques X3960","$5.00","$0.00","$5.00","Transferencia","Cuenta Cheques 243-095208"],
 ["07/21/2026","Pago EFT Sunrun","Pago EFT Sunrun","$201.64","$0.00","$201.64","Pago EFT","Cuenta Cheques 243-095208"],
-["07/21/2026","Cargo por servicio","Cargo por servicio","$5.00","$0.00","$5.00","Pago EFT","Cuenta Cheques 243-095208"]
-];
+["07/21/2026","Cargo por servicio","Cargo por servicio","$5.00","$0.00","$5.00","Pago EFT","Cuenta Cheques 243-095208"]];
 
 DATA.sort(function(a,b){
   var pa=a[0].split('/'),pb=b[0].split('/');
@@ -652,8 +662,8 @@ DATA.sort(function(a,b){
 
 function $(v){return parseFloat(String(v||'0').replace(/[$,]/g,''))||0}
 
-var COLORS={Supermercado:'#4caf50',Alcohol:'#ce93d8',Restaurant:'#ff8a80',Mascotas:'#64b5f6','Efectos Personales':'#ffcc80',Regalos:'#f48fb1',Medicinas:'#80cbc4',Autos:'#90a4ae',Camping:'#a5d6a7',Chef:'#bcaaa4',Gasolina:'#90caf9','Ferretería':'#80cbc4'};
-var CATCLASS={Supermercado:'cat-supermercado',Alcohol:'cat-alcohol',Restaurant:'cat-restaurant',Mascotas:'cat-mascotas','Efectos Personales':'cat-efectos',Regalos:'cat-regalos',Medicinas:'cat-medicinas',Autos:'cat-autos',Camping:'cat-camping',Chef:'cat-chef',Gasolina:'cat-gasolina','Ferretería':'cat-ferreteria'};
+var COLORS={Supermercado:'#4caf50',Alcohol:'#ce93d8',Restaurant:'#ff8a80',Mascotas:'#64b5f6','Efectos Personales':'#ffcc80',Regalos:'#f48fb1',Medicinas:'#80cbc4',Autos:'#90a4ae',Camping:'#a5d6a7',Chef:'#bcaaa4',Gasolina:'#90caf9','Ferretería':'#80cbc4','Depósito':'#a5d6a7','Transferencia':'#ce93d8','Retiro':'#80cbc4','Pago EFT':'#90a4ae'};
+var CATCLASS={Supermercado:'cat-supermercado',Alcohol:'cat-alcohol',Restaurant:'cat-restaurant',Mascotas:'cat-mascotas','Efectos Personales':'cat-efectos',Regalos:'cat-regalos',Medicinas:'cat-medicinas',Autos:'cat-autos',Camping:'cat-camping',Chef:'cat-chef',Gasolina:'cat-gasolina','Ferretería':'cat-ferreteria','Depósito':'cat-deposito','Transferencia':'cat-transferencia','Retiro':'cat-retiro','Pago EFT':'cat-pago'};
 
 var months=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
 function monthKey(d){var p=d.split('/');return p[2]+'-'+p[0];}
@@ -668,10 +678,13 @@ var fMonth=document.getElementById('fMonth');
 [...mons].sort().forEach(function(m){var o=document.createElement('option');o.value=m;o.textContent=monthLabel(m);fMonth.appendChild(o);});
 
 var pieChart,barChart;
+var tabMode='todo';
 
 function render(){
   var fc=fCat.value,fm=fMonth.value,fn=fNotes.value,fs=fSearch.value.toLowerCase();
   var rows=DATA.filter(function(r){
+    if(tabMode==='gastos'&&r[6]==='Depósito')return false;
+    if(tabMode==='depositos'&&r[6]!=='Depósito')return false;
     if(fc&&r[6]!==fc)return false;
     if(fm&&monthKey(r[0])!==fm)return false;
     if(fn==='Anna'&&(r[7]||'').indexOf('Anna')===-1)return false;
@@ -756,6 +769,14 @@ document.getElementById('fCat').onchange=render;
 document.getElementById('fMonth').onchange=render;
 document.getElementById('fNotes').onchange=render;
 document.getElementById('fSearch').oninput=render;
+document.querySelectorAll('.tab-btn').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab-btn').forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    tabMode=b.dataset.tab;
+    render();
+  };
+});
 render();
 </script>
 </body>
