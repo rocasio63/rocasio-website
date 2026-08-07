@@ -55,6 +55,7 @@ canvas{width:100%!important}
 <div class="filters">
   <select id="fCat"><option value="">Todas las categorías</option></select>
   <select id="fMonth"><option value="">Todos los meses</option></select>
+  <select id="fNotes"><option value="">Todas las notas</option><option value="Anna">🅰️ Anna</option><option value="noAnna">Sin Anna</option></select>
   <input type="text" id="fSearch" placeholder="🔍 Buscar tienda o artículo...">
 </div>
 <div class="stats" id="stats"></div>
@@ -581,10 +582,12 @@ var fMonth=document.getElementById('fMonth');
 var pieChart,barChart;
 
 function render(){
-  var fc=fCat.value,fm=fMonth.value,fs=fSearch.value.toLowerCase();
+  var fc=fCat.value,fm=fMonth.value,fn=fNotes.value,fs=fSearch.value.toLowerCase();
   var rows=DATA.filter(function(r){
     if(fc&&r[6]!==fc)return false;
     if(fm&&monthKey(r[0])!==fm)return false;
+    if(fn==='Anna'&&(r[7]||'').indexOf('Anna')===-1)return false;
+    if(fn==='noAnna'&&(r[7]||'').indexOf('Anna')!==-1)return false;
     if(fs&&(r[1].toLowerCase().indexOf(fs)===-1&&r[2].toLowerCase().indexOf(fs)===-1))return false;
     return true;
   });
@@ -655,6 +658,7 @@ function render(){
 
 document.getElementById('fCat').onchange=render;
 document.getElementById('fMonth').onchange=render;
+document.getElementById('fNotes').onchange=render;
 document.getElementById('fSearch').oninput=render;
 render();
 </script>
