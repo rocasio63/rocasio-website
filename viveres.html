@@ -1352,11 +1352,13 @@ function render(){
 
   // Table
   var tbody=document.getElementById('tbody');
-  tbody.innerHTML='';
-  rows.forEach(function(r){
+  var trs=new Array(rows.length);
+  for(var i=0;i<rows.length;i++){
+    var r=rows[i];
     var catClass=CATCLASS[r[6]]||'';
-    tbody.innerHTML+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td style="text-align:right">'+r[3]+'</td><td style="text-align:right">'+r[4]+'</td><td style="text-align:right;font-weight:bold">'+r[5]+'</td><td><span class="cat '+catClass+'">'+r[6]+'</span></td><td style="color:#888;font-size:.8em">'+r[7]+'</td></tr>';
-  });
+    trs[i]='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td style="text-align:right">'+r[3]+'</td><td style="text-align:right">'+r[4]+'</td><td style="text-align:right;font-weight:bold">'+r[5]+'</td><td><span class="cat '+catClass+'">'+r[6]+'</span></td><td style="color:#888;font-size:.8em">'+r[7]+'</td></tr>';
+  }
+  tbody.innerHTML=trs.join('');
 
   document.getElementById('updated').textContent='Actualizado: '+new Date().toLocaleDateString('es-PR');
 }
