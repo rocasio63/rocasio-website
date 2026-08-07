@@ -81,7 +81,8 @@ canvas{width:100%!important}
 <script>
 // Auth handled by nginx at Hub level
 
-var DATA = [["01/02/2026","MAYAGUEZ VICTORY","Compra","$8.90","$0.00","$8.90","Restaurant","Anna - BPPR Debit X5532"],
+var DATA = [
+["01/02/2026","MAYAGUEZ VICTORY","Compra","$8.90","$0.00","$8.90","Restaurant","Anna - BPPR Debit X5532"],
 ["01/02/2026","DOMINOS PIZZA 167","Pizza","$21.39","$0.00","$21.39","Restaurant","Anna - BPPR Debit X5532"],
 ["01/02/2026","WAL-MART #2067","Compra Walmart","$4.90","$0.00","$4.90","Supermercado","Anna - BPPR Debit X5532"],
 ["01/02/2026","ULTRA TOP FUEL SA","Gasolina","$30.00","$0.00","$30.00","Gas Anna","Anna - BPPR Debit X5532"],
@@ -539,10 +540,11 @@ var DATA = [["01/02/2026","MAYAGUEZ VICTORY","Compra","$8.90","$0.00","$8.90","R
 ["08/03/2026","HOSP LA CONCEPCIO","Cafeteria","$6.33","$0.00","$6.33","Restaurant","Anna - BPPR Debit X5532"],
 ["08/03/2026","WAL-MART #2067","Compra Walmart","$15.83","$0.00","$15.83","Supermercado","Anna - BPPR Debit X5532"],
 ["08/04/2026","WHEAT BAKERY","Pan","$12.09","$0.00","$12.09","Supermercado","Anna - BPPR Debit X5532"],
-["12/26/2026","Depósito EFT Paypal","Depósito EFT Paypal","$100.00","$0.00","$100.00","Transferencia","Cuenta Cheques 243-095208"],
+["","","TOTAL","","$6.63","$80.73","","15 items"],
+["12/26/2025","Depósito EFT Paypal","Depósito EFT Paypal","$100.00","$0.00","$100.00","Transferencia","Cuenta Cheques 243-095208"],
 ["01/02/2026","Depósito EFT Tolc Credits","Depósito EFT Tolc Credits","$1300.00","$0.00","$1300.00","Depósito","Cuenta Cheques 243-095208"],
 ["01/22/2026","TelePago Crédito","TelePago Crédito","$115.92","$0.00","$115.92","Transferencia","Cuenta Cheques 243-095208"],
-["12/26/2026","Pago EFT Paypal Inst xfer SIRILED","Pago EFT Paypal Inst xfer SIRILED","$90.00","$0.00","$90.00","Pago EFT","Cuenta Cheques 243-095208"],
+["12/26/2025","Pago EFT Paypal Inst xfer SIRILED","Pago EFT Paypal Inst xfer SIRILED","$90.00","$0.00","$90.00","Pago EFT","Cuenta Cheques 243-095208"],
 ["01/02/2026","TelePago Transferencia a Cuenta Ahorros X4745","TelePago Transferencia a Cuenta Ahorros X4745","$125.00","$0.00","$125.00","Transferencia","Cuenta Cheques 243-095208"],
 ["01/02/2026","Pago EFT T-Mobile PCS Svc","Pago EFT T-Mobile PCS Svc","$80.00","$0.00","$80.00","Pago EFT","Cuenta Cheques 243-095208"],
 ["01/05/2026","TelePago Master Card Banco Popular X2332","TelePago Master Card Banco Popular X2332","$200.00","$0.00","$200.00","Pago EFT","Cuenta Cheques 243-095208"],
@@ -646,7 +648,8 @@ var DATA = [["01/02/2026","MAYAGUEZ VICTORY","Compra","$8.90","$0.00","$8.90","R
 ["07/15/2026","TelePago Pentagon Federal Cu X4145","TelePago Pentagon Federal Cu X4145","$225.00","$0.00","$225.00","Pago EFT","Cuenta Cheques 243-095208"],
 ["07/21/2026","TelePago Transferencia a Cuenta Cheques X3960","TelePago Transferencia a Cuenta Cheques X3960","$5.00","$0.00","$5.00","Transferencia","Cuenta Cheques 243-095208"],
 ["07/21/2026","Pago EFT Sunrun","Pago EFT Sunrun","$201.64","$0.00","$201.64","Pago EFT","Cuenta Cheques 243-095208"],
-["07/21/2026","Cargo por servicio","Cargo por servicio","$5.00","$0.00","$5.00","Pago EFT","Cuenta Cheques 243-095208"]];
+["07/21/2026","Cargo por servicio","Cargo por servicio","$5.00","$0.00","$5.00","Pago EFT","Cuenta Cheques 243-095208"]
+];
 
 DATA.sort(function(a,b){
   var pa=a[0].split('/'),pb=b[0].split('/');
