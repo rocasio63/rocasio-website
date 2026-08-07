@@ -627,8 +627,8 @@ function render(){
             render();
           }
         },
-        tooltip:{callbacks:{label:function(ctx){var v=ctx.raw;var pct=(v/catTotal*100).toFixed(1);return ctx.label+': $'+v.toFixed(2)+' ('+pct+'%)';}}},
-        datalabels:{color:'white',font:{weight:'bold',size:14,family:'Arial'},formatter:function(value,ctx){var pct=(value/catTotal*100).toFixed(1);return pct+'%';},anchor:'end',align:'end',offset:8,clamp:true,textStrokeColor:'black',textStrokeWidth:3}
+        tooltip:{callbacks:{label:function(ctx){var v=ctx.raw;var ds=ctx.chart.data.datasets[0].data;var tot=ds.reduce(function(a,b){return a+(+b||0)},0);var pct=(+v/tot*100).toFixed(1);return ctx.label+': $'+(+v).toFixed(2)+' ('+pct+'%)';}}},
+        datalabels:{display:true,color:'white',font:{weight:'bold',size:14,family:'Arial'},formatter:function(value,ctx){var ds=ctx.chart.data.datasets[0].data;var tot=ds.reduce(function(a,b){return a+(+b||0)},0);var pct=(+value/tot*100).toFixed(1);return pct+'%';},anchor:'center',align:'center',offset:0,clamp:true,textStrokeColor:'black',textStrokeWidth:3}
       }
     },
     plugins:[ChartDataLabels]
@@ -649,7 +649,7 @@ function render(){
       responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},datalabels:{display:false},
         tooltip:{callbacks:{label:function(ctx){return'$'+ctx.raw.toFixed(2);}}}},
-      scales:{y:{ticks:{color:'#888',callback:function(v){return'$'+v}},grid:{color:'#1a1a2e'}},x:{ticks:{color:'#888'},grid:{display:false}}}
+      scales:{y:{beginAtZero:true,ticks:{color:'#888',callback:function(v){return'$'+v}},grid:{color:'#1a1a2e'}},x:{ticks:{color:'#888'},grid:{display:false}}}
     }
   });
 
