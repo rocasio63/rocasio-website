@@ -50,6 +50,8 @@ tr:hover{background:#1a1a2e}
 .cat-transferencia{background:#4a148c;color:#ce93d8}
 .cat-retiro{background:#37474f;color:#80cbc4}
 .cat-pago{background:#263238;color:#90a4ae}
+.cat-amazon{background:#37474f;color:#ffb74d}
+.cat-paypal{background:#003087;color:#8ab4f8}
 .cat-ferreteria{background:#37474f;color:#80cbc4}
 .green{color:#4caf50}.yellow{color:#f0c040}.red{color:#f44336}.blue{color:#64b5f6}
 @media(max-width:700px){.charts{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
@@ -1252,8 +1254,8 @@ DATA.sort(function(a,b){
 
 function $(v){return parseFloat(String(v||'0').replace(/[$,]/g,''))||0}
 
-var COLORS={Supermercado:'#4caf50',Alcohol:'#ce93d8',Restaurant:'#ff8a80',Mascotas:'#64b5f6','Efectos Personales':'#ffcc80',Regalos:'#f48fb1',Medicinas:'#80cbc4',Autos:'#90a4ae',Camping:'#a5d6a7',Chef:'#bcaaa4',Gasolina:'#90caf9','Ferretería':'#80cbc4','Depósito':'#a5d6a7','Transferencia':'#ce93d8','Retiro':'#80cbc4','Pago EFT':'#90a4ae','Resta':'#ff8a80','Fast Food':'#ffb74d'};
-var CATCLASS={Supermercado:'cat-supermercado',Alcohol:'cat-alcohol',Restaurant:'cat-restaurant',Mascotas:'cat-mascotas','Efectos Personales':'cat-efectos',Regalos:'cat-regalos',Medicinas:'cat-medicinas',Autos:'cat-autos',Camping:'cat-camping',Chef:'cat-chef',Gasolina:'cat-gasolina','Ferretería':'cat-ferreteria','Depósito':'cat-deposito','Transferencia':'cat-transferencia','Retiro':'cat-retiro','Pago EFT':'cat-pago','Resta':'cat-resta','Fast Food':'cat-fastfood'};
+var COLORS={Supermercado:'#4caf50',Alcohol:'#ce93d8',Restaurant:'#ff8a80',Mascotas:'#64b5f6','Efectos Personales':'#ffcc80',Regalos:'#f48fb1',Medicinas:'#80cbc4',Autos:'#90a4ae',Camping:'#a5d6a7',Chef:'#bcaaa4',Gasolina:'#90caf9','Ferretería':'#80cbc4','Depósito':'#a5d6a7','Transferencia':'#ce93d8','Retiro':'#80cbc4','Pago EFT':'#90a4ae','Resta':'#ff8a80','Fast Food':'#ffb74d',Amazon:'#ffb74d',PayPal:'#8ab4f8'};
+var CATCLASS={Supermercado:'cat-supermercado',Alcohol:'cat-alcohol',Restaurant:'cat-restaurant',Mascotas:'cat-mascotas','Efectos Personales':'cat-efectos',Regalos:'cat-regalos',Medicinas:'cat-medicinas',Autos:'cat-autos',Camping:'cat-camping',Chef:'cat-chef',Gasolina:'cat-gasolina','Ferretería':'cat-ferreteria','Depósito':'cat-deposito','Transferencia':'cat-transferencia','Retiro':'cat-retiro','Pago EFT':'cat-pago','Resta':'cat-resta','Fast Food':'cat-fastfood',Amazon:'cat-amazon',PayPal:'cat-paypal'};
 
 var months=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
 function monthKey(d){var p=d.split('/');return p[2]+'-'+p[0];}
