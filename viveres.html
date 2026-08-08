@@ -1264,6 +1264,8 @@ function monthLabel(k){var p=k.split('-');return months[parseInt(p[1])-1]+' '+p[
 // Populate filters
 var cats=new Set(),mons=new Set();
 DATA.forEach(function(r){cats.add(r[6]);mons.add(monthKey(r[0]));});
+// Asegurar que las categorías definidas aparezcan aunque no tengan datos aún
+Object.keys(COLORS).forEach(function(c){cats.add(c);});
 var fCat=document.getElementById('fCat');
 [...cats].sort().forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=c;fCat.appendChild(o);});
 var fMonth=document.getElementById('fMonth');
