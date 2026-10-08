@@ -11,6 +11,8 @@ body{background:#0f0f1a;color:#e0e0e0;font-family:-apple-system,system-ui,sans-s
 .tab{flex:1;text-align:center;padding:14px 10px;font-size:.95em;font-weight:bold;color:#555;cursor:pointer;border-bottom:4px solid transparent;transition:.2s;-webkit-tap-highlight-color:transparent}
 .tab.active-y{color:#f0c040;border-bottom-color:#f0c040;background:#12122a}
 .tab.active-a{color:#64b5f6;border-bottom-color:#64b5f6;background:#12122a}
+.tab.active-e{color:#a5d6a7;border-bottom-color:#a5d6a7;background:#12122a}
+.he h1{color:#a5d6a7}
 .tab.active-n{color:#ff8a80;border-bottom-color:#ff8a80;background:#12122a}
 .tab:active{background:#222}
 .tab-icon{font-size:1.5em;display:block;margin-bottom:2px}
@@ -70,6 +72,9 @@ th.sortable:active{color:#f0c040}
 </div>
 <div class="tab" id="tabA" onclick="show('a')">
 <span class="tab-icon">👤</span>Alexis
+</div>
+<div class="tab" id="tabE" onclick="show('e')">
+<span class="tab-icon">💵</span>Efectivo
 </div>
 </div>
 
@@ -219,6 +224,69 @@ Los depósitos se dividen mitad y mitad. El 05/01 se pagó $125.00 a cada uno po
 </div>
 </div>
 
+<!-- EFECTIVO -->
+<div class="view" id="vE">
+<div class="hdr he">
+<h1>💵 Yary – Dinero Efectivo</h1>
+<div class="sub">Fuente: Yary_Gastos.xlsx | Actualizado: 10/07/2026</div>
+</div>
+<div class="stats">
+<div class="s"><div class="l">Balance Efectivo</div><div class="v" style="color:#a5d6a7">$227.46</div></div>
+<div class="s"><div class="l">Entradas</div><div class="v dep">+$375.00</div></div>
+<div class="s"><div class="l">Gastado</div><div class="v" style="color:#ef5350">-$147.54</div></div>
+<div class="s"><div class="l">Movimientos</div><div class="v" style="color:#64b5f6">41</div></div>
+</div>
+<div class="sec">
+<h2>📒 Movimientos de efectivo</h2>
+<table>
+<thead><tr><th>Fecha</th><th>Concepto</th><th class="r">Monto</th><th class="r">Balance</th></tr></thead>
+<tbody>
+<tr><td>10/06/2026</td><td>Depósito</td><td class="r dep">+$125.00</td><td class="r">$227.46</td></tr>
+<tr><td>09/17/2026</td><td>Walgreens - Act II popcorn, Crunch N Munch, Werthers caramel, Lactovit gel de baño, bolsa (incl. IVU $1.20)</td><td class="r" style="color:#ef5350">-$12.78</td><td class="r">$102.46</td></tr>
+<tr><td>09/10/2026</td><td>Walgreens - NICE BBQ chips, Tootsie Fruit Chew, Iced Oatmeal, Hypoallergenic Wipes, Degree Waterlily, Crunch N Munch, Lubricant, bolsa</td><td class="r" style="color:#ef5350">-$18.06</td><td class="r">$115.24</td></tr>
+<tr><td>08/20/2026</td><td>Walgreens - Bauducco x2, BBQ chips, NISSIN, Moon Pie, Dude Wipes, Brach's, Post Cups, Lactovit, bolsa</td><td class="r" style="color:#ef5350">-$22.82</td><td class="r">$133.30</td></tr>
+<tr><td>06/18/2026</td><td>Walgreens - IVU (tax)</td><td class="r" style="color:#ef5350">-$0.71</td><td class="r">$156.12</td></tr>
+<tr><td>06/18/2026</td><td>Walgreens - Honey Nut Cheerios</td><td class="r" style="color:#ef5350">-$1.25</td><td class="r">$156.83</td></tr>
+<tr><td>06/18/2026</td><td>Walgreens - Holsum Donitas</td><td class="r" style="color:#ef5350">-$1.29</td><td class="r">$158.08</td></tr>
+<tr><td>06/18/2026</td><td>Walgreens - Wexford notebook</td><td class="r" style="color:#ef5350">-$0.99</td><td class="r">$159.37</td></tr>
+<tr><td>06/18/2026</td><td>Walgreens - Maria cookies 6oz</td><td class="r" style="color:#ef5350">-$1.25</td><td class="r">$160.36</td></tr>
+<tr><td>06/18/2026</td><td>Walgreens - Grandma oatmeal raisin cookies</td><td class="r" style="color:#ef5350">-$1.29</td><td class="r">$161.61</td></tr>
+<tr><td>06/18/2026</td><td>Walgreens - Oral B toothbrush</td><td class="r" style="color:#ef5350">-$1.25</td><td class="r">$162.90</td></tr>
+<tr><td>06/18/2026</td><td>Walgreens - Butter Ring cookies 5oz</td><td class="r" style="color:#ef5350">-$1.99</td><td class="r">$164.15</td></tr>
+<tr><td>06/18/2026</td><td>Walgreens - BIC gel pens 4s</td><td class="r" style="color:#ef5350">-$2.99</td><td class="r">$166.14</td></tr>
+<tr><td>06/18/2026</td><td>Walgreens - Crest pasta dental</td><td class="r" style="color:#ef5350">-$0.99</td><td class="r">$169.13</td></tr>
+<tr><td>06/18/2026</td><td>Walgreens - Campbell's sopa pollo</td><td class="r" style="color:#ef5350">-$1.25</td><td class="r">$170.12</td></tr>
+<tr><td>06/18/2026</td><td>Walgreens - BBQ potato chips 7.75oz</td><td class="r" style="color:#ef5350">-$1.99</td><td class="r">$171.37</td></tr>
+<tr><td>06/12/2026</td><td>Internet - pago tarjeta</td><td class="r" style="color:#ef5350">-$20.00</td><td class="r">$173.36</td></tr>
+<tr><td>06/10/2026</td><td>Farmacia Caridad - Lajas</td><td class="r" style="color:#ef5350">-$4.00</td><td class="r">$193.36</td></tr>
+<tr><td>06/04/2026</td><td>Depósito</td><td class="r dep">+$125.00</td><td class="r">$197.36</td></tr>
+<tr><td>05/28/2026</td><td>Walgreens - IVU (tax)</td><td class="r" style="color:#ef5350">-$0.71</td><td class="r">$72.36</td></tr>
+<tr><td>05/28/2026</td><td>Walgreens - Maria cookies 6oz</td><td class="r" style="color:#ef5350">-$1.25</td><td class="r">$73.07</td></tr>
+<tr><td>05/28/2026</td><td>Walgreens - Honey Nut Cheerios 3.5oz</td><td class="r" style="color:#ef5350">-$1.25</td><td class="r">$74.32</td></tr>
+<tr><td>05/28/2026</td><td>Walgreens - Crunch N Munch caramel 3.5oz</td><td class="r" style="color:#ef5350">-$1.25</td><td class="r">$75.57</td></tr>
+<tr><td>05/28/2026</td><td>Walgreens - BBQ potato chips 7.75oz</td><td class="r" style="color:#ef5350">-$1.99</td><td class="r">$76.82</td></tr>
+<tr><td>05/28/2026</td><td>Walgreens - Shopping bag</td><td class="r" style="color:#ef5350">-$0.10</td><td class="r">$78.81</td></tr>
+<tr><td>05/28/2026</td><td>Walgreens - Colgate kids toothpaste 4.6oz</td><td class="r" style="color:#ef5350">-$2.99</td><td class="r">$78.91</td></tr>
+<tr><td>05/28/2026</td><td>Walgreens - Air freshener 9oz</td><td class="r" style="color:#ef5350">-$1.50</td><td class="r">$81.90</td></tr>
+<tr><td>05/19/2026</td><td>Internet - pago tarjeta</td><td class="r" style="color:#ef5350">-$20.00</td><td class="r">$83.40</td></tr>
+<tr><td>05/19/2026</td><td>Walgreens - IVU (tax)</td><td class="r" style="color:#ef5350">-$0.30</td><td class="r">$103.40</td></tr>
+<tr><td>05/19/2026</td><td>Walgreens - Holsum Donitas</td><td class="r" style="color:#ef5350">-$1.29</td><td class="r">$103.70</td></tr>
+<tr><td>05/19/2026</td><td>Walgreens - Gillette clear gel deodorant</td><td class="r" style="color:#ef5350">-$1.99</td><td class="r">$104.99</td></tr>
+<tr><td>05/19/2026</td><td>Walgreens - Real Coco coconut water 11.2oz</td><td class="r" style="color:#ef5350">-$1.25</td><td class="r">$106.98</td></tr>
+<tr><td>05/19/2026</td><td>Walgreens - BBQ potato chips 2.5oz</td><td class="r" style="color:#ef5350">-$1.29</td><td class="r">$108.23</td></tr>
+<tr><td>05/19/2026</td><td>Walgreens - Shopping bag</td><td class="r" style="color:#ef5350">-$0.10</td><td class="r">$109.52</td></tr>
+<tr><td>05/19/2026</td><td>Walgreens - Petit Nectar Pera 6.8oz 3s</td><td class="r" style="color:#ef5350">-$1.99</td><td class="r">$109.62</td></tr>
+<tr><td>05/19/2026</td><td>Walgreens - Pearl Beads, Crest, Oral B, Body Wash, Bolsa</td><td class="r" style="color:#ef5350">-$7.11</td><td class="r">$111.61</td></tr>
+<tr><td>05/08/2026</td><td>Walgreens - Soothing Coconut body wash 15oz</td><td class="r" style="color:#ef5350">-$2.79</td><td class="r">$118.72</td></tr>
+<tr><td>05/08/2026</td><td>Walgreens - Oral B toothbrush</td><td class="r" style="color:#ef5350">-$1.25</td><td class="r">$121.51</td></tr>
+<tr><td>05/08/2026</td><td>Walgreens - Crest pasta dental</td><td class="r" style="color:#ef5350">-$0.99</td><td class="r">$122.76</td></tr>
+<tr><td>05/08/2026</td><td>Walgreens - Pearl Beads Fresh Linen 8oz</td><td class="r" style="color:#ef5350">-$1.25</td><td class="r">$123.75</td></tr>
+<tr><td>—</td><td>Saldo inicial</td><td class="r dep">+$125.00</td><td class="r">$125.00</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
 <script>
 var curMonth='all';
 var curSort={col:'fecha',dir:'desc'};
@@ -304,8 +372,10 @@ function toggleSort(col,th){
 function show(t){
   document.getElementById('vY').className=t==='y'?'view active':'view';
   document.getElementById('vA').className=t==='a'?'view active':'view';
+  document.getElementById('vE').className=t==='e'?'view active':'view';
   document.getElementById('tabY').className=t==='y'?'tab active-y':'tab';
   document.getElementById('tabA').className=t==='a'?'tab active-a':'tab';
+  document.getElementById('tabE').className=t==='e'?'tab active-e':'tab';
 }
 
 // orden inicial: mas reciente primero
