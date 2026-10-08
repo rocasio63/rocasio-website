@@ -46,10 +46,17 @@ tr:hover{background:#1a1a2e}
 .info .row .v{font-weight:bold}
 .note{background:#1a1a2e;border-radius:10px;padding:14px;border:1px solid #2a2a4a;font-size:.8em;color:#bbb;line-height:1.6}
 .tr{color:#f44336}.cr{color:#4caf50}
-.filter-bar{display:flex;gap:6px;padding:10px 20px;flex-wrap:wrap}
+.filter-bar{display:flex;gap:6px;padding:10px 20px;flex-wrap:wrap;align-items:center}
 .filter-btn{padding:6px 14px;border-radius:20px;border:1px solid #2a2a4a;background:#1a1a2e;color:#888;font-size:.78em;cursor:pointer;transition:.2s}
 .filter-btn.active{background:#f0c040;color:#0f0f1a;border-color:#f0c040;font-weight:bold}
 .filter-btn:active{transform:scale(.95)}
+.sort-bar{display:flex;gap:6px;padding:0 20px 10px;flex-wrap:wrap;align-items:center}
+.sort-lbl{font-size:.72em;color:#666;text-transform:uppercase;letter-spacing:1px;margin-right:2px}
+.sort-btn{padding:6px 14px;border-radius:20px;border:1px solid #2a2a4a;background:#1a1a2e;color:#888;font-size:.78em;cursor:pointer;transition:.2s;-webkit-tap-highlight-color:transparent}
+.sort-btn.active{background:#64b5f6;color:#0f0f1a;border-color:#64b5f6;font-weight:bold}
+.sort-btn:active{transform:scale(.95)}
+th.sortable{cursor:pointer;-webkit-tap-highlight-color:transparent}
+th.sortable:active{color:#f0c040}
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5066900006813744"
      crossorigin="anonymous"></script>
@@ -70,14 +77,14 @@ tr:hover{background:#1a1a2e}
 <div class="view active" id="vY">
 <div class="hdr hy">
 <h1>🛒 Yary – Gastos</h1>
-<div class="sub">Cuenta: Junta Fiscal x3539 | Actualizado: 08/12/2026</div>
+<div class="sub">Cuenta: Junta Fiscal x3539 | Actualizado: 10/07/2026</div>
 </div>
 <div class="stats">
-<div class="s"><div class="l">Total Gastos</div><div class="v" style="color:#f0c040">$271.08</div></div>
-<div class="s"><div class="l">Transacciones</div><div class="v" style="color:#64b5f6">20</div></div>
-<div class="s"><div class="l">Depósito Yary</div><div class="v dep">+$375.00</div></div>
-<div class="s"><div class="l">Balance Yary</div><div class="v" style="color:#4caf50">$103.92</div></div>
-<div class="s" style="grid-column:span 2"><div class="l">💰 Balance Total Cuenta x3539</div><div class="v" style="color:#64b5f6;font-size:1.6em">$822.84</div></div>
+<div class="s"><div class="l">Total Gastos</div><div class="v" style="color:#f0c040">$361.41</div></div>
+<div class="s"><div class="l">Transacciones</div><div class="v" style="color:#64b5f6">27</div></div>
+<div class="s"><div class="l">Depósito Yary</div><div class="v dep">+$625.00</div></div>
+<div class="s"><div class="l">Balance Yary</div><div class="v" style="color:#4caf50">$263.59</div></div>
+<div class="s" style="grid-column:span 2"><div class="l">💰 Balance Total Cuenta x3539</div><div class="v" style="color:#64b5f6;font-size:1.6em">$1,072.84</div></div>
 </div>
 
 <div class="sec">
@@ -88,30 +95,34 @@ tr:hover{background:#1a1a2e}
 <div class="row"><div class="k">06/04/2026</div><div class="v dep">+$250.00 (Transferencia)</div></div>
 <div class="row"><div class="k">07/07/2026</div><div class="v dep">+$250.00 (Transferencia)</div></div>
 <div class="row"><div class="k">08/07/2026</div><div class="v dep">+$250.00 (Depósito de Alexandro)</div></div>
-<div class="row"><div class="k">Total brutos</div><div class="v dep">+$1,250.00</div></div>
+<div class="row"><div class="k">09/03/2026</div><div class="v dep">+$250.00 (Transferencia)</div></div>
+<div class="row"><div class="k">10/06/2026</div><div class="v dep">+$250.00 (Transferencia)</div></div>
+<div class="row"><div class="k">Total brutos</div><div class="v dep">+$1,750.00</div></div>
 <div class="row"><div class="k">05/01 Pago Depósito de Alexandro</div><div class="v tr">-$250.00</div></div>
 <div class="row"><div class="k">08/07 Depósito de Alexandro</div><div class="v tr">-$250.00</div></div>
-<div class="row"><div class="k">Total neto</div><div class="v dep">+$750.00</div></div>
-<div class="row"><div class="k">½ Yary</div><div class="v dep">+$375.00</div></div>
-<div class="row"><div class="k">½ Alexis</div><div class="v" style="color:#64b5f6">+$375.00</div></div>
+<div class="row"><div class="k">Total neto</div><div class="v dep">+$1,250.00</div></div>
+<div class="row"><div class="k">½ Yary</div><div class="v dep">+$625.00</div></div>
+<div class="row"><div class="k">½ Alexis</div><div class="v" style="color:#64b5f6">+$625.00</div></div>
 </div>
 </div>
 
 <div class="sec">
 <h2>🥧 Por Tienda</h2>
-<div class="bar"><div class="n">Walgreens</div><div class="t"><div class="f" style="width:100%;background:#f0c040">89%</div></div><div class="a">$202.91</div></div>
-<div class="bar"><div class="n">Walmart</div><div class="t"><div class="f" style="width:6%;background:#64b5f6">6%</div></div><div class="a">$11.13</div></div>
-<div class="bar"><div class="n">Panadería Trapiche</div><div class="t"><div class="f" style="width:6%;background:#ce93d8">6%</div></div><div class="a">$10.73</div></div>
-<div class="bar"><div class="n">Farmacia Caridad</div><div class="t"><div class="f" style="width:2%;background:#ff9800">2%</div></div><div class="a">$4.00</div></div>
+<div class="bar"><div class="n">Walgreens</div><div class="t"><div class="f" style="width:90%;background:#f0c040">90%</div></div><div class="a">$326.18</div></div>
+<div class="bar"><div class="n">Walmart</div><div class="t"><div class="f" style="width:3%;background:#64b5f6">3%</div></div><div class="a">$11.13</div></div>
+<div class="bar"><div class="n">Panadería Trapiche</div><div class="t"><div class="f" style="width:6%;background:#ce93d8">6%</div></div><div class="a">$20.10</div></div>
+<div class="bar"><div class="n">Farmacia Caridad</div><div class="t"><div class="f" style="width:1%;background:#ff9800">1%</div></div><div class="a">$4.00</div></div>
 <div class="bar"><div class="n">Depósito de Alexandro</div><div class="t"><div class="f" style="width:100%;background:#f44336">—</div></div><div class="a">-$250.00</div></div>
 </div>
 
 <div class="sec">
 <h2>📊 Por Mes</h2>
-<div class="bar"><div class="n">05/2026</div><div class="t"><div class="f" style="width:27%;background:#f0c040">27%</div></div><div class="a">$46.36</div></div>
-<div class="bar"><div class="n">06/2026</div><div class="t"><div class="f" style="width:51%;background:#64b5f6">51%</div></div><div class="a">$90.38</div></div>
-<div class="bar"><div class="n">07/2026</div><div class="t"><div class="f" style="width:41%;background:#ce93d8">41%</div></div><div class="a">$103.53</div></div>
-<div class="bar"><div class="n">08/2026</div><div class="t"><div class="f" style="width:5%;background:#90caf9">5%</div></div><div class="a">$14.32</div></div>
+<div class="bar"><div class="n">05/2026</div><div class="t"><div class="f" style="width:8%;background:#f0c040">8%</div></div><div class="a">$26.36</div></div>
+<div class="bar"><div class="n">06/2026</div><div class="t"><div class="f" style="width:22%;background:#64b5f6">22%</div></div><div class="a">$70.38</div></div>
+<div class="bar"><div class="n">07/2026</div><div class="t"><div class="f" style="width:40%;background:#ce93d8">40%</div></div><div class="a">$126.60</div></div>
+<div class="bar"><div class="n">08/2026</div><div class="t"><div class="f" style="width:17%;background:#90caf9">17%</div></div><div class="a">$53.63</div></div>
+<div class="bar"><div class="n">10/2026</div><div class="t"><div class="f" style="width:9%;background:#a5d6a7">9%</div></div><div class="a">$32.44</div></div>
+<div class="bar"><div class="n">09/2026</div><div class="t"><div class="f" style="width:14%;background:#f48fb1">14%</div></div><div class="a">$52.00</div></div>
 </div>
 
 <div class="filter-bar">
@@ -120,12 +131,28 @@ tr:hover{background:#1a1a2e}
 <div class="filter-btn" onclick="filterMonth('06',this)">Junio</div>
 <div class="filter-btn" onclick="filterMonth('07',this)">Julio</div>
 <div class="filter-btn" onclick="filterMonth('08',this)">Agosto</div>
+<div class="filter-btn" onclick="filterMonth('09',this)">Septiembre</div>
+<div class="filter-btn" onclick="filterMonth('10',this)">Octubre</div>
+</div>
+<div class="sort-bar">
+<span class="sort-lbl">Ordenar</span>
+<button class="sort-btn active" id="sortBtnY" onclick="sortTable('fecha','desc',this)">📅 Más reciente</button>
+<button class="sort-btn" onclick="sortTable('fecha','asc',this)">📅 Más antiguo</button>
+<button class="sort-btn" onclick="sortTable('monto','desc',this)">💵 Mayor monto</button>
+<button class="sort-btn" onclick="sortTable('monto','asc',this)">💵 Menor monto</button>
 </div>
 <div class="tbl">
-<table>
-<thead><tr><th>Fecha</th><th>Tienda</th><th>Artículos</th><th style="text-align:right">Total</th><th>Método</th></tr></thead>
+<table id="tblY">
+<thead><tr><th class="sortable" onclick="toggleSort('fecha',this)">Fecha ⇅</th><th>Tienda</th><th>Artículos</th><th class="sortable" style="text-align:right" onclick="toggleSort('monto',this)">Total ⇅</th><th>Método</th></tr></thead>
 <tbody>
+<tr data-month="10"><td>10/01/2026</td><td>Walgreens #670 San Germán</td><td class="d">Té Bigelow Ginger Honey Zinc 1.31oz $4.99, toallitas hypoallergenic 120s $2.29, Crunch N Munch Caramel $1.25, Protex body wash 20oz $6.79, Degree invisible solid Lavender Waterlily 2.6oz $5.79, Uncle Al's iced lemon tray 5oz $1.25, Walgreens cough drops honey lemon 25ct $2.49 (FSA), bolsa $0.10 — 8 items (Txn 1130, 4:06PM)</td><td class="r">$27.16</td><td class="m">—</td></tr>
+<tr data-month="10"><td>10/01/2026</td><td>Walgreens #670 San Germán</td><td class="d">3x Crunch N Munch Caramel 3.5oz c/u $1.25, Powerade Fruit Punch 20oz $1.09 (Txn 1129, 4:05PM)</td><td class="r">$5.28</td><td class="m">—</td></tr>
+<tr data-month="09"><td>09/24/2026</td><td>Walgreens #670 San Germán</td><td class="d">Powerade Fruit Punch 20oz $1.19, Lysol multi-surface cleaner 28oz $4.49, 2x Brach's Candy Corn 4.2oz $1.67 c/u, 1x Brach's Candy Corn 4.2oz $1.66 — 5 items (Txn 6131, 4:16PM)</td><td class="r">$11.79</td><td class="m">—</td></tr>
+<tr data-month="09"><td>09/17/2026</td><td>Walgreens #670 San Germán</td><td class="d">Act II popcorn, Crunch N Munch, Werthers caramel, Lactovit gel de baño, bolsa (incl. IVU $1.20)</td><td class="r">$12.78</td><td class="m">Junta Fiscal x3539</td></tr>
+<tr data-month="09"><td>09/10/2026</td><td>Walgreens #670 San Germán</td><td class="d">NICE BBQ chips, Tootsie Fruit Chew, Iced Oatmeal, Hypoallergenic Wipes, Degree Waterlily, Crunch N Munch, Lubricant, bolsa</td><td class="r">$18.06</td><td class="m">Junta Fiscal x3539</td></tr>
+<tr data-month="09"><td>09/03/2026</td><td>Panadería Trapiche</td><td class="d">Café y sandwich de pastrami</td><td class="r">$9.37</td><td class="m">Junta Fiscal x3539</td></tr>
 <tr data-month="07"><td>07/20/2026</td><td>Walgreens #670</td><td class="d">RETURN - devolución gafas</td><td class="r cr">+$22.29</td><td class="m">Junta Fiscal x3539</td></tr>
+<tr data-month="08"><td>08/20/2026</td><td>Walgreens #670 San Germán</td><td class="d">Bauducco x2, BBQ chips, NISSIN, Moon Pie, Dude Wipes, Brach's, Post Cups, Lactovit, bolsa</td><td class="r">$22.82</td><td class="m">Junta Fiscal x3539</td></tr>
 <tr data-month="08"><td>08/12/2026</td><td>Walgreens #670 San Germán</td><td class="d">ACT II Mini Popcorn Butter 1.6oz 3s, Brachs Candy Corn 4.2oz, S S Triple Blade Mens Razor 4s, Dove Adv Care Caring Coconut 2.6oz, Shopping Bag Fee</td><td class="r">$16.49</td><td class="m">Visa ****9740</td></tr>
 <tr data-month="08"><td>08/06/2026</td><td>Walgreens #670 San Germán</td><td class="d">Nice BBQ Potato Chip 7.75oz, Great Scents Smoke Eliminator 9oz, V8 Camp Splash Fruit Med 200ml x2, Honey Nut Cheerios 1.8oz, Hypoallergenic Unscnt Wipes 120s, Campbell Country Chicken Noodle 10.5oz, Creamy Cocoa Butter Shea 15oz, Shopping Bag Fee</td><td class="r">$14.32</td><td class="m">Junta Fiscal x3539</td></tr>
 <tr data-month="07"><td>07/17/2026</td><td>Walgreens #670</td><td class="d">Compra Walgreens (estado de cuenta)</td><td class="r">$42.56</td><td class="m">Junta Fiscal x3539</td></tr>
@@ -154,11 +181,11 @@ tr:hover{background:#1a1a2e}
 <div class="view" id="vA">
 <div class="hdr ha">
 <h1>👤 Alexis – Cuenta</h1>
-<div class="sub">Hermano de Richard | Junta Fiscal x3539 | Actualizado: 08/12/2026</div>
+<div class="sub">Hermano de Richard | Junta Fiscal x3539 | Actualizado: 10/07/2026</div>
 </div>
 <div class="stats">
-<div class="s"><div class="l">Balance Disponible</div><div class="v" style="color:#64b5f6">$375.00</div></div>
-<div class="s"><div class="l">Depósitos Netos</div><div class="v dep">+$375.00</div></div>
+<div class="s"><div class="l">Balance Disponible</div><div class="v" style="color:#64b5f6">$625.00</div></div>
+<div class="s"><div class="l">Depósitos Netos</div><div class="v dep">+$625.00</div></div>
 </div>
 <div class="sec">
 <h2>💰 Depósitos</h2>
@@ -167,9 +194,11 @@ tr:hover{background:#1a1a2e}
 <div class="row"><div class="k">04/29/2026</div><div class="v dep">+$62.50 (½ de $125)</div></div>
 <div class="row"><div class="k">06/04/2026</div><div class="v dep">+$125.00 (½ de $250)</div></div>
 <div class="row"><div class="k">07/07/2026</div><div class="v dep">+$125.00 (½ de $250)</div></div>
-<div class="row"><div class="k">Subtotal</div><div class="v dep">+$500.00</div></div>
+<div class="row"><div class="k">09/03/2026</div><div class="v dep">+$125.00 (½ de $250)</div></div>
+<div class="row"><div class="k">10/06/2026</div><div class="v dep">+$125.00 (½ de $250)</div></div>
+<div class="row"><div class="k">Subtotal</div><div class="v dep">+$750.00</div></div>
 <div class="row"><div class="k">05/01 Depósito de Alexandro</div><div class="v tr">-$125.00</div></div>
-<div class="row"><div class="k">Total Alexis</div><div class="v dep">+$375.00</div></div>
+<div class="row"><div class="k">Total Alexis</div><div class="v dep">+$625.00</div></div>
 </div>
 </div>
 <div class="sec">
@@ -178,7 +207,7 @@ tr:hover{background:#1a1a2e}
 <div class="row"><div class="k">Banco</div><div class="v">Popular</div></div>
 <div class="row"><div class="k">Cuenta</div><div class="v">Junta Fiscal x3539</div></div>
 <div class="row"><div class="k">Titular</div><div class="v">Alexis</div></div>
-<div class="row"><div class="k">Balance total cuenta</div><div class="v">$822.84</div></div>
+<div class="row"><div class="k">Balance total cuenta</div><div class="v">$1,072.84</div></div>
 <div class="row"><div class="k">Gastos</div><div class="v" style="color:#888">Ninguno registrado</div></div>
 </div>
 </div>
@@ -191,20 +220,96 @@ Los depósitos se dividen mitad y mitad. El 05/01 se pagó $125.00 a cada uno po
 </div>
 
 <script>
+var curMonth='all';
+var curSort={col:'fecha',dir:'desc'};
+
+function mesActivo(){return curMonth;}
+
 function filterMonth(m,btn){
+  curMonth=m;
   document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
   btn.classList.add('active');
+  aplicarFiltro();
+}
+
+function aplicarFiltro(){
+  var m=curMonth;
   document.querySelectorAll('#vY tbody tr').forEach(function(r){
     if(m==='all'||r.dataset.month===m) r.style.display='';
     else r.style.display='none';
   });
 }
+
+function parseFecha(txt){
+  // formato de la tabla: MM/DD/YYYY -> numero comparable YYYYMMDD
+  var p=(txt||'').trim().split('/');
+  if(p.length!==3) return 0;
+  var mm=parseInt(p[0],10), dd=parseInt(p[1],10), yy=parseInt(p[2],10);
+  if(isNaN(mm)||isNaN(dd)||isNaN(yy)) return 0;
+  return yy*10000 + mm*100 + dd;
+}
+
+function parseMonto(txt){
+  // "$1,234.56" / "+$22.29" / "-$20.00" -> numero
+  var t=(txt||'').replace(/[^0-9.\-]/g,'');
+  var n=parseFloat(t);
+  return isNaN(n)?0:n;
+}
+
+function _cellVal(tr,col){
+  var tds=tr.querySelectorAll('td');
+  if(col==='fecha') return parseFecha(tds[0]?tds[0].textContent:'');
+  if(col==='monto') return parseMonto(tds[3]?tds[3].textContent:'');
+  return 0;
+}
+
+function _aplicarOrden(col,dir){
+  curSort={col:col,dir:dir};
+  var tb=document.querySelector('#vY tbody');
+  if(!tb) return;
+  var rows=Array.prototype.slice.call(tb.querySelectorAll('tr'));
+  rows.sort(function(a,b){
+    var va=_cellVal(a,col), vb=_cellVal(b,col);
+    if(va===vb){
+      // desempate estable por fecha desc
+      return _cellVal(b,'fecha') - _cellVal(a,'fecha');
+    }
+    return dir==='asc' ? (va-vb) : (vb-va);
+  });
+  rows.forEach(function(r){tb.appendChild(r)});
+  aplicarFiltro();
+}
+
+function _marcarBoton(btn){
+  document.querySelectorAll('.sort-btn').forEach(function(b){b.classList.remove('active')});
+  if(btn) btn.classList.add('active');
+  else {
+    var b=document.getElementById('sortBtnY');
+    if(b) b.classList.add('active');
+  }
+}
+
+function sortTable(col,dir,btn){
+  _marcarBoton(btn);
+  _aplicarOrden(col,dir);
+}
+
+function toggleSort(col,th){
+  var dir=(curSort.col===col && curSort.dir==='desc') ? 'asc' : 'desc';
+  // apagar botones (el header manda)
+  document.querySelectorAll('.sort-btn').forEach(function(b){b.classList.remove('active')});
+  _aplicarOrden(col,dir);
+}
+
 function show(t){
   document.getElementById('vY').className=t==='y'?'view active':'view';
   document.getElementById('vA').className=t==='a'?'view active':'view';
   document.getElementById('tabY').className=t==='y'?'tab active-y':'tab';
   document.getElementById('tabA').className=t==='a'?'tab active-a':'tab';
 }
+
+// orden inicial: mas reciente primero
+_aplicarOrden('fecha','desc');
 </script>
 </body>
 </html>
